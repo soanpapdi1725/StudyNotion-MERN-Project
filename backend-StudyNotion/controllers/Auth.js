@@ -3,6 +3,7 @@ const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 // OTP send Controller
 exports.sendOTP = async (req, res) => {
   try {
@@ -161,7 +162,7 @@ exports.postSignUp = async (req, res) => {
 
 // Login Controller
 
-exports.postSignUp = async (req, res) => {
+exports.postLogin = async (req, res) => {
   try {
     // data lao fetch karke request ki body se
     const { email, password } = req.body;
@@ -191,14 +192,44 @@ exports.postSignUp = async (req, res) => {
         accountType: user.accountType,
         id: user._id,
       };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { //payload me jo bhi value dunga toh wo encrypt ho jayegi or verify karne pr decrypt hogi
         expiresIn: "2h",
       });
       checkUserExist.token = token;
-      
+      checkUserExist.password = undefined;
+      // create cookie and send response
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.cookie("token", token, options).statis(200).json({
+        user: checkUserExist,
+        token: token,
+        success: true,
+        message: "user Login Successfully",
+      });
+    } else {
+      return res.status(401).json({
+        success: false,
+        message: "Password is incorrect",
+      });
     }
-    // create cookie and send response
-  } catch (error) {}
+  } catch (error) {
+    console.log("Internal Error while login in", error);
+    return res.status(500).json({
+      success: false,
+      message: "Login Failure, Please Try Again...",
+    });
+  }
 };
 
-// Change password Controller
+// Change password - Controller
+
+exports.postChangePass = async (req, res) => {
+  // get data from user
+  // fetch old pass, new pass, and confirm pass
+  // check all are not empty
+  // check old password are correct or not using compare of bcryptjs
+  // update password
+  // then send response
+};
