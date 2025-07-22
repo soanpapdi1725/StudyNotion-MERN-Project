@@ -79,8 +79,10 @@ exports.resetPassword = async (req, res) => {
         message: "Password and Confirm Password are not matching",
       });
     }
+
     // token se user ko Dhundenge kyuki ham pe kuch ni hai or update bhi toh krna hai
     const user = await User.findOne({ token: token });
+
     //   user exist karta hai nahi database me wo bhi pata karenge
     if (!user) {
       return res.status(400).json({
