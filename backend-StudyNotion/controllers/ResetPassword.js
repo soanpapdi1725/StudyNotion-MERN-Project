@@ -96,6 +96,7 @@ exports.resetPassword = async (req, res) => {
     });
   }
   // hash karenge new password
+  
   // update krenge new password
   // response bhej denge
 };
