@@ -58,3 +58,44 @@ exports.resetPassToken = async (req, res) => {
 };
 
 // Reset Password Controller
+
+exports.resetPassword = async (req, res) => {
+  //data fetch karunga pass, confirm pass, token
+  //token body se ayega kyuki ham frontend se utha ke body me dalenge
+  const { password, confirmPassword, token } = req.body;
+  //validation karenge password khali na ho
+  if (!password || !confirmPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Check Password and Confirm Password field are filled",
+    });
+  }
+  // validation for pass & confirm pass same ho
+  if (password !== confirmPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Password and Confirm Password are not matching",
+    });
+  }
+  // token se user ko Dhundenge kyuki ham pe kuch ni hai or update bhi toh krna hai
+  const user = await User.findOne({ token: token });
+  //   user exist karta hai nahi database me wo bhi pata karenge
+  if (!user) {
+    return res.status(400).json({
+      success: false,
+      message: "Token for reset password is invalid",
+    });
+  }
+  // expiry check krenge token ki
+  // resetPassExpiration ka kam hona chahiye abhi ke time se to make it false
+
+  if (user.resetPassExpiration < Date.now()) {
+    return res.status(400).json({
+      success: false,
+      message: "Reset Password Link is Expired",
+    });
+  }
+  // hash karenge new password
+  // update krenge new password
+  // response bhej denge
+};
