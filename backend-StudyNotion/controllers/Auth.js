@@ -1,7 +1,8 @@
 const User = require("../models/User");
 const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 // OTP send Controller
 exports.sendOTP = async (req, res) => {
   try {
@@ -65,7 +66,139 @@ exports.sendOTP = async (req, res) => {
 };
 
 // Signup Controller
+exports.postSignUp = async (req, res) => {
+  try {
+    // fetch karunga request ki body
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      otp,
+      contactNumber,
+      accountType,
+    } = req.body;
+    // fields ko validate krunga ki empty toh nahi aayi
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !otp
+    ) {
+      return res.json(403).json({
+        success: false,
+        message: "All fields are not filled by the User",
+      });
+    }
+    // user already exist krta hai ya nahi
+    const checkUserExist = await User.findOne({ email });
+    if (checkUserExist) {
+      return res.status(400).json({
+        success: false,
+        message: "User already Exists",
+      });
+    }
+    // user ka password confirm password same hai ya nahi
+    if (confirmPassword !== password) {
+      return res.status(400).json({
+        success: false,
+        message: "Password and Confirm password does not match",
+      });
+    }
+    // recent OTP stored for same User based on email ko retrieve krenge
+    const OTPs = await OTP.find({ email });
+    const newestOTP = OTPs.sort({ createAt: -1 }).limit(1);
+    //newestOTP will be array of OTP
+    if (newestOTP.length == 0) {
+      // NO recent OTP
+      return res.status(400).json({
+        success: false,
+        message: "OTP not Found",
+      });
+    } else if (newestOTP[0].otp !== otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP entered",
+      });
+    }
+
+    //   hashing password
+    const hashedPassword = await bcrypt.hash(password, 12);
+    // saving user info data to DB
+    const profileDetails = await Profiler.create({
+      contactNumber: null,
+      gender: null,
+      dateOfBirth: null,
+      about: null,
+    });
+    const user = await User.create({
+      firstName,
+      lastName,
+      password: hashedPassword,
+      email,
+      contactNumber,
+      accountType,
+      additionalDetails: profileDetails._id,
+      image: `https://api.dicebear.com/5.x/initials/svg?radius=50?seed=${firstName} ${lastName}`,
+    });
+    // response bhej denge JSON wala
+
+    return res.status(200).json({
+      success: true,
+      message: "User is registered successfully",
+    });
+  } catch (error) {
+    console.log("error while saving user in Database", error);
+    return res.status(500).json({
+      success: false,
+      message: "User cannot be registered. please try again later...",
+    });
+  }
+};
 
 // Login Controller
+
+exports.postSignUp = async (req, res) => {
+  try {
+    // data lao fetch karke request ki body se
+    const { email, password } = req.body;
+    // validate karo empty toh nahi ya undefined toh nahi if yes send 400 and send json
+    if (!email || !password) {
+      return res.status(403).json({
+        success: false,
+        message: "All fields are required to login",
+      });
+    }
+    // user email se check kro exist karta hai ya nahi database me
+    const checkUserExist = await User.findOne({ email }).populate(
+      "additionalDetails"
+    );
+    if (!checkUserExist) {
+      return res.status(401).json({
+        success: false,
+        message: "User does not exist.. Please SignUp first",
+      });
+    }
+
+    // generate JWT token after checking password with hashedPassword in database
+
+    if (await bcrypt.compare(password, checkUserExist.password)) {
+      const payload = {
+        email: user.email,
+        accountType: user.accountType,
+        id: user._id,
+      };
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "2h",
+      });
+      checkUserExist.token = token;
+      
+    }
+    // create cookie and send response
+  } catch (error) {}
+};
 
 // Change password Controller
