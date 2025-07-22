@@ -101,12 +101,17 @@ exports.resetPassword = async (req, res) => {
     const hashedPassword = await bcryptjs.hash(password, 12);
 
     // update krenge new password
-    user.password = hashedPassword;
-    await user.save();
+    await User.findOneAndUpdate(
+      { token: token },
+      {
+        password: hashedPassword,
+      },
+      { new: true }
+    );
     // response bhej denge
     return res.status(200).json({
       success: true,
-      message: "Password Successfully Changed",
+      message: "Password Reset Successful",
     });
   } catch (error) {
     console.log("Error while changing password", error);
