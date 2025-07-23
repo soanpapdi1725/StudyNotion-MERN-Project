@@ -3,7 +3,7 @@ const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+require("dotenv").config();
 // OTP send Controller
 exports.sendOTP = async (req, res) => {
   try {
@@ -192,7 +192,8 @@ exports.postLogin = async (req, res) => {
         accountType: user.accountType,
         id: user._id,
       };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, { //payload me jo bhi value dunga toh wo encrypt ho jayegi or verify karne pr decrypt hogi
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        //payload me jo bhi value dunga toh wo encrypt ho jayegi or verify karne pr decrypt hogi
         expiresIn: "2h",
       });
       checkUserExist.token = token;
@@ -227,9 +228,37 @@ exports.postLogin = async (req, res) => {
 
 exports.postChangePass = async (req, res) => {
   // get data from user
+  const userId = req.user.id;
   // fetch old pass, new pass, and confirm pass
+  const { oldPassword, newPassword, confirmPassword } = req.body;
   // check all are not empty
+  if (!oldPassword || !newPassword || !confirmPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "All Fields are required",
+    });
+  }
+  if (newPassword !== confirmPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "New password is not matching with current password",
+    });
+  }
+  const user = await User.findById(userId);
   // check old password are correct or not using compare of bcryptjs
+  if (!(await bcrypt.compare(oldPassword, user.password))) {
+    return res.status(403).json({
+      success: false,
+      message: "Old password is not matching to change it to new password",
+    });
+  }
   // update password
+  const newHashedPassword = await bcrypt.hash(newPassword, 12);
+  user.password = newHashedPassword;
+  await user.save();
   // then send response
+  return res.status(200).json({
+    success: true,
+    message: "Password Changed Successfully",
+  });
 };

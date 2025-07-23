@@ -18,10 +18,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     ref: "Profile",
   },
-  courses: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Course",
-  },
+  coursesCreatedOrEnroll: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+    },
+  ],
   image: { type: String, trim: true },
 
   courseProgress: {
