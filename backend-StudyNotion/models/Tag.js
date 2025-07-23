@@ -2,13 +2,15 @@ const mongoose = require("mongoose");
 
 const tagSchema = mongoose.Schema({
   tagName: { type: String, required: true },
-  description: {
+  tagDescription: {
     type: String,
   },
-  onCourse: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Course",
-  },
+  onCourses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Tag", tagSchema);
