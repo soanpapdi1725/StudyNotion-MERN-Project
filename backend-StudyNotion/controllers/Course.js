@@ -67,11 +67,59 @@ exports.createCourse = async (req, res) => {
       { new: true }
     );
     // tag model me jisne wo tag use kra hoga usme wo course dalenge
+    await Tag.findByIdAndUpdate(
+      { _id: tagDetails._id },
+      {
+        $push: {
+          // to insert in array of courses
+          onCourses: newCourse._id,
+        },
+      },
+      { new: true }
+    );
     // response bhej denge
-  } catch (error) {}
+    return res.status(200).json({
+      success: true,
+      messsage: "Course Created Successfully",
+      data: newCourse,
+    });
+  } catch (error) {
+    console.log("Error while creating Error", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to create new Course, Please Try again",
+    });
+  }
 };
 // get Course handler function
 exports.getAllCourses = async (req, res) => {
   try {
-  } catch (error) {}
+    const allCourses = await Course.find(
+      {},
+      {
+        courseName: true,
+        courseDescription: true,
+        price: true,
+        whatYouWillLearn: true,
+        thumbnail: true,
+        ratingAndReview: true,
+        instructor: true,
+        studentsEnrolled: true,
+      }
+    )
+      .populate("instructor")
+      .exec();
+
+    return res.status(200).json({
+      success: true,
+      message: "Courses successfully retrieved",
+      data: allCourses,
+    });
+  } catch (error) {
+    console.log("Error while getting all the data", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get the Courses",
+    });
+  }
 };

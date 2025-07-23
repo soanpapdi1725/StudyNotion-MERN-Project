@@ -45,7 +45,7 @@ exports.getAllTags = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Returning all the Tags",
-      getTags,
+      data: getTags,
     });
   } catch (error) {
     console.log("error while getting all tags ", error);
