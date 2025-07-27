@@ -42,7 +42,7 @@ exports.createSection = async (req, res) => {
   }
 };
 
-exports.updateSection = () => {
+exports.updateSection = async (req, res) => {
   try {
     // section Ka Name or Id toh uss section ke update pe click krte hue hii mil jayegi
     const { newSectionName, sectionId } = req.body;
@@ -54,7 +54,16 @@ exports.updateSection = () => {
       });
     }
     // updation kar denge findByIdAndUpdate se
+    const updatedSection = await Section.findByIdAndUpdate(
+      sectionId,
+      { sectionName: newSectionName },
+      { new: true }
+    );
     // response bhej denge sir
+    return res.status(200).json({
+      success: true,
+      message: "Section Updated Successfully",
+    });
   } catch (error) {
     console.log("Error while updating section", error);
     return res.status(500).json({
