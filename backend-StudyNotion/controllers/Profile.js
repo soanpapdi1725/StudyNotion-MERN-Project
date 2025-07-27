@@ -41,15 +41,63 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-
 exports.deleteAccount = async (req, res) => {
-    try{
-        // get user id from decode -> req.user.id
-        // check valid user Id
-        // profile delete kro pehle uss user ka
-        // 
+  try {
+    // get user id from decode -> req.user.id
+    const userId = req.user.id;
+    // check valid user Id
+    if (!userId) {
+      return res.status(404).json({
+        success: false,
+        message: "User Not Found",
+      });
     }
-    catch(error){
 
+    const userDetails = await User.findById(userId);
+    // profile delete kro pehle uss user ka
+    await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
+
+    await User.findByIdAndDelete(userId);
+    // Fir user ki detail bhi detail
+    return res.status(200).json({
+      success: true,
+      message: "User Deleted successfully",
+    });
+  } catch (error) {
+    console.log("Error in deleting Account", error);
+    return res.status(500).json({
+      success: true,
+      message: "Failed to delete the account, Please Try again",
+    });
+  }
+};
+
+exports.getAllUserDetails = async (req, res) => {
+  try {
+    // userid nikal lo decode -> req.user.id
+    const userId = req.user.id;
+    // validate userId
+
+    if (!userId) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
-}
+    // getting details of that user
+    const userDetails = await User.findById(id)
+      .populate("additionalDetails")
+      .exec();
+
+    return res.status(200).json({
+      success: true,
+      message: "User Details Fetched Successfully",
+    });
+  } catch (error) {
+    console.log("Error while fetching user details");
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get User Details, Please Try again",
+    });
+  }
+};
