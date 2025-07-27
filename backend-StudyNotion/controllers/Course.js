@@ -53,7 +53,7 @@ exports.createCourse = async (req, res) => {
       whatYouWillLearn: whatYouWillLearn,
       instructor: instructorDetails._id,
       tag: tagDetails._id,
-      thumbnail: thumbnailImage,
+      thumbnail: thumbnailImage.secure_url,
     });
     // user(instructor) how many course created by that particular instructor will be stored in course
     await User.findByIdAndUpdate(

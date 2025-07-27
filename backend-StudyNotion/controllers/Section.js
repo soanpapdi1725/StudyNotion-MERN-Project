@@ -72,3 +72,29 @@ exports.updateSection = async (req, res) => {
     });
   }
 };
+
+exports.deleteSection = async (req, res) => {
+  try {
+    // sectionId nikalo req ko params se -> assuming ki parameter se aara hai
+    const { sectionId } = req.params;
+    //   validation of sectionId
+    if (!sectionId) {
+      return res.status(400).json({
+        success: false,
+        message: "sectionId is missing",
+      });
+    }
+
+    // delete the section and from course too
+    await Section.findByIdAndDelete(sectionId);
+    return res
+      .status(200)
+      .json({ success: true, message: "Section Deleted Succcessfully" });
+  } catch (error) {
+    console.log("Error while deleting section", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to delete the Section",
+    });
+  }
+};
