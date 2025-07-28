@@ -33,6 +33,10 @@ const courseSchema = mongoose.Schema({
       ref: "Section",
     },
   ],
+  tag: {
+    type: [String],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Course", courseSchema);

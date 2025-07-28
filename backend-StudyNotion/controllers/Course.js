@@ -16,6 +16,7 @@ exports.createCourse = async (req, res) => {
       price,
       categoryId,
       whatYouWillLearn,
+      tags
     } = req.body;
     // fetching the file
     const thumbnail = req.file.thumbnailImage;
@@ -25,7 +26,8 @@ exports.createCourse = async (req, res) => {
       !description ||
       !price ||
       !category ||
-      !whatYouWillLearn
+      !whatYouWillLearn ||
+      !tags
     ) {
       return res.status(400).json({
         success: false,
@@ -65,6 +67,7 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDetails._id,
       category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
+      tags: tags
     });
     // user(instructor) how many course created by that particular instructor will be stored in course
     await User.findByIdAndUpdate(
