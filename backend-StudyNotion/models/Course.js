@@ -9,9 +9,9 @@ const courseSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "RatingAndReview",
   },
-  tag: {
+  category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Tag",
+    ref: "category",
   },
   thumbnail: {
     type: String,

@@ -1,7 +1,7 @@
-// Tag(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
+// category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
 
 const Course = require("../models/Course");
-const Tag = require("../models/Tag");
+const category = require("../models/category");
 const User = require("../models/User");
 const imageUploadToCloudinary = require("../utils/imageUploader");
 require("dotenv").config();
@@ -10,12 +10,23 @@ require("dotenv").config();
 exports.createCourse = async (req, res) => {
   try {
     // get course body to store in collection of course
-    const { courseName, courseDescription, price, tagId, whatYouWillLearn } =
-      req.body;
+    const {
+      courseName,
+      courseDescription,
+      price,
+      categoryId,
+      whatYouWillLearn,
+    } = req.body;
     // fetching the file
     const thumbnail = req.file.thumbnailImage;
     // validation of course fields
-    if (!courseName || !description || !price || !tag || !whatYouWillLearn) {
+    if (
+      !courseName ||
+      !description ||
+      !price ||
+      !category ||
+      !whatYouWillLearn
+    ) {
       return res.status(400).json({
         success: false,
         message: "All Fields are mandatory",
@@ -31,12 +42,12 @@ exports.createCourse = async (req, res) => {
         message: "Instructor Details not found",
       });
     }
-    // tags validation
-    const tagDetails = await Tag.findById(tagId);
-    if (!tagDetails) {
+    // categorys validation
+    const categoryDetails = await category.findById(categoryId);
+    if (!categoryDetails) {
       return res.status(404).json({
         success: false,
-        message: "Tag Details not found",
+        message: "category Details not found",
       });
     }
     // image ko cloudinary me save karenge
@@ -52,7 +63,7 @@ exports.createCourse = async (req, res) => {
       price: price,
       whatYouWillLearn: whatYouWillLearn,
       instructor: instructorDetails._id,
-      tag: tagDetails._id,
+      category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
     });
     // user(instructor) how many course created by that particular instructor will be stored in course
@@ -66,9 +77,9 @@ exports.createCourse = async (req, res) => {
       },
       { new: true }
     );
-    // tag model me jisne wo tag use kra hoga usme wo course dalenge
-    await Tag.findByIdAndUpdate(
-      { _id: tagDetails._id },
+    // category model me jisne wo category use kra hoga usme wo course dalenge
+    await category.findByIdAndUpdate(
+      { _id: categoryDetails._id },
       {
         $push: {
           // to insert in array of courses

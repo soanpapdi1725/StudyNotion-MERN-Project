@@ -1,57 +1,62 @@
-const Tag = require("../models/Tag");
+const category = require("../models/category");
 
-// Tag(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
-exports.createTag = async (req, res) => {
+// category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
+exports.createcategory = async (req, res) => {
   try {
-    // get tagName and description from request ki Body
-    const { tagName, tagDescription } = req.body;
+    // get categoryName and description from request ki Body
+    const { categoryName, categoryDescription } = req.body;
     // validate karo khali toh nahi
-    if (!tagName || !tagDescription) {
+    if (!categoryName || !categoryDescription) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
-    const tagExist = await Tag.findOne({ tagName: tagName });
-    if (tagExist) {
+    const categoryExist = await category.findOne({
+      categoryName: categoryName,
+    });
+    if (categoryExist) {
       return res.status(400).json({
         success: false,
-        message: "Tag is already created, Please Delete Previous One",
+        message: "category is already created, Please Delete Previous One",
       });
     }
     // entry kro DB me
-    const tagDetails = await Tag.create({
-      tagName: tagName,
-      tagDescription: tagDescription,
+    const categoryDetails = await category.create({
+      categoryName: categoryName,
+      categoryDescription: categoryDescription,
     });
-    console.log(tagDetails);
+    console.log(categoryDetails);
     // response bhej ke soo jao
     return res.status(200).json({
       success: true,
-      message: "Tag created Successfully",
+      message: "category created Successfully",
     });
   } catch (error) {
-    console.log("error while creating a tag: ", error);
+    console.log("error while creating a category: ", error);
     return res.status(500).json({
       success: false,
-      message: "Tag does not created, Please Try again",
+      message: "category does not created, Please Try again",
     });
   }
 };
 
-exports.getAllTags = async (req, res) => {
+exports.getAllcategorys = async (req, res) => {
   try {
-    const getTags = await Tag.find({}, { tagName: true, tagDescription: true });
+    const getcategorys = await category.find(
+      {},
+      { categoryName: true, categoryDescription: true }
+    );
     return res.status(200).json({
       success: true,
-      message: "Returning all the Tags",
-      data: getTags,
+      message: "Returning all the categorys",
+      data: getcategorys,
     });
   } catch (error) {
-    console.log("error while getting all tags ", error);
+    console.log("error while getting all categorys ", error);
     return res.status(500).json({
       success: false,
-      message: "Failed to get the Tags, Please try again",
+      message: "Failed to get the categorys, Please try again",
     });
   }
 };

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const tagSchema = mongoose.Schema({
-  tagName: { type: String, required: true },
-  tagDescription: {
+const categorySchema = mongoose.Schema({
+  categoryName: { type: String, required: true },
+  categoryDescription: {
     type: String,
   },
   onCourses: [
@@ -13,4 +13,4 @@ const tagSchema = mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model("Tag", tagSchema);
+module.exports = mongoose.model("category", categorySchema);
