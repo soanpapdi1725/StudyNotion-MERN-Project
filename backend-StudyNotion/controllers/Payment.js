@@ -55,9 +55,10 @@ exports.capturePaymentapturePayment = async (req, res) => {
     },
   };
   try {
-    // order create
+    // order create and recieve response
     const paymentResponse = await instance.orders.create(options);
     console.log(paymentResponse);
+    // return response
     return res.status(200).json({
       success: true,
       courseName: courseDetails.courseName,
@@ -74,5 +75,71 @@ exports.capturePaymentapturePayment = async (req, res) => {
       message: "Failed to initiate order, Please Try again",
     });
   }
-  // return response
+};
+
+exports.verifyPaymentSignature = async (req, res) => {
+  const webHookSecret = "123456789";
+  const signature = req.headers["x-razorpay-signature"];
+
+  const shasum = crypto.createHmac("sha256", webHookSecret);
+  shasum.update(JSON.stringify(req.body));
+  // jab ham kisi hashing algorithm ko run krte hai kisi particular input pe toh ek output ata hai jo ki digest naam se jana jata hai jisme digest hexadecimal format me hota hai
+  const digest = shasum.diget("hex");
+
+  if (signature === digest) {
+    console.log("payment is authorised");
+    const { courseId, userId } = req.body.payload.payment.entity.notes;
+    try {
+      // fullfill the action
+      // findCourse And Update Add update student in course's EnrollStudents array
+      //   1. Course ko Baccha mil gya
+      const enrolledCourse = await Course.findByIdAndUpdate(
+        { _id: courseId },
+        { $push: { studentsEnrolled: userId } },
+        { new: true }
+      );
+      console.log(enrolledCourse);
+      if (!enrolledStudentInCourse) {
+        return res.status(500).json({
+          success: false,
+          message: "Course Not Found and Student Couldn't be Able to Enrolled",
+        });
+      }
+      // add it in user(Student) coursesCreatedOrEnroll section that ensures that particular student is enrolled in those courses
+      //   find studentDetails using User id
+      //   2. bacche ko Course mil gya
+      const enrolledStudent = await User.findByIdAndUpdate(
+        { _id: userId },
+        {
+          $push: {
+            coursesCreatedOrEnroll: courseId,
+          },
+        },
+        { new: true }
+      );
+      console.log(enrolledStudent);
+      //   sending Confirmation mail
+      const emailResponse = await mailSender(
+        enrolledStudent.email,
+        "Course successfully purchased",
+        "Congratulation, You are successfully onboard a course on StudyNotion"
+      );
+      console.log(emailResponse);
+      return res.status(200).json({
+        success: true,
+        message: "Course Successfully Purchased",
+      });
+    } catch (error) {
+      console.log("Error while getting course Details and User details", error);
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  } else {
+    return res.status(400).json({
+      success: false,
+      message: "Signature and WebHookSecret not matched",
+    });
+  }
 };
