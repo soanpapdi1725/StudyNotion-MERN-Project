@@ -1,4 +1,4 @@
-const category = require("../models/category");
+const Category = require("../models/category");
 
 // category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
 exports.createcategory = async (req, res) => {
@@ -12,7 +12,7 @@ exports.createcategory = async (req, res) => {
         message: "All fields are required",
       });
     }
-    const categoryExist = await category.findOne({
+    const categoryExist = await Category.findOne({
       categoryName: categoryName,
     });
     if (categoryExist) {
@@ -22,7 +22,7 @@ exports.createcategory = async (req, res) => {
       });
     }
     // entry kro DB me
-    const categoryDetails = await category.create({
+    const categoryDetails = await Category.create({
       categoryName: categoryName,
       categoryDescription: categoryDescription,
     });
@@ -43,7 +43,7 @@ exports.createcategory = async (req, res) => {
 
 exports.getAllcategorys = async (req, res) => {
   try {
-    const getcategorys = await category.find(
+    const getcategorys = await Category.find(
       {},
       { categoryName: true, categoryDescription: true }
     );

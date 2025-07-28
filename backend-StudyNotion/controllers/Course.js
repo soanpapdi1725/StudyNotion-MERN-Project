@@ -1,7 +1,7 @@
 // category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
 
 const Course = require("../models/Course");
-const category = require("../models/category");
+const Category = require("../models/category");
 const User = require("../models/User");
 const imageUploadToCloudinary = require("../utils/imageUploader");
 require("dotenv").config();
@@ -43,7 +43,7 @@ exports.createCourse = async (req, res) => {
       });
     }
     // categorys validation
-    const categoryDetails = await category.findById(categoryId);
+    const categoryDetails = await Category.findById(categoryId);
     if (!categoryDetails) {
       return res.status(404).json({
         success: false,
@@ -78,7 +78,7 @@ exports.createCourse = async (req, res) => {
       { new: true }
     );
     // category model me jisne wo category use kra hoga usme wo course dalenge
-    await category.findByIdAndUpdate(
+    await Category.findByIdAndUpdate(
       { _id: categoryDetails._id },
       {
         $push: {
