@@ -37,6 +37,13 @@ const courseSchema = mongoose.Schema({
     type: [String],
     required: true,
   },
+  instructions: {
+    type: [String],
+  },
+  status: {
+    type: String,
+    enum: ["published", "Draft"],
+  },
 });
 
 module.exports = mongoose.model("Course", courseSchema);
