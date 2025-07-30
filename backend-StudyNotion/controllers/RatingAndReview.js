@@ -36,10 +36,37 @@ exports.createRating = async (req, res) => {
       });
     }
     // rating create kr doge
-    
+    const newRatingReview = await RatingAndReview.create({
+      rating: rating,
+      review: review,
+      user: userId,
+      course: courseId,
+    });
     // course ko update kr dena ki ye ek or rating apne pass rakh lo
+    const courseDetailsReviewAdded = await Course.findByIdAndUpdate(
+      { _id: courseId },
+      {
+        $push: {
+          RatingAndReview: newRatingReview._id,
+        },
+      },
+      { new: true }
+    );
+    console.log(courseDetailsReviewAdded);
+
+    return res.status(200).json({
+      success: true,
+      message: "Rating And Review Created Successfully",
+      data: newRatingReview,
+    });
     // return response
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error While CreatinG Review and Rating", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to create Rating and review, Please Try Again",
+    });
+  }
 };
 
 // get Average Rating
