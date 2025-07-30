@@ -13,7 +13,7 @@ exports.capturePaymentapturePayment = async (req, res) => {
   // validation karenge
   // valid CourseId
   if (!courseId) {
-    return res.status(400).json({
+    return res.status(404).json({
       success: false,
       message: "Course Id not found",
     });
