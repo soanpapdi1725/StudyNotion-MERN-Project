@@ -1,4 +1,4 @@
-const Category = require("../models/category");
+const Category = require("../models/Category");
 
 // category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
 exports.createcategory = async (req, res) => {
@@ -57,6 +57,49 @@ exports.getAllcategorys = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failed to get the categorys, Please try again",
+    });
+  }
+};
+
+exports.categoryPageDetails = async (req, res) => {
+  try {
+    // get categoryId
+    const { categoryId } = req.body;
+    // get all course related to that particular categoryId
+    const selectedCategoryCourses = await Category.findById(categoryId)
+      .populate("onCourses")
+      .exec();
+    // validation that if course not found
+    if (!selectedCategoryCourses) {
+      return res.status(404).json({
+        success: false,
+        message: "Course specified to the category not found",
+      });
+    }
+    // also get courses for different categories which user(student) can buy
+    const differentCategoryCourses = await Category.find({
+      _id: { $ne: categoryId },
+    })
+      .populate("onCourses")
+      .exec();
+    // also get courses which are top selling on my website
+
+    return res.status(200).json({
+      success: true,
+      message: "Courses specified to category are fetched successfully",
+      data: {
+        selectedCategoryCourses,
+        differentCategoryCourses,
+        topSellingCourses,
+      },
+    });
+    // return response
+  } catch (error) {
+    console.log("Error while getting courses specified to categoryId", error);
+    return res.status(500).json({
+      success: false,
+      message:
+        "Failed to get couses specified to category Id, Please Try Again",
     });
   }
 };

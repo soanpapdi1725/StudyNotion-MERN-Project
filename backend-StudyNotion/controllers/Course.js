@@ -1,7 +1,7 @@
 // category(getAll, create)-(admin) -> course(getAll, create) -> section(CRUD) -> sub-section(CRUD) -> video
 
 const Course = require("../models/Course");
-const Category = require("../models/category");
+const Category = require("../models/Category");
 const User = require("../models/User");
 const imageUploadToCloudinary = require("../utils/imageUploader");
 require("dotenv").config();
