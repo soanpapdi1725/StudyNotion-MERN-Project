@@ -83,7 +83,9 @@ exports.categoryPageDetails = async (req, res) => {
       .populate("onCourses")
       .exec();
     // also get courses which are top selling on my website
-
+    const topSellingCourse = await Course.aggregate([
+      {}
+    ])
     return res.status(200).json({
       success: true,
       message: "Courses specified to category are fetched successfully",
