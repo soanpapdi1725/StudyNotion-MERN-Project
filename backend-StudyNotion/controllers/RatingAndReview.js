@@ -119,5 +119,17 @@ exports.getAllRating = async (req, res) => {
       })
       .populate({ path: "user", select: "firstName lastName email image" })
       .populate({ path: "course", select: "courseName" });
-  } catch (error) {}
+
+    return res.status(200).json({
+      success: true,
+      message: "All Reviews are fetched Successfully",
+      data: allReviews,
+    });
+  } catch (error) {
+    console.log("Error while getting All Reviews", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get the all Reviews, Please Try Again",
+    });
+  }
 };
