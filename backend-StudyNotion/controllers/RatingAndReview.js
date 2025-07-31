@@ -73,11 +73,44 @@ exports.createRating = async (req, res) => {
 
 exports.getAverageRating = async (req, res) => {
   try {
-  } catch (error) {}
+    // courseId request ki body se nikalenge jiske rating ka average nikalne ke liye
+    const courseId = req.body.courseId;
+
+    // average nikalenge rating ki
+    // courseId ke basis pe separate krenge rating ko
+    // aggregate returns a array and we need to define steps in object inside array
+    // group kr denge _id: null means saare jo mile hai unpe operation karo
+    // averageRating naam ki ek key bana denge like this [{averageRating: }]
+    // usme fir operation karenge operation--> $avg : "$rating" <-- on that field
+    const result = await RatingAndReview.aggregate([
+      { $match: { _id: courseId } }, // step 1
+      { $group: { _id: null, averageRating: { $avg: "$rating" } } },
+    ]);
+
+    // if averageRating is there it will be sent
+    if (result.length > 0) {
+      return res.status(200).json({
+        success: true,
+        averageRating: result[0].averageRating,
+      });
+    }
+    // if the course is new there will be no rating so it will be Zero
+    return res.status(200).json({
+      success: true,
+      message: "There is not rating on this course",
+      averageRating: 0,
+    });
+    // return response
+  } catch (error) {
+    console.log("Error while getting Average rating", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get the Average Rating, Please Try Again",
+    });
+  }
 };
 
 // get ALl Rating And Review
-
 exports.getAllRating = async (req, res) => {
   try {
   } catch (error) {}
