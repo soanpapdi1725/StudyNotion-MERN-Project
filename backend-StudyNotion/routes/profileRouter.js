@@ -29,3 +29,5 @@ profileRouter.delete("/deleteAccount", auth, deleteAccount);
 // put
 profileRouter.put("/updatePofile", auth, updateProfile);
 profileRouter.put("/updateDisplayImage", auth, updateUserImage);
+
+module.exports = profileRouter;
