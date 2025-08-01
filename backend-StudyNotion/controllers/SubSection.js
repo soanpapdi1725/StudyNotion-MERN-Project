@@ -54,7 +54,7 @@ exports.createSubSection = async (req, res) => {
   }
 };
 
-create.updateSubSection = async (req, res) => {
+exports.updateSubSection = async (req, res) => {
   try {
     //1. subsectionId or uske details jo update hoge wo nikalo request ki body se
     const { subSectionId, newTitle, newDescription, newTimeDuration } =
