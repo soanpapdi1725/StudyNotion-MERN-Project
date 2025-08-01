@@ -6,7 +6,7 @@ const courseEnrollmentEmail = require("../mail/templates/courseEnrollmentEmail")
 const { default: mongoose } = require("mongoose");
 
 // capture the payment and intiate razorpay create order
-exports.capturePaymentapturePayment = async (req, res) => {
+exports.capturePayment = async (req, res) => {
   // userId nikalenge and courseId lenge
   const { courseId } = req.body;
   const userId = req.user.id;
@@ -84,7 +84,7 @@ exports.verifyPaymentSignature = async (req, res) => {
   const shasum = crypto.createHmac("sha256", webHookSecret);
   shasum.update(JSON.stringify(req.body));
   // jab ham kisi hashing algorithm ko run krte hai kisi particular input pe toh ek output ata hai jo ki digest naam se jana jata hai jisme digest hexadecimal format me hota hai
-  const digest = shasum.diget("hex");
+  const digest = shasum.digest("hex");
 
   if (signature === digest) {
     console.log("payment is authorised");
@@ -99,7 +99,7 @@ exports.verifyPaymentSignature = async (req, res) => {
         { new: true }
       );
       console.log(enrolledCourse);
-      if (!enrolledStudentInCourse) {
+      if (!enrolledCourse) {
         return res.status(500).json({
           success: false,
           message: "Course Not Found and Student Couldn't be Able to Enrolled",

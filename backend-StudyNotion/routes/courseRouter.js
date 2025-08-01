@@ -28,7 +28,12 @@ const {
   deleteSubsection,
   updateSubSection,
 } = require("../controllers/SubSection");
-const { auth, isInstructor } = require("../middlewares/auth");
+const {
+  auth,
+  isInstructor,
+  isAdmin,
+  isStudent,
+} = require("../middlewares/auth");
 //
 //category controller
 const {
@@ -74,7 +79,22 @@ courseRouter.put("/updateSubSection", auth, isInstructor, updateSubSection);
 // **********************************************************************************************************
 //                                          Category Controller Routes
 // **********************************************************************************************************
-// categories can only be created by admin and all category can be get by the instructor and
-//  categoryPage details will be for student
+// categories can only be created by admin and all category can be
+// get by everyone to know what type of content studyNotion is providing and
+//  categoryPage details will be for everyone who are not logged so that
+// they know different courses and top selling courses
 
-courseRouter
+courseRouter.post("/createCategory", auth, isAdmin, createcategory);
+courseRouter.get("/getAllCategory", getAllcategorys);
+courseRouter.get("/categoryPageDetails", auth, isStudent, categoryPageDetails);
+
+// **********************************************************************************************************
+//                                          Rating and reviews Controller Routes
+// **********************************************************************************************************
+// rating will be see by everyone who visits website doesnot matter they are logged in or not
+// rating will be created by students only
+courseRouter.post("/createRatingAndReviews", auth, isStudent, createRating);
+courseRouter.get("/getAllReviews", getAllRating);
+courseRouter.get("/getAverageRating", getAverageRating);
+
+module.exports = courseRouter;
