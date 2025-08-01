@@ -1,5 +1,6 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
+const imageUploadToCloudinary = require("../utils/imageUploader");
 exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
@@ -73,7 +74,7 @@ exports.deleteAccount = async (req, res) => {
   }
 };
 
-exports.getAllUserDetails = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
   try {
     // userid nikal lo decode -> req.user.id
     const userId = req.user.id;
@@ -105,5 +106,70 @@ exports.getAllUserDetails = async (req, res) => {
 
 exports.updateUserImage = async (req, res) => {
   try {
-  } catch (error) {}
+    // get image from request ki body
+    const newUserImage = req.files.updatedImage;
+    // get user id from request user ki id se
+    const userId = req.user.id;
+    // upload kro cloudinary pe height and quality daal ke
+    const newImage = await imageUploadToCloudinary(
+      newUserImage,
+      process.env.FOLDER_NAME,
+      1000,
+      1000
+    );
+    // secure url ko save kr do
+    const updatedProfile = await User.findByIdAndUpdate(
+      { _id: userId },
+      {
+        image: newImage.secure_url,
+      },
+      {
+        new: true,
+      }
+    );
+    // return response
+
+    return res.status(200).json({
+      success: true,
+      message: "Image Updated Successfully",
+      data: updatedProfile,
+    });
+  } catch (error) {
+    console.log("Error while updating new Image to user Profile", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to Update profile Image, Please Try again",
+    });
+  }
+};
+
+exports.getEnrolledCourses = async (req, res) => {
+  try {
+    // userId from request me user ki id se
+    const userId = req.user.id;
+    // user ki details nikal lenge findById se and populate bhi kar denge
+    const userDetails = await User.findById(userId).populate(
+      "coursesCreatedOrEnroll"
+    );
+    // validate kr lenge ki user mila ki nahi
+    if (!userDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "User Details not found",
+      });
+    }
+    // mil gya toh response bhej denge enrolled courses ka
+    return res.status(200).json({
+      success: true,
+      message: "Enrolled courses Fetched successfully",
+      data: userDetails.coursesCreatedOrEnroll,
+    });
+  } catch (error) {
+    console.log("Error while getting Enrolled Courses", error);
+    return res.status(500).json({
+      success: false,
+      message:
+        "Failed to get Enrolled courses of the student, Please Try Again",
+    });
+  }
 };
