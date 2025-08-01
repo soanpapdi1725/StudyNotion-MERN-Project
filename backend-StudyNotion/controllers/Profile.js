@@ -3,6 +3,7 @@ const User = require("../models/User");
 exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
+
     const { dateOfBirth = "", about = "", gender, contactNumber } = req.body;
     // get user Id from JWT decode wali jagah se
     const userId = req.user.id;
@@ -100,4 +101,9 @@ exports.getAllUserDetails = async (req, res) => {
       message: "Failed to get User Details, Please Try again",
     });
   }
+};
+
+exports.updateUserImage = async (req, res) => {
+  try {
+  } catch (error) {}
 };
