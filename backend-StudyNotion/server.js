@@ -7,5 +7,13 @@ const paymentRouter = require("./routes/paymentRouter");
 const profileRouter = require("./routes/paymentRouter");
 
 const database = require("./config/database");
-const cloudinary = require("./config/cloudinary");
-const razorpay = require("./config/razorpay");
+const { cloudinaryConnect } = require("./config/cloudinary");
+
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const fileUpload = require("express-fileupload");
+const dotenv = require("dotenv");
+
+const PORT = process.env.PORT || 4000;
+
+app.use(express.json());
