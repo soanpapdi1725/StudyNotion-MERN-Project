@@ -1,6 +1,6 @@
 const express = require("express");
 
-const AuthAndResetRouter = express.Router();
+const authAndResetRouter = express.Router();
 
 const {
   resetPassToken,
@@ -16,17 +16,17 @@ const {
 // **********************************************************************************************************
 //                                          Authentication Routes
 // **********************************************************************************************************
-AuthAndResetRouter.post("/login", postLogin);
-AuthAndResetRouter.post("/signup", postSignUp);
-AuthAndResetRouter.post("/sendotp", sendOTP);
-AuthAndResetRouter.post("/change-password", postChangePass);
+authAndResetRouter.post("/login", postLogin);
+authAndResetRouter.post("/signup", postSignUp);
+authAndResetRouter.post("/sendotp", sendOTP);
+authAndResetRouter.post("/change-password", postChangePass);
 
 // **********************************************************************************************************
 //                                          Reset password Routes
 // **********************************************************************************************************
 
-AuthAndResetRouter.post("/reset-password-token", resetPassToken);
-AuthAndResetRouter.post("/reset-password", resetPassword);
+authAndResetRouter.post("/reset-password-token", resetPassToken);
+authAndResetRouter.post("/reset-password", resetPassword);
 
 // exporting it
-module.exports = AuthAndResetRouter;
+module.exports = authAndResetRouter;
