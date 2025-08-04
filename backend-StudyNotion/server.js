@@ -17,6 +17,41 @@ const dotenv = require("dotenv");
 const PORT = process.env.PORT || 4000;
 
 // database connect
+database.connect();
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+  })
+);
+// cloudinary connect call
+cloudinaryConnect();
+
+//routes
+
+app.use("/api/v1/auth", authAndResetRouter);
+app.use("/api/v1/profile", profileRouter);
+app.use("/api/v1/course", courseRouter);
+app.use("/api/v1/payment", paymentRouter);
+
+app.get("/", (req, res) => {
+  return res.json({
+    success: true,
+    message: "Your server is up and running",
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

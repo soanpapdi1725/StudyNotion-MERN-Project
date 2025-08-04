@@ -4,7 +4,7 @@ const courseSchema = mongoose.Schema({
   courseName: { type: String, trim: true },
   courseDescription: { type: String, trim: true },
   price: { type: Number, trim: true },
-  whatYouWillLearn: { type: string, trim: true },
+  whatYouWillLearn: { type: String, trim: true },
   ratingAndReviews: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "RatingAndReview",

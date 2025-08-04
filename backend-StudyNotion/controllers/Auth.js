@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Profile = require("../models/Profile")
 const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
@@ -110,16 +111,15 @@ exports.postSignUp = async (req, res) => {
       });
     }
     // recent OTP stored for same User based on email ko retrieve krenge
-    const OTPs = await OTP.find({ email });
-    const newestOTP = OTPs.sort({ createAt: -1 }).limit(1);
+    const OTPs = await OTP.find({ email }).sort({ createAt: -1 }).limit(1);
     //newestOTP will be array of OTP
-    if (newestOTP.length == 0) {
+    if (OTPs.length == 0) {
       // NO recent OTP
       return res.status(400).json({
         success: false,
         message: "OTP not Found",
       });
-    } else if (newestOTP[0].otp !== otp) {
+    } else if (OTPs[0].otp !== otp) {
       return res.status(400).json({
         success: false,
         message: "Invalid OTP entered",
@@ -129,7 +129,7 @@ exports.postSignUp = async (req, res) => {
     //   hashing password
     const hashedPassword = await bcrypt.hash(password, 12);
     // saving user info data to DB
-    const profileDetails = await Profiler.create({
+    const profileDetails = await Profile.create({
       contactNumber: null,
       gender: null,
       dateOfBirth: null,

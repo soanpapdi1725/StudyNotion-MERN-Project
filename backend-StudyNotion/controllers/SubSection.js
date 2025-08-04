@@ -104,31 +104,31 @@ exports.updateSubSection = async (req, res) => {
       message: "Failed to update Subsection, Please Try Again",
     });
   }
+};
 
-  exports.deleteSubsection = async (req, res) => {
-    try {
-      // get subSectionId from request ki body
-      const { subSectionId } = req.body;
-      // validate that it's not empty
-      if (!subSectionId) {
-        return res.status(400).json({
-          success: false,
-          message: "Subsection Id is not provided",
-        });
-      }
-      // find and delete the subsection document
-      await SubSection.findByIdAndDelete({ _id: subSectionId });
-      // send response
-      return res.status(200).json({
-        success: true,
-        message: "Subsection deleted successfully",
-      });
-    } catch (error) {
-      console.log("Error while deleting the subsection", error);
-      return res.status(500).json({
+exports.deleteSubsection = async (req, res) => {
+  try {
+    // get subSectionId from request ki body
+    const { subSectionId } = req.body;
+    // validate that it's not empty
+    if (!subSectionId) {
+      return res.status(400).json({
         success: false,
-        message: "Failed to delete the subsection, Please Try again",
+        message: "Subsection Id is not provided",
       });
     }
-  };
+    // find and delete the subsection document
+    await SubSection.findByIdAndDelete({ _id: subSectionId });
+    // send response
+    return res.status(200).json({
+      success: true,
+      message: "Subsection deleted successfully",
+    });
+  } catch (error) {
+    console.log("Error while deleting the subsection", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to delete the subsection, Please Try again",
+    });
+  }
 };
