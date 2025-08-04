@@ -150,6 +150,7 @@ exports.postSignUp = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "User is registered successfully",
+      data: user
     });
   } catch (error) {
     console.log("error while saving user in Database", error);
