@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Profile = require("../models/Profile")
+const Profile = require("../models/Profile");
 const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
@@ -143,14 +143,14 @@ exports.postSignUp = async (req, res) => {
       contactNumber,
       accountType,
       additionalDetails: profileDetails._id,
-      image: `https://api.dicebear.com/5.x/initials/svg?radius=50?seed=${firstName} ${lastName}`,
+      image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     });
     // response bhej denge JSON wala
 
     return res.status(200).json({
       success: true,
       message: "User is registered successfully",
-      data: user
+      data: user,
     });
   } catch (error) {
     console.log("error while saving user in Database", error);
