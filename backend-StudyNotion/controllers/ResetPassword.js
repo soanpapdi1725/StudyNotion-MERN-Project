@@ -2,6 +2,7 @@ const User = require("../models/User");
 const mailsender = require("../utils/mailSender");
 const crypto = require("crypto");
 const bcryptjs = require("bcryptjs");
+const resetPasswordTemplate = require("../mail/templates/resetPassLink");
 // Reset Password Token Controller
 exports.resetPassToken = async (req, res) => {
   try {
@@ -41,7 +42,7 @@ exports.resetPassToken = async (req, res) => {
     await mailsender(
       email,
       "Password reset Link - StudyNotion",
-      `Password Reset Link ${resetUrl}`
+      resetPasswordTemplate(resetUrl)
     );
     // response send kr do uske baad
     return res.status(200).json({
