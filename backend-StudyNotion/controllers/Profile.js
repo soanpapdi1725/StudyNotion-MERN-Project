@@ -87,13 +87,14 @@ exports.getUserDetails = async (req, res) => {
       });
     }
     // getting details of that user
-    const userDetails = await User.findById(id)
+    const userDetails = await User.findById(userId)
       .populate("additionalDetails")
       .exec();
 
     return res.status(200).json({
       success: true,
       message: "User Details Fetched Successfully",
+      data: userDetails
     });
   } catch (error) {
     console.log("Error while fetching user details");
