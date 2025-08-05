@@ -1,6 +1,6 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
-const imageUploadToCloudinary = require("../utils/imageUploader");
+const { imageUploadToCloudinary } = require("../utils/imageUploader");
 exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
@@ -107,9 +107,10 @@ exports.getUserDetails = async (req, res) => {
 exports.updateUserImage = async (req, res) => {
   try {
     // get image from request ki body
-    const newUserImage = req.files.updatedImage;
+    const newUserImage = req.files.newUserImage;
     // get user id from request user ki id se
     const userId = req.user.id;
+    console.log(typeof imageUploadToCloudinary);
     // upload kro cloudinary pe height and quality daal ke
     const newImage = await imageUploadToCloudinary(
       newUserImage,
@@ -117,6 +118,7 @@ exports.updateUserImage = async (req, res) => {
       1000,
       1000
     );
+    console.log(newImage);
     // secure url ko save kr do
     const updatedProfile = await User.findByIdAndUpdate(
       { _id: userId },

@@ -4,7 +4,7 @@ const app = express();
 const courseRouter = require("./routes/courseRouter");
 const authAndResetRouter = require("./routes/AuthAndResetRouter");
 const paymentRouter = require("./routes/paymentRouter");
-const profileRouter = require("./routes/paymentRouter");
+const profileRouter = require("./routes/profileRouter");
 
 const database = require("./config/database");
 const { cloudinaryConnect } = require("./config/cloudinary");
@@ -31,8 +31,8 @@ app.use(
 
 app.use(
   fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp",
+    useTempFiles:true,
+    tempFileDir:"/tmp/"
   })
 );
 // cloudinary connect call

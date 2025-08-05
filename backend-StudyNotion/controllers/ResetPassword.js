@@ -30,7 +30,7 @@ exports.resetPassToken = async (req, res) => {
     const updatedUserObj = await User.findOneAndUpdate(
       { email }, // filter on this basis
       {
-        token: token, //update
+        resetToken: token, //update
         resetPassExpiration: Date.now() + 5 * 60 * 1000, //update
       },
       { new: true } //return updatedDocument
@@ -81,7 +81,7 @@ exports.resetPassword = async (req, res) => {
     }
 
     // token se user ko Dhundenge kyuki ham pe kuch ni hai or update bhi toh krna hai
-    const user = await User.findOne({ token: token });
+    const user = await User.findOne({ resetToken: token });
 
     //   user exist karta hai nahi database me wo bhi pata karenge
     if (!user) {
@@ -104,7 +104,7 @@ exports.resetPassword = async (req, res) => {
 
     // update krenge new password
     await User.findOneAndUpdate(
-      { token: token },
+      { resetToken: token },
       {
         password: hashedPassword,
       },

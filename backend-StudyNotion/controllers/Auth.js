@@ -189,9 +189,9 @@ exports.postLogin = async (req, res) => {
 
     if (await bcrypt.compare(password, checkUserExist.password)) {
       const payload = {
-        email: user.email,
-        accountType: user.accountType,
-        id: user._id,
+        email: checkUserExist.email,
+        accountType: checkUserExist.accountType,
+        id: checkUserExist._id,
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         //payload me jo bhi value dunga toh wo encrypt ho jayegi or verify karne pr decrypt hogi
@@ -204,7 +204,7 @@ exports.postLogin = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
-      res.cookie("token", token, options).statis(200).json({
+      res.cookie("token", token, options).status(200).json({
         user: checkUserExist,
         token: token,
         success: true,

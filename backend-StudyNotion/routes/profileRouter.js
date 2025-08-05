@@ -15,7 +15,6 @@ const { updateProfile, updateUserImage } = require("../controllers/Profile");
 
 // auth middleware which check JWT token is matching or not
 // if matches it will decode it and save it on same place
-const { auth } = require("../middlewares/auth");
 
 // **********************************************************************************************************
 //                                          Profle Controller Routes
@@ -28,6 +27,6 @@ profileRouter.get("/getEnrolledCourses", auth, getEnrolledCourses);
 profileRouter.delete("/deleteAccount", auth, deleteAccount);
 // put
 profileRouter.put("/updatePofile", auth, updateProfile);
-profileRouter.put("/updateDisplayImage", auth, updateUserImage);
+profileRouter.put("/changeProfileImage", auth, updateUserImage);
 
 module.exports = profileRouter;
