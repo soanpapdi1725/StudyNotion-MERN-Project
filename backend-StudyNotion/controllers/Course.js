@@ -153,7 +153,7 @@ exports.updateCourseDetails = async (req, res) => {
     }
     // removing course Id  from previous category
     const removeFromPreviousCategory = await Category.findByIdAndUpdate(
-      { _id: courseDetail.category },
+      { _id: courseDetails.category },
       { $pull: { onCourses: courseDetails._id } },
       { new: true }
     );
@@ -166,13 +166,18 @@ exports.updateCourseDetails = async (req, res) => {
     );
     console.log(saveNewCategory);
     // uploading new Thumbnail image to cloudinary with public id to remove previousOne
-    const newThumbnailImage = await imageUploadToCloudinary(
-      newThumbnail,
-      process.env.FOLDER_NAME,
-      1000,
-      1000,
-      courseDetails.imagePublicId
-    );
+    if (newThumbnail) {
+      const newThumbnailImage = await imageUploadToCloudinary(
+        newThumbnail,
+        process.env.FOLDER_NAME,
+        1000,
+        1000,
+        courseDetails.imagePublicId
+      );
+      courseDetails.imagePublicId = newThumbnailImage.public_id;
+      courseDetails.thumbnail = newThumbnailImage.secure_url;
+    }
+
     // save data in courseDetails object
     courseDetails.courseName = newCourseName;
     courseDetails.courseDescription = newCourseDescription;
@@ -181,8 +186,7 @@ exports.updateCourseDetails = async (req, res) => {
     courseDetails.tag = newTags;
     courseDetails.category = newCategoryId;
     courseDetails.whatYouWillLearn = newWhatYouWillLearn;
-    courseDetails.imagePublicId = newThumbnailImage.public_id;
-    courseDetails.thumbnail = newThumbnailImage.secure_url;
+
     // saving the data in courses Database
     await courseDetails.save();
     // response bhej diya ki update ho gya si
@@ -192,6 +196,7 @@ exports.updateCourseDetails = async (req, res) => {
       data: courseDetails,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "Failed to update Course... Please Try Again",

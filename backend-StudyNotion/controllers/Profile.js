@@ -94,7 +94,7 @@ exports.getUserDetails = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "User Details Fetched Successfully",
-      data: userDetails
+      data: userDetails,
     });
   } catch (error) {
     console.log("Error while fetching user details");
@@ -111,20 +111,27 @@ exports.updateUserImage = async (req, res) => {
     const newUserImage = req.files.newUserImage;
     // get user id from request user ki id se
     const userId = req.user.id;
-    console.log(typeof imageUploadToCloudinary);
     // upload kro cloudinary pe height and quality daal ke
+    const userDetails = await User.findById(userId);
+    if (!userDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "user not found",
+      });
+    }
     const newImage = await imageUploadToCloudinary(
       newUserImage,
       process.env.FOLDER_NAME,
       1000,
-      1000
+      1000,
+      userDetails.imagePublicId ? userDetails.imagePublicId : null
     );
-    console.log(newImage);
     // secure url ko save kr do
     const updatedProfile = await User.findByIdAndUpdate(
       { _id: userId },
       {
         image: newImage.secure_url,
+        imagePublicId: newImage.public_id,
       },
       {
         new: true,

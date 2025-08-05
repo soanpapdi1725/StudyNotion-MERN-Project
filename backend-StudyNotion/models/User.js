@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
     image: { type: String, trim: true },
-
+    imagePublicId: { type: String },
     courseProgress: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "CourseProgress",
