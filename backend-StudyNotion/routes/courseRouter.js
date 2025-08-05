@@ -85,7 +85,7 @@ courseRouter.put("/updateSubSection", auth, isInstructor, updateSubSection);
 // they know different courses and top selling courses
 
 courseRouter.post("/createCategory", auth, isAdmin, createcategory);
-courseRouter.get("/getAllCategory", getAllcategorys);
+courseRouter.get("/getAllCategories", getAllcategorys);
 courseRouter.get("/categoryPageDetails", auth, isStudent, categoryPageDetails);
 
 // **********************************************************************************************************
