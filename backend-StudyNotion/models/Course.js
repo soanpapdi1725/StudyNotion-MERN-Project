@@ -16,6 +16,9 @@ const courseSchema = mongoose.Schema({
   thumbnail: {
     type: String,
   },
+  imagePublicId: {
+    type: String,
+  },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

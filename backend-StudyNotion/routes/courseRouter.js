@@ -13,6 +13,7 @@ const {
   createCourse,
   getAllCourses,
   getCourseDetails,
+  updateCourseDetails,
 } = require("../controllers/Course");
 //
 // section controller
@@ -71,6 +72,8 @@ courseRouter.post("/addSubsection", auth, isInstructor, createSubSection);
 courseRouter.delete("/deleteSection", auth, isInstructor, deleteSection);
 // authentication and authorization of isIntructor is done so that only instructor can  delete subsection
 courseRouter.delete("/deleteSubSection", auth, isInstructor, deleteSubsection);
+// authentication and authorization of isIntructor is done so that only instructor can  update courseDetails
+courseRouter.put("/editCourse", auth, isInstructor, updateCourseDetails);
 // authentication and authorization of isIntructor is done so that only instructor can  update subsection
 courseRouter.put("/updateSection", auth, isInstructor, updateSection);
 // authentication and authorization of isIntructor is done so that only instructor can  update subsection

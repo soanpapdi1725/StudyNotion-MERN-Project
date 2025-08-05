@@ -3,7 +3,7 @@
 const Course = require("../models/Course");
 const Category = require("../models/Category");
 const User = require("../models/User");
-const imageUploadToCloudinary = require("../utils/imageUploader");
+const { imageUploadToCloudinary } = require("../utils/imageUploader");
 require("dotenv").config();
 
 // create Course handler function
@@ -17,20 +17,19 @@ exports.createCourse = async (req, res) => {
       categoryId,
       whatYouWillLearn,
       tags,
-      status,
       instructions,
     } = req.body;
     // fetching the file
-    const thumbnail = req.file.thumbnailImage;
+    const thumbnail = req.files.thumbnail;
+    console.log(thumbnail);
     // validation of course fields
     if (
       !courseName ||
-      !description ||
+      !courseDescription ||
       !price ||
-      !category ||
+      !categoryId ||
       !whatYouWillLearn ||
       !tags ||
-      !status ||
       !instructions
     ) {
       return res.status(400).json({
@@ -62,6 +61,7 @@ exports.createCourse = async (req, res) => {
       thumbnail,
       process.env.FOLDER_NAME
     );
+    console.log(thumbnailImage);
     // create course and entry in db
     const newCourse = await Course.create({
       courseName: courseName,
@@ -71,9 +71,10 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDetails._id,
       category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
-      tags: tags,
-      status: status,
+      tag: tags,
+      status: "published",
       instructions: instructions,
+      imagePublicId: thumbnailImage.public_id,
     });
     // user(instructor) how many course created by that particular instructor will be stored in course
     await User.findByIdAndUpdate(
@@ -108,6 +109,92 @@ exports.createCourse = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failed to create new Course, Please Try again",
+    });
+  }
+};
+exports.updateCourseDetails = async (req, res) => {
+  try {
+    // request ki body se mene jo update karna hai nikal liya
+    const {
+      courseId,
+      newCourseName,
+      newCourseDescription,
+      newTags,
+      newPrice,
+      newCategoryId,
+      newInstructions,
+      newWhatYouWillLearn,
+    } = req.body;
+    // request me files se thumbnail image bhi nikal liya
+    const newThumbnail = req.files.newThumbnail;
+    // validation that no fields are empty
+    if (
+      !courseId ||
+      !newCourseName ||
+      !newCourseDescription ||
+      !newTags ||
+      !newPrice ||
+      !newCategoryId ||
+      !newInstructions ||
+      !newWhatYouWillLearn
+    ) {
+      return res.json(400).json({
+        success: false,
+        message: "All Field's are required",
+      });
+    }
+    // fetching courseDetails and validation
+    const courseDetails = await Course.findById(courseId);
+    if (!courseDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "Course Details not found",
+      });
+    }
+    // removing course Id  from previous category
+    const removeFromPreviousCategory = await Category.findByIdAndUpdate(
+      { _id: courseDetail.category },
+      { $pull: { onCourses: courseDetails._id } },
+      { new: true }
+    );
+    console.log(removeFromPreviousCategory);
+    // and saving courseId into new Category
+    const saveNewCategory = await Category.findByIdAndUpdate(
+      { _id: newCategoryId },
+      { $push: { onCourses: courseDetails._id } },
+      { new: true }
+    );
+    console.log(saveNewCategory);
+    // uploading new Thumbnail image to cloudinary with public id to remove previousOne
+    const newThumbnailImage = await imageUploadToCloudinary(
+      newThumbnail,
+      process.env.FOLDER_NAME,
+      1000,
+      1000,
+      courseDetails.imagePublicId
+    );
+    // save data in courseDetails object
+    courseDetails.courseName = newCourseName;
+    courseDetails.courseDescription = newCourseDescription;
+    courseDetails.price = newPrice;
+    courseDetails.instructions = newInstructions;
+    courseDetails.tag = newTags;
+    courseDetails.category = newCategoryId;
+    courseDetails.whatYouWillLearn = newWhatYouWillLearn;
+    courseDetails.imagePublicId = newThumbnailImage.public_id;
+    courseDetails.thumbnail = newThumbnailImage.secure_url;
+    // saving the data in courses Database
+    await courseDetails.save();
+    // response bhej diya ki update ho gya si
+    return res.status(200).json({
+      success: true,
+      message: "Course Updated Successfully",
+      data: courseDetails,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update Course... Please Try Again",
     });
   }
 };
