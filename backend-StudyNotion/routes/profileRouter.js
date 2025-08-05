@@ -26,7 +26,7 @@ profileRouter.get("/getEnrolledCourses", auth, getEnrolledCourses);
 // delete
 profileRouter.delete("/deleteAccount", auth, deleteAccount);
 // put
-profileRouter.put("/updatePofile", auth, updateProfile);
+profileRouter.put("/updateProfile", auth, updateProfile);
 profileRouter.put("/changeProfileImage", auth, updateUserImage);
 
 module.exports = profileRouter;
