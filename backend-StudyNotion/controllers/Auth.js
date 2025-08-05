@@ -4,6 +4,8 @@ const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mailSender = require("../utils/mailSender");
+const accountCreationSuccessTemplate = require("../mail/templates/AccountCreatedSuccessfully");
 require("dotenv").config();
 // OTP send Controller
 exports.sendOTP = async (req, res) => {
@@ -145,8 +147,14 @@ exports.postSignUp = async (req, res) => {
       additionalDetails: profileDetails._id,
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     });
-    // response bhej denge JSON wala
 
+    // sending email to user that his account is created
+    await mailSender(
+      email,
+      "Account Successfully Created",
+      accountCreationSuccessTemplate(firstName, accountType)
+    );
+    // response bhej denge JSON wala
     return res.status(200).json({
       success: true,
       message: "User is registered successfully",

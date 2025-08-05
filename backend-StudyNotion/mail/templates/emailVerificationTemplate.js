@@ -1,5 +1,5 @@
 const otpTemplate = (otp) => {
-	return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 	<html>
 	
 	<head>
@@ -26,6 +26,7 @@ const otpTemplate = (otp) => {
 			.logo {
 				max-width: 200px;
 				margin-bottom: 20px;
+				border-radius: 10px;
 			}
 	
 			.message {
