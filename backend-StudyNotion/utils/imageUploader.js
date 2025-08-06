@@ -36,5 +36,9 @@ exports.imageUploadToCloudinary = async (
   }
   options.resource_type = "auto";
   console.log(file.tempFilePath);
-  return await cloudinary.uploader.upload(file.tempFilePath, options);
+  const imageUploaded = await cloudinary.uploader.upload(
+    file.tempFilePath,
+    options
+  );
+  return imageUploaded;
 };
