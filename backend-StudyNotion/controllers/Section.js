@@ -76,7 +76,7 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
   try {
     // sectionId nikalo req ko params se -> assuming ki parameter se aara hai
-    const { sectionId } = req.params;
+    const { courseId, sectionId } = req.body;
     //   validation of sectionId
     if (!sectionId) {
       return res.status(400).json({
@@ -84,7 +84,15 @@ exports.deleteSection = async (req, res) => {
         message: "sectionId is missing",
       });
     }
-
+    // delete the section Id in courseContent array also
+    await Course.findOneAndUpdate(
+      { _id: courseId },
+      {
+        $pull: {
+          courseContent: sectionId,
+        },
+      }
+    );
     // delete the section and from course too
     await Section.findByIdAndDelete(sectionId);
     return res
