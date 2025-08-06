@@ -152,7 +152,7 @@ exports.updateCourseDetails = async (req, res) => {
       });
     }
     // removing course Id  from previous category
-    const removeFromPreviousCategory = await Category.findByIdAndUpdate(
+    const removeFromPreviousCategory = await Category.findOneAndUpdate(
       { _id: courseDetails.category },
       { $pull: { onCourses: courseDetails._id } },
       { new: true }
