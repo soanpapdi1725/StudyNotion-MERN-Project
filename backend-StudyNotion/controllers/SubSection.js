@@ -1,6 +1,9 @@
 const Section = require("../models/Section");
 const SubSection = require("../models/SubSection");
-const { imageUploadToCloudinary } = require("../utils/imageUploader");
+const {
+  imageUploadToCloudinary,
+  imageAndVideoDeleteFromCloudinary,
+} = require("../utils/imageUploader");
 require("dotenv").config();
 exports.createSubSection = async (req, res) => {
   try {
@@ -120,7 +123,8 @@ exports.deleteSubsection = async (req, res) => {
       $pull: { subSection: subSectionId },
     });
     // find and delete the subsection document
-    await SubSection.findByIdAndDelete({ _id: subSectionId });
+    const deletedSubsection = await SubSection.findByIdAndDelete(subSectionId);
+    await imageAndVideoDeleteFromCloudinary(deletedSubsection.videoPublicId);
     // send response
     return res.status(200).json({
       success: true,

@@ -42,3 +42,24 @@ exports.imageUploadToCloudinary = async (
   );
   return imageUploaded;
 };
+
+exports.imageAndVideoDeleteFromCloudinary = async (oldPublicId) => {
+  const resource_types = ["video", "image"];
+  let deleted = false;
+  try {
+    for (const type of resource_types) {
+      const deletionResult = await cloudinary.uploader.destroy(oldPublicId, {
+        resource_type: type,
+      });
+      if (deletionResult.result === "ok") {
+        deleted = true;
+        return deletionResult;
+      }
+    }
+    if (!deleted) {
+      console.log(`Failed in deletion of ${type} and file ${oldPublicId}`);
+    }
+  } catch (error) {
+    console.log(`Error while deletion of file ${oldPublicId}`);
+  }
+};
