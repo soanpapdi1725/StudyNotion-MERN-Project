@@ -61,7 +61,7 @@ exports.updateSubSection = async (req, res) => {
     const { subSectionId, newTitle, newDescription } = req.body;
 
     //2. get new video from request files or video me store hoga
-    const newVideo = req.files.video;
+    const newVideo = req.files.newVideo;
 
     //3. validation karenge ki empty na ho
     if (!newTitle || !newDescription) {
@@ -74,7 +74,7 @@ exports.updateSubSection = async (req, res) => {
     // 4. getting subsection data and public id to delete previous video to avoid clog in cloudinary
     const subsectionDetails = await SubSection.findById(subSectionId);
     //5. get secure url or response which cloudinary will give after uploading it to cloudinary
-
+    console.log(subsectionDetails.videoPublicId);
     const newVideoUrl = await imageUploadToCloudinary(
       newVideo,
       process.env.FOLDER_NAME,

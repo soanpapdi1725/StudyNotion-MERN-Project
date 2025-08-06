@@ -31,15 +31,18 @@ app.use(
 
 app.use(
   fileUpload({
-    useTempFiles:true,
-    tempFileDir:"/tmp/"
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
   })
 );
 // cloudinary connect call
 cloudinaryConnect();
 
 //routes
-
+app.use((req, res, next) => {
+  console.log(req.url, req.method);
+  next();
+});
 app.use("/api/v1/auth", authAndResetRouter);
 app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/course", courseRouter);
