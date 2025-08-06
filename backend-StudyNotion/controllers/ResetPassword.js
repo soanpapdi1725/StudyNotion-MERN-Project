@@ -32,7 +32,7 @@ exports.resetPassToken = async (req, res) => {
       { email }, // filter on this basis
       {
         resetToken: token, //update
-        resetPassExpiration: Date.now() + 5 * 60 * 1000, //update
+        resetPassExpiration: Date.now() + 15 * 60 * 1000, //update
       },
       { new: true } //return updatedDocument
     );
