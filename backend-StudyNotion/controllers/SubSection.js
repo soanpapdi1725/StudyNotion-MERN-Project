@@ -107,7 +107,7 @@ exports.updateSubSection = async (req, res) => {
 exports.deleteSubsection = async (req, res) => {
   try {
     // get subSectionId from request ki body
-    const { subSectionId } = req.body;
+    const { subSectionId, sectionId } = req.body;
     // validate that it's not empty
     if (!subSectionId) {
       return res.status(400).json({
@@ -115,6 +115,10 @@ exports.deleteSubsection = async (req, res) => {
         message: "Subsection Id is not provided",
       });
     }
+    // also delete subsection id from section
+    await Section.findByIdAndUpdate(sectionId, {
+      $pull: { subSection: subSectionId },
+    });
     // find and delete the subsection document
     await SubSection.findByIdAndDelete({ _id: subSectionId });
     // send response
