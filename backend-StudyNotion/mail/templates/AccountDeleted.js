@@ -1,10 +1,10 @@
-const accountCreationSuccessTemplate = (userName, accountType) => {
+const accountDeletionSuccessTemplate = (userName) => {
   return `<!DOCTYPE html>
   <html>
   
   <head>
     <meta charset="UTF-8">
-    <title>Account Created Successfully</title>
+    <title>Account Deleted Successfully</title>
     <style>
       body {
         background-color: #ffffff;
@@ -33,19 +33,12 @@ const accountCreationSuccessTemplate = (userName, accountType) => {
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 20px;
-        color: #28a745;
+        color: #dc3545;
       }
 
       .body {
         font-size: 16px;
         margin-bottom: 20px;
-      }
-
-      .user-info {
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 10px;
-        color: #333;
       }
 
       .support {
@@ -55,24 +48,21 @@ const accountCreationSuccessTemplate = (userName, accountType) => {
       }
     </style>
   </head>
-
+  
   <body>
     <div class="container">
       <a href="https://studynotion-edtech-project.vercel.app">
         <img class="logo" src="https://res.cloudinary.com/dbyweciny/image/upload/v1754397221/studynotion_logo_dwsdk7.png" alt="StudyNotion Logo">
       </a>
-      <div class="message">Welcome to StudyNotion!</div>
+      <div class="message">Account Deleted Successfully</div>
       <div class="body">
         <p>Dear ${userName},</p>
-        <p>Your account has been successfully created on StudyNotion.</p>
-        <div class="user-info">
-          Role: [${accountType}]
-        </div>
-        <p>We're excited to have you onboard. You can now log in and start exploring all the features available to you.</p>
-        <p>Thank you for joining our platform!</p>
+        <p>We're writing to confirm that your StudyNotion account has been successfully deleted.</p>
+        <p>All of your associated data has been permanently removed from our systems.</p>
+        <p>If this action was not performed by you or was a mistake, please contact us immediately.</p>
       </div>
       <div class="support">
-        If you have any questions or need help, contact us at 
+        Need help? Reach out to us at 
         <a href="mailto:info@studynotion.com">info@studynotion.com</a>.
       </div>
     </div>
@@ -81,4 +71,4 @@ const accountCreationSuccessTemplate = (userName, accountType) => {
   </html>`;
 };
 
-module.exports = accountCreationSuccessTemplate;
+module.exports = accountDeletionSuccessTemplate;

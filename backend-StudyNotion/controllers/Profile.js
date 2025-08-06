@@ -1,6 +1,8 @@
+const accountDeletionSuccessTemplate = require("../mail/templates/AccountDeleted");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const { imageUploadToCloudinary } = require("../utils/imageUploader");
+const mailSender = require("../utils/mailSender");
 exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
@@ -60,6 +62,8 @@ exports.deleteAccount = async (req, res) => {
     await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
 
     await User.findByIdAndDelete(userId);
+    // Account deletion mail
+    await mailSender(userDetails.email, "Account Deletion Confirmation Mail", accountDeletionSuccessTemplate(userDetails.firstName));
     // Fir user ki detail bhi detail
     return res.status(200).json({
       success: true,
