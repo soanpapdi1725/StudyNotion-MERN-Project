@@ -1,9 +1,13 @@
 import React from "react";
+import { Route, Routes } from "react-router";
+import Home from "./pages/Homes";
 
 const App = () => {
   return (
-    <div className="bg-amber-700 text-suar-700 font-bold">
-      This is Study motion app
+    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 };
