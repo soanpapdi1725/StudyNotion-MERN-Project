@@ -1,5 +1,7 @@
 import HighlightText from "./HighlightText";
 import Button from "./Button";
+import { FaArrowRight } from "react-icons/fa";
+
 const CodeBlock = ({
   position,
   heading,
@@ -11,12 +13,17 @@ const CodeBlock = ({
 }) => {
   return (
     <div className={`flex ${position}`}>
-      <div>
+      <div className="flex flex-col gap-8 text-center justify-center items-center">
         <div>{heading}</div>
-        <div>{subHeading}</div>
-        <div>
+        <div className="w-[50%] text-sm text-center font-light text-richblack-300">
+          {subHeading}
+        </div>
+        <div className="flex gap-8">
           <Button active={ctabtn1.active} linkto={ctabtn1.linkto}>
-            {ctabtn1.text}
+            <div className="flex justify-center items-center">
+              <div>{ctabtn1.text}</div>
+              <FaArrowRight />
+            </div>
           </Button>
           <Button active={ctabtn2.active} linkto={ctabtn2.linkto}>
             {ctabtn2.text}

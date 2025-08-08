@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import HighlightText from "../components/core/homepage/HighlightText";
 import CTAButton from "../components/core/homepage/Button";
 import Banner from "../assets/Images/banner.mp4";
+import CodeBlock from "../components/core/homepage/CodeBlock";
 const Home = () => {
   return (
     <div>
@@ -41,7 +42,28 @@ const Home = () => {
         </div>
         {/* section part 2 code block */}
         <div>
-          <CodeBlock />
+          <CodeBlock
+            position={"lg:flex-row"}
+            subHeading={
+              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+            }
+            ctabtn1={{
+              active: true,
+              linkto: "/signup",
+              text: "Try it Yourself",
+            }}
+            heading={
+              <div className="text-4xl font-semibold">
+                Unlock Your <HighlightText text={"Coding Potential"} />
+                With Our Online Courses
+              </div>
+            }
+            ctabtn2={{
+              active: false,
+              linkto: "/login",
+              text: "Learn More",
+            }}
+          />
         </div>
       </div>
       {/* Section 2 */}
