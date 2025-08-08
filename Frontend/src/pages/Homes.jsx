@@ -39,6 +39,10 @@ const Home = () => {
           <div className="w-[70%] shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
           <video className="" muted loop autoPlay src={Banner}></video>
         </div>
+        {/* section part 2 code block */}
+        <div>
+          <CodeBlock />
+        </div>
       </div>
       {/* Section 2 */}
       {/* Section 3 */}
