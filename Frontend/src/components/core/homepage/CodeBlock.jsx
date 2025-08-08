@@ -14,7 +14,7 @@ const CodeBlock = ({
   return (
     <div className={`flex ${position}`}>
       <div className="flex flex-col gap-8 text-center justify-center items-center">
-        <div>{heading}</div>
+        {heading}
         <div className="w-[50%] text-sm text-center font-light text-richblack-300">
           {subHeading}
         </div>
