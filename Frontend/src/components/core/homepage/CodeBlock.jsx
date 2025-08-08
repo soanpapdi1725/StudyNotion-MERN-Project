@@ -9,7 +9,14 @@ const CodeBlock = ({
   codeblock,
   CodeColor,
 }) => {
-  return <div className={`flex ${position}`}></div>;
+  return (
+    <div className={`flex ${position}`}>
+      <div>
+        <div>{heading}</div>
+        <div>{subHeading}</div>
+      </div>
+    </div>
+  );
 };
 
 export default CodeBlock;
