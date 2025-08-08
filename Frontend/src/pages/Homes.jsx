@@ -10,7 +10,7 @@ const Home = () => {
       {/* Section 1 */}
       <div className=" elative mx-auto flex flex-col w-11/12 items-center max-w-max-content text-white justify-between">
         <Link to={"/signup"}>
-          <div className="shadow-[0px_0.5px_0.5px_0.5px_rgba(255,255,255,0.5)] group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95">
+          <div className="shadow-[0px_0.5px_0.5px_0.5px_rgba(255,255,255,0.5)] group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-semibold text-richblack-200 transition-all duration-200 hover:scale-95">
             <div className="group-hover:bg-richblack-900 px-10 flex flex-row gap-2 items-center rounded-full py-[5px]">
               <p>Become An Instructor</p>
               <FaArrowRight />
@@ -21,7 +21,7 @@ const Home = () => {
           <div className=" text-4xl font-semibold mt-7">
             Empower Your Future with <HighlightText text={"Coding Skills"} />
           </div>
-          <div className="mt-4 w-[70%] text-sm font-light text-richblack-300">
+          <div className="mt-4 w-[60%] text-sm font-semibold text-richblack-300">
             With our online coding courses, you can learn at your own pace, from
             anywhere in the world, and get access to a wealth of resources,
             including hands-on projects, quizzes, and personalized feedback from
@@ -54,8 +54,8 @@ const Home = () => {
             }}
             heading={
               <div className="text-4xl font-semibold">
-                Unlock Your <HighlightText text={"Coding Potential"} />
-                {" "}With Our Online Courses.
+                Unlock Your <HighlightText text={"Coding Potential"} /> With Our
+                Online Courses.
               </div>
             }
             ctabtn2={{
@@ -63,6 +63,7 @@ const Home = () => {
               linkto: "/login",
               text: "Learn More",
             }}
+            codeblock={``}
           />
         </div>
       </div>

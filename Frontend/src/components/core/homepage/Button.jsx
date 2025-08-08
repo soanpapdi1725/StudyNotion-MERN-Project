@@ -8,7 +8,7 @@ const Button = ({ children, active, linkto }) => {
           active ? "bg-yellow-50 text-black" : "bg-richblack-800"
         } transition-all duration-200 hover:scale-95 shadow-[1px_1px_1px_0.5px_rgba(255,255,255,0.5)]`}
       >
-        {children}
+        <div className="font-semibold text-sm">{children}</div>
       </div>
     </Link>
   );
