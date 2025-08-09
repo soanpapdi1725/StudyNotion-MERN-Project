@@ -66,23 +66,23 @@ const Home = () => {
             codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
           />
         </div>
-                <div>
+        {/* section 2 code block */}
+        <div>
           <CodeBlock
             position={"lg:flex-row-reverse"}
+            heading={
+              <div className="text-4xl font-semibold">
+                Start <HighlightText text={"Coding in Seconds"} />
+              </div>
+            }
             subHeading={
-              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+              "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
             }
             ctabtn1={{
               active: true,
               linkto: "/signup",
-              text: "Try it Yourself",
+              text: "Continue Lesson",
             }}
-            heading={
-              <div className="text-4xl font-semibold">
-                Unlock Your <HighlightText text={"Coding Potential"} /> With Our
-                Online Courses.
-              </div>
-            }
             ctabtn2={{
               active: false,
               linkto: "/login",
