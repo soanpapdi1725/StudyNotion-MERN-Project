@@ -71,7 +71,7 @@ const Home = () => {
           <CodeBlock
             position={"lg:flex-row-reverse"}
             heading={
-              <div className="text-4xl font-semibold">
+              <div className="text-4xl font-semibold w-[35%]">
                 Start <HighlightText text={"Coding in Seconds"} />
               </div>
             }
