@@ -64,12 +64,7 @@ const Home = () => {
               text: "Learn More",
             }}
             codeblock={`
-              <!DOCTYPE <html>\n
-              <html>\n
-              <head><title>Example</title><linkrel="stylesheet"href="styles.css">\n
-              </head>\n
-              <body>\n
-              <h1><ahref="/">Header</a>\n
+              <!DOCTYPE <html>\n<html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n
               </h1>\n
               <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n
               </nav>`}
