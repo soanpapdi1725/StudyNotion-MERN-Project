@@ -63,7 +63,11 @@ const Home = () => {
               linkto: "/login",
               text: "Learn More",
             }}
-            codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
+            codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><a href="three/">Three</a>\n</nav>\n</html>`}
+            backgroundGradient={
+              "from-[#8A2BE2] via-[#FFA500] to-[#F8F8FF]"
+            }
+            CodeColor={"text-blue-200"}
           />
         </div>
         {/* section 2 code block */}
@@ -89,6 +93,10 @@ const Home = () => {
               text: "Learn More",
             }}
             codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
+            backgroundGradient={
+              "from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]"
+            }
+            CodeColor={"text-pink-200"}
           />
         </div>
       </div>

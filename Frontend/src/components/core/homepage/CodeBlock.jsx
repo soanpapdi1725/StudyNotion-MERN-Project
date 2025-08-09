@@ -33,35 +33,42 @@ const CodeBlock = ({
         </div>
       </div>
       {/* Section 2 codes */}
-      <div className="flex flex-row gap-2 h-fit text-10[px] lg:w-[500px]">
-        {/* background gradient oval shape */}
-
-        <div className="text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold">
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
-          <p>5</p>
-          <p>6</p>
-          <p>7</p>
-          <p>8</p>
-          <p>9</p>
-          <p>10</p>
-          <p>11</p>
-        </div>
+      <div className="lg:w-[534px] h">
+        {" "}
+        {/*main div*/}
         <div
-          className={`w-[90%] flex flex-col font-bold font-mono ${CodeColor}`}
+          className={`w-[373px] h-[257px] opacity-13 rounded-full blur-xl bg-gradient-to-br ${backgroundGradient} absolute z-10`}
+        ></div>
+        <div
+          className={`flex flex-row gap-2 h-fit  backdrop-blur-sm  backdrop:fill-transparent`}
         >
-          <TypeAnimation
-            sequence={[codeblock, 2000, ""]}
-            repeat={Infinity}
-            cursor={true}
-            omitDeletionAnimation={true}
-            style={{
-              whiteSpace: "pre-line",
-              display: "block",
-            }}
-          />
+          <div className="text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold">
+            <p>1</p>
+            <p>2</p>
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+            <p>7</p>
+            <p>8</p>
+            <p>9</p>
+            <p>10</p>
+            <p>11</p>
+            <p>12</p>
+          </div>
+          <div
+            className={`w-[90%] flex flex-col font-bold font-mono ${CodeColor}`}
+          >
+            <TypeAnimation
+              sequence={[codeblock, 2000, ""]}
+              repeat={Infinity}
+              cursor={true}
+              omitDeletionAnimation={true}
+              style={{
+                whiteSpace: "pre-line",
+                display: "block",
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
