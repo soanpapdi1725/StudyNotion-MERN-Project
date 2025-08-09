@@ -40,7 +40,7 @@ const Home = () => {
           <div className="w-[70%] shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
           <video className="" muted loop autoPlay src={Banner}></video>
         </div>
-        {/* section part 2 code block */}
+        {/* section code block - 1*/}
         <div>
           <CodeBlock
             position={"lg:flex-row"}
@@ -63,11 +63,32 @@ const Home = () => {
               linkto: "/login",
               text: "Learn More",
             }}
-            codeblock={`
-              <!DOCTYPE <html>\n<html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n
-              </h1>\n
-              <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n
-              </nav>`}
+            codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
+          />
+        </div>
+                <div>
+          <CodeBlock
+            position={"lg:flex-row-reverse"}
+            subHeading={
+              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+            }
+            ctabtn1={{
+              active: true,
+              linkto: "/signup",
+              text: "Try it Yourself",
+            }}
+            heading={
+              <div className="text-4xl font-semibold">
+                Unlock Your <HighlightText text={"Coding Potential"} /> With Our
+                Online Courses.
+              </div>
+            }
+            ctabtn2={{
+              active: false,
+              linkto: "/login",
+              text: "Learn More",
+            }}
+            codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
           />
         </div>
       </div>
