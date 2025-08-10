@@ -55,7 +55,7 @@ const TimeLineSection = () => {
             src={timelineImage}
             alt=""
           />
-          <div className="absolute z-30 translate-x-[6%] translate-y-[-50%] bg-suar-700 flex flex-row gap-8 items-center uppercase justify-center text-pure-greys-5 py-10">
+          <div className="absolute z-30 translate-x-[6%] translate-y-[-50%] bg-suar-700 flex flex-row gap-8 items-center uppercase justify-center text-pure-greys-5 py-7">
             <div className="flex flex-row items-center gap-5 border-r border-suar-300 px-7">
               <p className="text-6xl font-bold w-[30%]">10</p>
               <p className="text-[14px] font-semibold text-suar-300 text-center w-[30%]">
