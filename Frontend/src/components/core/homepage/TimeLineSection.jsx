@@ -46,15 +46,29 @@ const TimeLineSection = () => {
             );
           })}
         </div>
-        <div className=" shadow-blue-200">
+        <div className="shadow-blue-200">
           <div
-            className={`w-[749.26px] h-[479.64px] opacity-80 rounded-[50%_40%_50%_40%] blur-3xl bg-gradient-to-br from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] absolute z-10 right-50`}
+            className={`w-[700.26px] h-[309.64px] opacity-80 rounded-[50%_40%_50%_40%] blur-3xl bg-gradient-to-br from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] absolute z-10 right-50`}
           ></div>
           <img
             className="shadow-white h-fit object-fit relative z-20"
             src={timelineImage}
             alt=""
           />
+          <div className="absolute z-30  bg-suar-700 flex flex-row gap-8 items-center uppercase justify-center text-pure-greys-5 py-10 px-10">
+            <div className="flex flex-row items-center gap-4">
+              <p className="text-6xl font-bold w-[30%]">10</p>
+              <p className="text-[16px] font-semibold text-suar-300 text-center w-[30%]">
+                Years Experiences
+              </p>
+            </div>
+            <div className="flex flex-row items-center gap-4">
+              <p className="text-6xl font-bold">250</p>
+              <p className="text-[16px] text-suar-300 font-semibold text-center w-[30%]">
+                Types of Courses
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
