@@ -64,9 +64,7 @@ const Home = () => {
               text: "Learn More",
             }}
             codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><a href="three/">Three</a>\n</nav>\n</html>`}
-            backgroundGradient={
-              "from-[#8A2BE2] via-[#FFA500] to-[#F8F8FF]"
-            }
+            backgroundGradient={"from-[#8A2BE2] via-[#FFA500] to-[#F8F8FF]"}
             CodeColor={"text-blue-200"}
           />
         </div>
@@ -93,14 +91,33 @@ const Home = () => {
               text: "Learn More",
             }}
             codeblock={`<!DOCTYPE <html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><a href="/">Header</a>\n</h1>\n<nav><a href="one/">One</a><a href="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</html>`}
-            backgroundGradient={
-              "from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]"
-            }
+            backgroundGradient={"from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]"}
             CodeColor={"text-pink-200"}
           />
         </div>
       </div>
       {/* Section 2 */}
+      <div className="bg-pure-greys-5 text-richblack-700">
+        <div className="bg_homeImageOfLines h-[310px]">
+          <div className="w-11/12 max-w-max-content flex flex-col  items-center gap-5 mx-auto">
+          <div className="h-[150px]"></div>
+            <div className="flex flex-row gap-5">
+              <CTAButton active={true} linkto={"/signup"}>
+                <div className="flex flex-row gap-2 items-center">
+                  Explore Full Catalog
+                  <FaArrowRight />
+                </div>
+              </CTAButton>
+              <CTAButton active={false} linkto={"/signup"}>
+              <div className="text-pure-greys-5">
+                Learn More
+              </div>
+                
+              </CTAButton>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Section 3 */}
       {/* Section 4 */}
     </div>

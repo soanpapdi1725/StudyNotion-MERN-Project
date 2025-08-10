@@ -4,3 +4,7 @@
 html, body {
     overflow-x: hidden;
 }
+
+.bg_homeImageOfLines{
+    background-image: url("../src/assets/Images/bghome.svg");
+}
