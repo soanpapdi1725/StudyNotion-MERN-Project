@@ -99,8 +99,8 @@ const Home = () => {
       {/* Section 2 */}
       <div className="bg-pure-greys-5 text-richblack-700">
         <div className="bg_homeImageOfLines h-[310px]">
-          <div className="w-11/12 max-w-max-content flex flex-col  items-center gap-5 mx-auto">
-          <div className="h-[150px]"></div>
+          <div className="w-11/12 max-w-max-content flex flex-col items-center gap-8 mx-auto">
+            <div className="h-[150px]"></div>
             <div className="flex flex-row gap-5">
               <CTAButton active={true} linkto={"/signup"}>
                 <div className="flex flex-row gap-2 items-center">
@@ -109,11 +109,29 @@ const Home = () => {
                 </div>
               </CTAButton>
               <CTAButton active={false} linkto={"/signup"}>
-              <div className="text-pure-greys-5">
-                Learn More
-              </div>
-                
+                <div className="text-pure-greys-5">Learn More</div>
               </CTAButton>
+            </div>
+          </div>
+        </div>
+        <div className="w-11/12 max-w-max-content mx-auto h-fit flex flex-col justify-between items-center">
+          <div className="flex flex-row gap-8 mb-10 mt-[95px]">
+            <div className="text-4xl font-semibold w-[45%]">
+              Get the Skills you need for a{" "}
+              <HighlightText text={"job that is in demand."}></HighlightText>
+            </div>
+            <div className="flex flex-col gap-5 items-start w-[45%]">
+              <div className="text-[16px] font-semibold">
+                The modern StudyNotion is the dictates its own terms. Today, to
+                be a competitive specialist requires more than professional
+                skills.
+              </div>
+              <div>
+                <CTAButton active={true} linkto={"/signup"}>
+                Learn More
+              </CTAButton>
+              </div>
+              
             </div>
           </div>
         </div>
