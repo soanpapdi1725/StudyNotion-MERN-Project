@@ -13,7 +13,7 @@ const CodeBlock = ({
   backgroundGradient,
 }) => {
   return (
-    <div className={`flex ${position} my-20 justify-between gap-10`}>
+    <div className={`flex ${position} my-20 gap-12`}>
       {/* Section 1 Texts and CTA buttons */}
       <div className="flex flex-col gap-8 w-[50%]">
         {heading}
@@ -33,7 +33,7 @@ const CodeBlock = ({
         </div>
       </div>
       {/* Section 2 codes */}
-      <div className="lg:w-[534px] h">
+      <div className="lg:w-[534px] ">
         {" "}
         {/*main div*/}
         <div
