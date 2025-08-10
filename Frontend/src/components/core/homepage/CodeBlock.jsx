@@ -37,10 +37,10 @@ const CodeBlock = ({
         {" "}
         {/*main div*/}
         <div
-          className={`w-[373px] h-[257px] opacity-13 rounded-full blur-xl bg-gradient-to-br ${backgroundGradient} absolute z-10`}
+          className={`w-[373px] h-[257px] opacity-20 rounded-full blur-xl bg-gradient-to-br ${backgroundGradient} absolute z-10`}
         ></div>
         <div
-          className={`flex flex-row gap-2 h-fit  backdrop-blur-sm  backdrop:fill-transparent`}
+          className={`flex flex-row relative p-4 bg-[#0F172A]/30 border rounded-lg border-white/10 font-mono text-sm text-white shadow-lg backdrop-blur-sm w-[80%]`}
         >
           <div className="text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold">
             <p>1</p>
