@@ -23,7 +23,7 @@ const Home = () => {
           <div className=" text-4xl font-semibold mt-7">
             Empower Your Future with <HighlightText text={"Coding Skills"} />
           </div>
-          <div className="mt-4 w-[60%] text-sm font-semibold text-richblack-300">
+          <div className="mt-4 lg:w-[60%] text-sm font-semibold text-richblack-300">
             With our online coding courses, you can learn at your own pace, from
             anywhere in the world, and get access to a wealth of resources,
             including hands-on projects, quizzes, and personalized feedback from
