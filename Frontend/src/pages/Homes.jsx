@@ -8,6 +8,7 @@ import LearningLanguageSection from "../components/core/homepage/LearningLanguag
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
 import instructor from "../../src/assets/Images/Instructor.png";
 import Footer from "../components/Common/Footer";
+import InstructorSection from "../components/core/homepage/InstructorSection";
 const Home = () => {
   return (
     <div className="">
@@ -142,16 +143,17 @@ const Home = () => {
         </div>
       </div>
       {/* kaalu wala Section 3 */}
-      <div className="w-11/12 max-w-max-content mx-auto py-[130px]">
-        <div className="flex flex-row ">
-          {/* image div */}
-          <div>
-            <img src={instructor} alt="instructor image" />
-          </div>
-          {/* Heading subheading Button div */}
-          <div></div>
+      <div className="w-11/12 max-w-max-content flex flex-col mx-auto py-[130px]">
+        {/* Instructor section */}
+        <div>
+          <InstructorSection />
         </div>
+        {/* reviews Section */}
+        <div></div>
       </div>
+      {/* All reviews Section */}
+      <div></div>
+
       {/* Footer */}
       <div className="bg-richblack-800">
         <div className="w-11/12 max-w-max-content mx-auto ">
