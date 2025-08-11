@@ -4,54 +4,129 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { Link } from "react-router";
 import studyNotionLogo from "../../assets/Logo/Logo-Full-Light.png";
+import {
+  companyLinks,
+  resourceAndSupportLinks,
+  PlansAndCommunityLinks,
+  FooterLink2,
+} from "../../data/footer-links";
 const Footer = () => {
-  const companyLinks = [
-    {
-      heading: "Company",
-      subHeadings: [
-        { subHeadingName: "About", link: "/about" },
-        { subHeadingName: "Careers", link: "/careers" },
-        { subHeadingName: "Affiliates", link: "/Affiliates" },
-      ],
-    },
-  ];
   return (
     <div className="py-14 px-18">
       {/* box */}
-      <div className="flex flex-row gap-20 border-b border-richblack-700">
-        <div className="border-r border-richblack-700 flex flex-row">
-          <div className="flex flex-col gap-10 my-10">
-            <img src={studyNotionLogo} alt="" />
-            {companyLinks.map((elements, index) => {
-              return (
-                <div className="flex flex-col gap-4 text-pure-greys-400">
-                  <h1
-                    key={index}
-                    className="text-pure-greys-100 text-xl font-semibold"
-                  >
-                    {elements.heading}
-                  </h1>
+      <div className="flex flex-row gap-10 border-b border-richblack-700">
+        <div className="pb-10">
+          <div className="flex flex-row items-start gap-15 mr-10">
+            <div className="flex flex-col gap-8">
+              <img src={studyNotionLogo} alt="" />
+              <div className="flex flex-col">
+                {companyLinks.map((elements, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-col gap-4 text-pure-greys-400"
+                    >
+                      <h1
+                        key={index}
+                        className="text-pure-greys-100 text-xl font-semibold"
+                      >
+                        {elements.title}
+                      </h1>
+                      {elements.links.map((subHeadingsElements, index) => {
+                        return (
+                          <Link key={index} to={subHeadingsElements.link}>
+                            <p>{subHeadingsElements.title}</p>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
 
-                  {elements.subHeadings.map((subHeadingsElements, index) => {
+              <div className="flex flex-row text-pure-greys-200 gap-8 text-2xl ">
+                <FaFacebook className="hover:scale-95" />
+                <FaGoogle className="hover:scale-95" />
+                <FaXTwitter className="hover:scale-95" />
+                <FaYoutube className="hover:scale-95" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-8">
+              {resourceAndSupportLinks.map((elements, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col text-pure-greys-400 gap-3"
+                  >
+                    <h1
+                      key={index}
+                      className="text-pure-greys-100 text-xl font-semibold"
+                    >
+                      {elements.title}
+                    </h1>
+                    {elements.links.map((subHeadingElements, index) => {
+                      return (
+                        <Link key={index} to={subHeadingElements.link}>
+                          <p>{subHeadingElements.title}</p>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex flex-col gap-8">
+              {PlansAndCommunityLinks.map((elements, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col text-pure-greys-400 gap-3"
+                  >
+                    <h1
+                      key={index}
+                      className="text-pure-greys-100 text-xl font-semibold"
+                    >
+                      {elements.title}
+                    </h1>
+                    {elements.links.map((subHeadingElements, index) => {
+                      return (
+                        <Link key={index} to={subHeadingElements.link}>
+                          <p>{subHeadingElements.title}</p>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        {/* secondbox */}
+        <div className="pl-24 border-l border-pure-greys-400">
+          <div className="flex flex-row items-start text-white gap-8">
+            {FooterLink2.map((elements, index) => {
+              return (
+                <div key={index} className="flex flex-col gap-2">
+                  <h1
+                    className="text-pure-greys-100 text-xl font-semibold"
+                    key={index}
+                  >
+                    {elements.title}
+                  </h1>
+                  {elements.links.map((singleLinkAndTitle, index) => {
                     return (
-                      <Link key={index} to={subHeadingsElements.link}>
-                        {subHeadingsElements.subHeadingName}
+                      <Link key={index} to={singleLinkAndTitle.link}>
+                        <p className="text-base text-pure-greys-400">
+                          {singleLinkAndTitle.title}
+                        </p>
                       </Link>
                     );
                   })}
                 </div>
               );
             })}
-            <div className="flex flex-row text-pure-greys-200 gap-8 text-2xl ">
-              <FaFacebook className="hover:scale-95" />
-              <FaGoogle className="hover:scale-95" />
-              <FaXTwitter className="hover:scale-95" />
-              <FaYoutube className="hover:scale-95" />
-            </div>
           </div>
-          <div></div>
         </div>
-        <div></div>
       </div>
     </div>
   );

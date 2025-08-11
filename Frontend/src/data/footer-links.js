@@ -43,13 +43,73 @@ export const FooterLink2 = [
   {
     title: "Career building",
     links: [
-        {title: "Career paths", link: "/career-paths"},
-        {title: "Career services", link: "/career-services"},
-        {title: "Interview prep", link: "/interview-prep"},
-        {title: "Professional certification", link: "/professional-certification"},
-        {title: "-", link: "/hi"},
-        {title: "Full Catalog", link: "/full-catalog"},
-        {title: "Beta Content", link: "/beta-content"}
-    ]
-  }
+      { title: "Career paths", link: "/career-paths" },
+      { title: "Career services", link: "/career-services" },
+      { title: "Interview prep", link: "/interview-prep" },
+      {
+        title: "Professional certification",
+        link: "/professional-certification",
+      },
+      { title: "-", link: "/hi" },
+      { title: "Full Catalog", link: "/full-catalog" },
+      { title: "Beta Content", link: "/beta-content" },
+    ],
+  },
+];
+
+export const companyLinks = [
+  {
+    title: "Company",
+    links: [
+      { title: "About", link: "/about" },
+      { title: "Careers", link: "/careers" },
+      { title: "Affiliates", link: "/Affiliates" },
+    ],
+  },
+];
+
+export const resourceAndSupportLinks = [
+  {
+    title: "Resource",
+    links: [
+      { title: "Articles", link: "/articles" },
+      { title: "Blog", link: "/blogs" },
+      { title: "Chart Sheet", link: "/chartSheet" },
+      { title: "Code Challenges", link: "/codeChallenges" },
+      { title: "Docs", link: "/docs" },
+      { title: "Projects", link: "/projects" },
+      { title: "Videos", link: "/videos" },
+      { title: "Workspaces", link: "/workspaces" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      {
+        title: "Help center",
+        link: "/helpCenter",
+      },
+    ],
+  },
+];
+export const PlansAndCommunityLinks = [
+  {
+    title: "Plans",
+    links: [
+      { title: "Paid Membership", link: "/paid-membership" },
+      { title: "For Students", link: "/for-students" },
+      { title: "Business Solutions", link: "/business-Solutions" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      {
+        title: "Forums",
+        link: "/forums",
+      },
+      { title: "chapters", link: "/chapters" },
+      { title: "Events", link: "/Events" },
+    ],
+  },
 ];
