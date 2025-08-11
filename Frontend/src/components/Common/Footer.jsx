@@ -120,7 +120,7 @@ const Footer = () => {
         </div>
         {/* secondbox */}
         <div className="pb-10">
-          <div className="pl-24 border-l border-pure-greys-400">
+          <div className="pl-24 border-l border-pure-greys-700">
             <div className="flex flex-row items-start text-white gap-8">
               {FooterLink2.map((elements, index) => {
                 return (
@@ -164,12 +164,12 @@ const Footer = () => {
                     : "border-r border-pure-greys-700"
                 } px-3 active:underline duration-500 transition-all`}
               >
-                <div key={index}>{elements.title}</div>
+                <div className="font-semibold text-pure-greys-300" key={index}>{elements.title}</div>
               </Link>
             );
           })}
         </div>
-        <h1>Made with 💘 by Sonu Yadav © 2025 StudyNotion</h1>
+        <h1 className="font-semibold text-pure-greys-300">Made with 💘 by Sonu Yadav © 2025 StudyNotion</h1>
       </div>
     </div>
   );

@@ -6,12 +6,13 @@ import Banner from "../assets/Images/banner.mp4";
 import CodeBlock from "../components/core/homepage/CodeBlock";
 import LearningLanguageSection from "../components/core/homepage/LearningLanguageSection";
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
+import instructor from "../../src/assets/Images/Instructor.png";
 import Footer from "../components/Common/Footer";
 const Home = () => {
   return (
-    <div>
+    <div className="">
       {/* Section 1 */}
-      <div className=" relative mx-auto flex flex-col w-11/12 items-center max-w-max-content text-white justify-between">
+      <div className="mx-auto flex flex-col w-11/12 items-center max-w-max-content text-white justify-between">
         <Link to={"/signup"}>
           <div className="shadow-[0px_0.5px_0.5px_0.5px_rgba(255,255,255,0.5)] group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-semibold text-richblack-200 transition-all duration-200 hover:scale-95">
             <div className="group-hover:bg-richblack-900 px-10 flex flex-row gap-2 items-center rounded-full py-[5px]">
@@ -99,7 +100,7 @@ const Home = () => {
           />
         </div>
       </div>
-      {/* Section 2 */}
+      {/* white wala part Section 2 */}
       <div className="bg-pure-greys-5 text-richblack-700">
         <div className="bg_homeImageOfLines h-[310px]">
           <div className="w-11/12 max-w-max-content flex flex-col items-center gap-8 mx-auto">
@@ -140,10 +141,22 @@ const Home = () => {
           <LearningLanguageSection />
         </div>
       </div>
-      {/* Section 3 */}
-      {/* Section 4 */}
-      <div className="w-11/12 max-w-max-content mx-auto">
-        <Footer />
+      {/* kaalu wala Section 3 */}
+      <div className="w-11/12 max-w-max-content mx-auto py-[130px]">
+        <div className="flex flex-row ">
+          {/* image div */}
+          <div>
+            <img src={instructor} alt="instructor image" />
+          </div>
+          {/* Heading subheading Button div */}
+          <div></div>
+        </div>
+      </div>
+      {/* Footer */}
+      <div className="bg-richblack-800">
+        <div className="w-11/12 max-w-max-content mx-auto ">
+          <Footer />
+        </div>
       </div>
     </div>
   );
