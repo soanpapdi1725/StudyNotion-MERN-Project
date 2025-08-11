@@ -39,7 +39,11 @@ const Footer = () => {
                       </h1>
                       {elements.links.map((subHeadingsElements, index) => {
                         return (
-                          <Link key={index} to={subHeadingsElements.link}>
+                          <Link
+                            className="active:underline duration-500 transition-all"
+                            key={index}
+                            to={subHeadingsElements.link}
+                          >
                             <p>{subHeadingsElements.title}</p>
                           </Link>
                         );
@@ -71,7 +75,11 @@ const Footer = () => {
                     </h1>
                     {elements.links.map((subHeadingElements, index) => {
                       return (
-                        <Link key={index} to={subHeadingElements.link}>
+                        <Link
+                          className="active:underline duration-500 transition-all"
+                          key={index}
+                          to={subHeadingElements.link}
+                        >
                           <p>{subHeadingElements.title}</p>
                         </Link>
                       );
@@ -95,7 +103,11 @@ const Footer = () => {
                     </h1>
                     {elements.links.map((subHeadingElements, index) => {
                       return (
-                        <Link key={index} to={subHeadingElements.link}>
+                        <Link
+                          className="active:underline duration-500 transition-all"
+                          key={index}
+                          to={subHeadingElements.link}
+                        >
                           <p>{subHeadingElements.title}</p>
                         </Link>
                       );
@@ -121,7 +133,11 @@ const Footer = () => {
                     </h1>
                     {elements.links.map((singleLinkAndTitle, index) => {
                       return (
-                        <Link key={index} to={singleLinkAndTitle.link}>
+                        <Link
+                          className="active:underline duration-500 transition-all"
+                          key={index}
+                          to={singleLinkAndTitle.link}
+                        >
                           <p className="text-base text-pure-greys-400">
                             {singleLinkAndTitle.title}
                           </p>
@@ -143,8 +159,10 @@ const Footer = () => {
                 key={index}
                 to={elements.link}
                 className={`${
-                  elements.border ? elements.border : "border-r border-pure-greys-700"
-                } px-3`}
+                  elements.border
+                    ? elements.border
+                    : "border-r border-pure-greys-700"
+                } px-3 active:underline duration-500 transition-all`}
               >
                 <div key={index}>{elements.title}</div>
               </Link>
