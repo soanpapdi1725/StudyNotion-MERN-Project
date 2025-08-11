@@ -151,7 +151,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-white flex flex-rows justify-between mt-5">
+      <div className="text-pure-greys-500 flex flex-rows justify-between mt-5">
         <div className="flex flex-col lg:flex-row">
           {lowestFooterLink.map((elements, index) => {
             return (
