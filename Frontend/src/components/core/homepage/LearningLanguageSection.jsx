@@ -18,7 +18,9 @@ const LearningLanguageSection = () => {
         </div>
 
         {/* images */}
-        <div></div>
+        <div>
+          
+        </div>
         {/* Button */}
         <div></div>
       </div>
