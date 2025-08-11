@@ -19,9 +19,9 @@ const Footer = () => {
   return (
     <div className="py-14">
       {/* big footer box */}
-      <div className="flex lg:flex-row gap-10 border-b border-richblack-700">
+      <div className="flex flex-col lg:flex-row lg:gap-10 border-b border-richblack-700">
         <div className="pb-10">
-          <div className="flex flex-row items-start gap-15 mr-10">
+          <div className="flex flex-wrap flex-row items-start gap-15 lg:mr-10">
             <div className="flex flex-col gap-8">
               <img src={studyNotionLogo} alt="" />
               <div className="flex flex-col">
@@ -120,8 +120,8 @@ const Footer = () => {
         </div>
         {/* secondbox */}
         <div className="pb-10">
-          <div className="pl-24 border-l border-pure-greys-700">
-            <div className="flex flex-row items-start text-white gap-8">
+          <div className="lg:pl-24 lg:border-l border-pure-greys-700">
+            <div className="flex flex-wrap flex-row items-start text-white gap-8">
               {FooterLink2.map((elements, index) => {
                 return (
                   <div key={index} className="flex flex-col gap-2">
@@ -152,7 +152,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-pure-greys-500 flex flex-rows justify-between mt-5">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col flex-wrap lg:gap-0 gap-2 lg:flex-row">
           {lowestFooterLink.map((elements, index) => {
             return (
               <Link
@@ -161,7 +161,7 @@ const Footer = () => {
                 className={`${
                   elements.border
                     ? elements.border
-                    : "border-r border-pure-greys-700"
+                    : "md:border-r md:border-pure-greys-700"
                 } px-3 active:underline duration-500 transition-all`}
               >
                 <div className="font-semibold text-pure-greys-300" key={index}>{elements.title}</div>

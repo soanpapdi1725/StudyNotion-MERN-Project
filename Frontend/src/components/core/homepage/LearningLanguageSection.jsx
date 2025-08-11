@@ -21,19 +21,19 @@ const LearningLanguageSection = () => {
         </div>
 
         {/* images */}
-        <div className="flex flex-row justify-center items-center mt-5">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-5">
           <img
-            className="object-cover -mr-32"
+            className="object-cover  md:-mr-32"
             src={Know_your_progress}
             alt="Know_your_progress Image"
           />
           <img
-            className="object-cover"
+            className="object-cover -mt-14 md:m-0"
             src={Compare_with_others}
             alt="Compare_with_others Image"
           />
           <img
-            className="object-cover -ml-36"
+            className="object-cover -mt-20 md:-ml-36"
             src={Plan_your_lessons}
             alt="Plan_your_lessons Image"
           />

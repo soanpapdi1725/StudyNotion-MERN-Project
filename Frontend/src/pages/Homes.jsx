@@ -6,7 +6,6 @@ import Banner from "../assets/Images/banner.mp4";
 import CodeBlock from "../components/core/homepage/CodeBlock";
 import LearningLanguageSection from "../components/core/homepage/LearningLanguageSection";
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
-import instructor from "../../src/assets/Images/Instructor.png";
 import Footer from "../components/Common/Footer";
 import InstructorSection from "../components/core/homepage/InstructorSection";
 const Home = () => {
@@ -41,14 +40,14 @@ const Home = () => {
             Book a Demo
           </CTAButton>
         </div>
-        <div className="shadow-[17px_17px_0px_-2px_rgba(255,255,255,0.75)] mx-4 my-10">
+        <div className="shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
           <div className="w-[70%] shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
-          <video className="" muted loop autoPlay src={Banner}></video>
+          <video muted loop autoPlay src={Banner}></video>
         </div>
         {/* section code block - 1*/}
         <div>
           <CodeBlock
-            position={"lg:flex-row"}
+            position={"md:flex-row flex-col"}
             subHeading={
               "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
             }
@@ -76,9 +75,9 @@ const Home = () => {
         {/* section 2 code block */}
         <div>
           <CodeBlock
-            position={"lg:flex-row-reverse"}
+            position={"md:flex-row-reverse flex-col"}
             heading={
-              <div className="text-4xl font-semibold w-[35%]">
+              <div className="text-4xl font-semibold lg:w-[35%]">
                 Start <HighlightText text={"Coding in Seconds"} />
               </div>
             }
@@ -120,12 +119,12 @@ const Home = () => {
           </div>
         </div>
         <div className="w-11/12 max-w-max-content mx-auto h-fit flex flex-col justify-between items-center">
-          <div className="flex flex-row gap-8 mb-10 mt-[95px]">
-            <div className="text-4xl font-semibold w-[45%]">
+          <div className="flex flex-col md:flex-row gap-8 mb-10 mt-[95px]">
+            <div className="text-4xl font-semibold md:w-[45%]">
               Get the Skills you need for a{" "}
               <HighlightText text={"job that is in demand."}></HighlightText>
             </div>
-            <div className="flex flex-col gap-5 items-start w-[45%]">
+            <div className="flex flex-col gap-5 items-start md:w-[45%]">
               <div className="text-[16px] font-semibold">
                 The modern StudyNotion is the dictates its own terms. Today, to
                 be a competitive specialist requires more than professional
@@ -143,16 +142,18 @@ const Home = () => {
         </div>
       </div>
       {/* kaalu wala Section 3 */}
-      <div className="w-11/12 max-w-max-content flex flex-col mx-auto py-[130px]">
+      <div className="w-11/12 max-w-max-content flex flex-col first-letter bg-richblack-900 text-white items-center mx-auto py-[130px]">
         {/* Instructor section */}
-        <div>
+        <div className="">
           <InstructorSection />
         </div>
         {/* reviews Section */}
-        <div></div>
+        <div>
+          <h1 className="text-pure-greys-25 text-4xl font-semibold text-center mt-[100px]">Reviews from other Learners</h1>
+          {/* review Slider here 👇🏼*/}
+          <div></div>
+        </div>
       </div>
-      {/* All reviews Section */}
-      <div></div>
 
       {/* Footer */}
       <div className="bg-richblack-800">
