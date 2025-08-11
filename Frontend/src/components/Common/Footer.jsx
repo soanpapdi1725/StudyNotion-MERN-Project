@@ -11,10 +11,15 @@ import {
   FooterLink2,
 } from "../../data/footer-links";
 const Footer = () => {
+  const lowestFooterLink = [
+    { title: "Privacy Policy", link: "/privacyPolicy" },
+    { title: "Cookie Policy", link: "cookiePolicy" },
+    { title: "Terms", link: "/terms", border: "border-none" },
+  ];
   return (
-    <div className="py-14 px-18">
-      {/* box */}
-      <div className="flex flex-row gap-10 border-b border-richblack-700">
+    <div className="py-14">
+      {/* big footer box */}
+      <div className="flex lg:flex-row gap-10 border-b border-richblack-700">
         <div className="pb-10">
           <div className="flex flex-row items-start gap-15 mr-10">
             <div className="flex flex-col gap-8">
@@ -102,31 +107,51 @@ const Footer = () => {
           </div>
         </div>
         {/* secondbox */}
-        <div className="pl-24 border-l border-pure-greys-400">
-          <div className="flex flex-row items-start text-white gap-8">
-            {FooterLink2.map((elements, index) => {
-              return (
-                <div key={index} className="flex flex-col gap-2">
-                  <h1
-                    className="text-pure-greys-100 text-xl font-semibold"
-                    key={index}
-                  >
-                    {elements.title}
-                  </h1>
-                  {elements.links.map((singleLinkAndTitle, index) => {
-                    return (
-                      <Link key={index} to={singleLinkAndTitle.link}>
-                        <p className="text-base text-pure-greys-400">
-                          {singleLinkAndTitle.title}
-                        </p>
-                      </Link>
-                    );
-                  })}
-                </div>
-              );
-            })}
+        <div className="pb-10">
+          <div className="pl-24 border-l border-pure-greys-400">
+            <div className="flex flex-row items-start text-white gap-8">
+              {FooterLink2.map((elements, index) => {
+                return (
+                  <div key={index} className="flex flex-col gap-2">
+                    <h1
+                      className="text-pure-greys-100 text-xl font-semibold"
+                      key={index}
+                    >
+                      {elements.title}
+                    </h1>
+                    {elements.links.map((singleLinkAndTitle, index) => {
+                      return (
+                        <Link key={index} to={singleLinkAndTitle.link}>
+                          <p className="text-base text-pure-greys-400">
+                            {singleLinkAndTitle.title}
+                          </p>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
+      </div>
+      <div className="text-white flex flex-rows justify-between mt-5">
+        <div className="flex flex-col lg:flex-row">
+          {lowestFooterLink.map((elements, index) => {
+            return (
+              <Link
+                key={index}
+                to={elements.link}
+                className={`${
+                  elements.border ? elements.border : "border-r border-pure-greys-700"
+                } px-3`}
+              >
+                <div key={index}>{elements.title}</div>
+              </Link>
+            );
+          })}
+        </div>
+        <h1>Made with 💘 by Sonu Yadav © 2025 StudyNotion</h1>
       </div>
     </div>
   );
