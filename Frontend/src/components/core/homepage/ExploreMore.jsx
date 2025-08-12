@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HomePageExplore } from "../../../data/homepage-explore";
 import HighlightText from "./HighlightText";
-import { HiMiniUsers } from "react-icons/hi2";
+import CourseCard from "./CourseCard";
 
 const ExploreMore = () => {
   const tabsName = [
@@ -67,28 +67,14 @@ const ExploreMore = () => {
           <div className="flex flex-col md:flex-row items-start gap-12">
             {courses.map((element, index) => {
               return (
-                <div
+                <CourseCard
+                  key={index}
                   onClick={() => {
                     setCurrentCard(element.heading);
                   }}
-                  className={`${
-                    currentCard === element.heading
-                      ? "bg-white text-richblack-900"
-                      : "text-white bg-richblack-700"
-                  } md:w-[40%] h-[50%] py-8 px-12  flex flex-col gap-8`}
-                >
-                  <div className="flex flex-col gap-8">
-                    <h1 className="text-2xl">{element.heading}</h1>
-                    <p>{element.description}</p>
-                  </div>
-                  <div className="border-t border-black border-dashed ">
-                    {/* buttons and links */}
-                    <div className=" flex flex-row gap-2 text-xl items-center">
-                      <HiMiniUsers className="text-blue-200" />
-                      {element.level}
-                    </div>
-                  </div>
-                </div>
+                  element={element}
+                  currentCard={currentCard}
+                />
               );
             })}
           </div>
