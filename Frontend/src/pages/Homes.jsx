@@ -8,6 +8,7 @@ import LearningLanguageSection from "../components/core/homepage/LearningLanguag
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
 import Footer from "../components/Common/Footer";
 import InstructorSection from "../components/core/homepage/InstructorSection";
+import ExploreMore from "../components/core/homepage/ExploreMore";
 const Home = () => {
   return (
     <div className="">
@@ -47,7 +48,7 @@ const Home = () => {
         {/* section code block - 1*/}
         <div>
           <CodeBlock
-            position={"md:flex-row flex-col"}
+            position={"lg:flex-row flex-col"}
             subHeading={
               "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
             }
@@ -73,9 +74,9 @@ const Home = () => {
           />
         </div>
         {/* section 2 code block */}
-        <div>
+        <div className="mb-[50px]">
           <CodeBlock
-            position={"md:flex-row-reverse flex-col"}
+            position={"lg:flex-row-reverse flex-col"}
             heading={
               <div className="text-4xl font-semibold lg:w-[35%]">
                 Start <HighlightText text={"Coding in Seconds"} />
@@ -98,6 +99,9 @@ const Home = () => {
             backgroundGradient={"from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]"}
             CodeColor={"text-pink-200"}
           />
+        </div>
+        <div>
+          <ExploreMore />
         </div>
       </div>
       {/* white wala part Section 2 */}
@@ -149,7 +153,9 @@ const Home = () => {
         </div>
         {/* reviews Section */}
         <div>
-          <h1 className="text-pure-greys-25 text-4xl font-semibold text-center mt-[100px]">Reviews from other Learners</h1>
+          <h1 className="text-pure-greys-25 text-4xl font-semibold text-center mt-[100px]">
+            Reviews from other Learners
+          </h1>
           {/* review Slider here 👇🏼*/}
           <div></div>
         </div>

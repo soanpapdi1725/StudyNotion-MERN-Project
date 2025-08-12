@@ -37,7 +37,7 @@ const CodeBlock = ({
         {" "}
         {/*main div*/}
         <div
-          className={`lg:w-[373px] lg:h-[257px] opacity-20 rounded-full blur-xl bg-gradient-to-br ${backgroundGradient} absolute z-10 translate-x-[-10%] translate-y-[-10%]`}
+          className={`w-[80%] h-[35%] md:w-[55%] md:h-[55%] lg:w-[373px] lg:h-[257px] opacity-20 rounded-full blur-xl bg-gradient-to-br ${backgroundGradient} absolute z-10 translate-x-[-10%] translate-y-[-10%]`}
         ></div>
         <div
           className={`flex flex-row relative p-4 bg-[#0F172A]/30 border rounded-lg border-white/10 font-mono text-[8px] md:text-sm text-white shadow-lg backdrop-blur-sm w-[95%] md:w-[80%]`}
@@ -56,7 +56,7 @@ const CodeBlock = ({
             <p>12</p>
           </div>
           <div
-            className={`md:w-[90%] flex flex-col font-bold font-mono ${CodeColor}`}
+            className={`w-[70%] md:w-[90%] flex flex-col font-bold font-mono ${CodeColor}`}
           >
             <TypeAnimation
               sequence={[codeblock, 2000, ""]}

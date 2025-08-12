@@ -32,7 +32,7 @@ const TimeLineSection = () => {
         <div className="md:w-[45%] flex flex-col gap-5">
           {timeLineData.map((element, index) => {
             return (
-              <div className="flex flex-col items-start gap-2">
+              <div key={index} className="flex flex-col items-start gap-2">
                 <div key={index} className="flex flex-row gap-6">
                   {/* image */}
                   <div className="w-[50px] h-[50px] bg-white flex items-center justify-center rounded-full shadow-[9px_12px_15px_3px_rgba(40,_39,_40,_0.25)]">
