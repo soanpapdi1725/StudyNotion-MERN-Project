@@ -30,7 +30,7 @@ const LoginPage = () => {
           </div>
           {/* login form */}
           <form action="" className="flex flex-col gap-3 w-[90%]" method="post">
-            <div className="bg-richblack-800 text-lg flex flex-row gap-2 px-2 py-1 rounded-full w-fit">
+            <div className="bg-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-lg flex flex-row gap-2 px-2 py-1 rounded-full w-fit">
               {selectionTab.map((element, index) => {
                 return (
                   <div
@@ -55,19 +55,20 @@ const LoginPage = () => {
               <div className="w-full flex flex-col gap-1">
                 <p className="text-base">Email Address:</p>
                 <input
-                  type="text"
-                  className="bg-richblack-800 text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                  type="email"
+                  className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
                   placeholder="Enter email Address"
                   name="email"
                   required
                 />
               </div>
+              
               {/* password and eye */}
-              <div className="relative w-full flex flex-col gap-1">
+              <div className="relative w-full  flex flex-col gap-1">
                 <p className="text-base">Password:</p>
                 <input
                   type={`${eyeButton ? "password" : "text"}`}
-                  className="bg-richblack-800 text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
+                  className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
                   placeholder="Enter Password"
                   name="password"
                   required
@@ -83,7 +84,7 @@ const LoginPage = () => {
               </div>
             </div>
             <a
-              className="text-end text-blue-100 hover:underline active:underline"
+              className="text-end font-extralight text-blue-100 hover:underline active:underline"
               href="/reset-password-token"
             >
               Forgot Password?
