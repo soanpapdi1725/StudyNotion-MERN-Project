@@ -3,7 +3,7 @@ import backgroundZigZag from "../assets/Images/bghome.svg";
 import loginImage from "../assets/Images/login.webp";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
-import Button from "../components/core/homepage/Button";
+import Button from "../components/Common/Button";
 
 const LoginPage = () => {
   const selectionTab = ["Student", "Instructor"];

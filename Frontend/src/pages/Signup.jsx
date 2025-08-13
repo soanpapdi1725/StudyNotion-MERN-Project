@@ -3,7 +3,7 @@ import backgroundZigZag from "../assets/Images/bghome.svg";
 import signupImage from "../assets/Images/signup.webp";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
-import Button from "../components/core/homepage/Button";
+import Button from "../components/Common/Button";
 import countrycode from "../data/countrycode.json";
 const SignupPage = () => {
   const selectionTab = ["Student", "Instructor"];
@@ -16,7 +16,7 @@ const SignupPage = () => {
       {/* main div */}
       <div className="flex flex-col  lg:flex-row gap-15 justify-center my-24">
         {/* heading + login form */}
-        <div className="flex flex-col  lg:mx-15 items-start   gap-8 lg:w-[40%]">
+        <div className="flex flex-col  lg:mx-15 items-start   gap-8 lg:w-[45%]">
           {/* heading and subheading */}
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-semibold ">Welcome Back</h1>
@@ -98,8 +98,9 @@ const SignupPage = () => {
                   Phone Number <span className="text-pink-400">*</span>
                 </p>
                 <div className="flex flex-row gap-5 w-full">
-                  <select
-                    className="bg-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-[20%]"
+                  <div className="w-[20%]">
+                    <select
+                    className="bg-richblack-800  scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
                     id="countryCode"
                     value={selectedCode}
                     onChange={(event) => {
@@ -117,6 +118,7 @@ const SignupPage = () => {
                       );
                     })}
                   </select>
+                  </div>
                   <input
                     type="text"
                     className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
@@ -127,22 +129,46 @@ const SignupPage = () => {
                 </div>
               </div>
               {/* password and eye */}
-              <div className="relative w-full flex flex-col gap-1">
-                <p className="text-base">Password:</p>
-                <input
-                  type={`${eyeButton ? "password" : "text"}`}
-                  className="bg-richblack-800 text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
-                  placeholder="Enter Password"
-                  name="password"
-                  required
-                />
-                <div
-                  onClick={() => {
-                    setEyeButton(!eyeButton);
-                  }}
-                  className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
-                >
-                  {eyeButton ? <IoEye /> : <IoMdEyeOff />}
+              <div className="flex flex-row gap-5">
+                <div className="relative w-full flex flex-col gap-1">
+                  <p className="text-base">
+                    Password <span className="text-pink-400">*</span>
+                  </p>
+                  <input
+                    type={`${eyeButton ? "password" : "text"}`}
+                    className="bg-richblack-800 text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
+                    placeholder="Enter Password"
+                    name="password"
+                    required
+                  />
+                  <div
+                    onClick={() => {
+                      setEyeButton(!eyeButton);
+                    }}
+                    className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
+                  >
+                    {eyeButton ? <IoEye /> : <IoMdEyeOff />}
+                  </div>
+                </div>
+                <div className="relative w-full flex flex-col gap-1">
+                  <p className="text-base">
+                   Confirm Password <span className="text-pink-400">*</span>
+                  </p>
+                  <input
+                    type={`${eyeButton ? "password" : "text"}`}
+                    className="bg-richblack-800 text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
+                    placeholder="Enter confirm Password"
+                    name="password"
+                    required
+                  />
+                  <div
+                    onClick={() => {
+                      setEyeButton(!eyeButton);
+                    }}
+                    className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
+                  >
+                    {eyeButton ? <IoEye /> : <IoMdEyeOff />}
+                  </div>
                 </div>
               </div>
             </div>
@@ -152,9 +178,9 @@ const SignupPage = () => {
             >
               Forgot Password?
             </a>
-            <button className="mt-8" type="submit">
+            <button className="mt-8 text-xl" type="submit">
               <Button active={true} linkto={""}>
-                Sign in
+                Create Account
               </Button>
             </button>
           </form>

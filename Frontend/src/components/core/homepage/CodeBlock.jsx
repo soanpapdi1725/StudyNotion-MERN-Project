@@ -1,5 +1,5 @@
 import HighlightText from "./HighlightText";
-import Button from "./Button";
+import Button from "../../Common/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 const CodeBlock = ({

@@ -1,6 +1,6 @@
 import instructorImage from "../../../assets/Images/Instructor.png";
 import HighlightText from "./HighlightText";
-import CTAButton from "./Button";
+import CTAButton from "../../Common/Button";
 import { FaArrowRight } from "react-icons/fa";
 
 const InstructorSection = () => {

@@ -2,7 +2,7 @@ import HighlightText from "./HighlightText";
 import Compare_with_others from "../../../assets/Images/Compare_with_others.svg";
 import Know_your_progress from "../../../assets/Images/Know_your_progress.svg";
 import Plan_your_lessons from "../../../assets/Images/Plan_your_lessons.svg";
-import CTAButton from "./Button";
+import CTAButton from "../../Common/Button";
 const LearningLanguageSection = () => {
   return (
     <div className="my-[130px]">
