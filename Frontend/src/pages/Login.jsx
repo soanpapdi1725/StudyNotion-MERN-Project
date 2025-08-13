@@ -62,7 +62,7 @@ const LoginPage = () => {
                   required
                 />
               </div>
-              
+
               {/* password and eye */}
               <div className="relative w-full  flex flex-col gap-1">
                 <p className="text-base">Password:</p>
@@ -91,7 +91,7 @@ const LoginPage = () => {
             </a>
             <button className="mt-8" type="submit">
               <Button active={true} linkto={""}>
-                Sign in
+                <div className="text-xl font-medium">Sign in</div>
               </Button>
             </button>
           </form>

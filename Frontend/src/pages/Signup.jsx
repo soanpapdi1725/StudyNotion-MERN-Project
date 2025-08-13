@@ -14,9 +14,9 @@ const SignupPage = () => {
   return (
     <div className="mx-auto w-11/12 max-w-max-content text-pure-greys-5">
       {/* main div */}
-      <div className="flex flex-col  lg:flex-row gap-15 justify-center my-24">
+      <div className="flex flex-col  lg:flex-row gap-10 justify-center my-24">
         {/* heading + login form */}
-        <div className="flex flex-col  lg:mx-15 items-start   gap-8 lg:w-[45%]">
+        <div className="flex flex-col  lg:mx-15 md:items-start items-center  gap-8 lg:w-[45%]">
           {/* heading and subheading */}
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-semibold ">Welcome Back</h1>
@@ -55,7 +55,7 @@ const SignupPage = () => {
 
             <div className="w-full flex flex-col gap-5">
               {/* email id */}
-              <div className="w-full flex flex-row gap-4">
+              <div className="w-full flex flex-col md:flex-row gap-4">
                 <div className="flex flex-col gap-1">
                   <p className="text-base font-medium">
                     First Name <span className="text-pink-400">*</span>
@@ -68,13 +68,13 @@ const SignupPage = () => {
                     required
                   />
                 </div>
-                <div className="flex flex-col gap-1 w-fit">
+                <div className="flex flex-col gap-1 w-full">
                   <p className="text-base">
                     Last Name <span className="text-pink-400">*</span>
                   </p>
                   <input
                     type="text"
-                    className="bg-richblack-800 h-12 w-full shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                    className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
                     placeholder="Enter First Name"
                     name="lastName"
                     required
@@ -98,7 +98,7 @@ const SignupPage = () => {
                   Phone Number <span className="text-pink-400">*</span>
                 </p>
                 <div className="flex flex-row gap-5 w-full">
-                  <div className="w-[20%]">
+                  <div className="md:w-[21%] max-w-[25%]">
                     <select
                     className="bg-richblack-800  scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
                     id="countryCode"
@@ -129,7 +129,7 @@ const SignupPage = () => {
                 </div>
               </div>
               {/* password and eye */}
-              <div className="flex flex-row gap-5">
+              <div className="flex flex-col md:flex-row gap-5">
                 <div className="relative w-full flex flex-col gap-1">
                   <p className="text-base">
                     Password <span className="text-pink-400">*</span>
@@ -172,15 +172,11 @@ const SignupPage = () => {
                 </div>
               </div>
             </div>
-            <a
-              className="text-end text-blue-100 hover:underline active:underline"
-              href="/reset-password-token"
-            >
-              Forgot Password?
-            </a>
-            <button className="mt-8 text-xl" type="submit">
+    
+            <button className="mt-8 " type="submit">
               <Button active={true} linkto={""}>
-                Create Account
+               <div className="text-xl font-medium"> Create Account
+                </div> 
               </Button>
             </button>
           </form>
@@ -188,10 +184,10 @@ const SignupPage = () => {
         {/* image and background zigZag */}
         <div>
           <div className="relative z-5">
-            <img className="h-[420px]" src={signupImage} alt="" />
+            <img className="h-[500px]" src={signupImage} alt="" />
           </div>
           <div className="absolute z-0 translate-y-[-92%] translate-x-[3%]">
-            <img src={backgroundZigZag} alt="" />
+            <img className="h-[370px]" src={backgroundZigZag} alt="" />
           </div>
         </div>
       </div>
