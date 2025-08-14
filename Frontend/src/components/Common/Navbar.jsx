@@ -23,7 +23,7 @@ const Navbar = () => {
         <nav>
           <ul className="flex flex-row gap-4 text-richblack-25">
             {NavbarLinks.map((link, index) => (
-              <li>
+              <li key={index}>
                 {link.title === "Catalog" ? (
                   <div></div>
                 ) : (
