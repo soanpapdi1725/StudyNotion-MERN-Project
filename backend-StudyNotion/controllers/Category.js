@@ -49,7 +49,7 @@ exports.getAllcategorys = async (req, res) => {
     );
     return res.status(200).json({
       success: true,
-      message: "Returning all the categorys",
+      message: " all the categorys",
       data: getcategorys,
     });
   } catch (error) {

@@ -8,14 +8,21 @@ import ProfileDropDown from "../core/Auth/ProfileDropDown";
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../services/apiConnector";
 import { courseEndpoints } from "../../services/apis";
-
 const Navbar = () => {
-  console.log(process.env.REACT_APP_BASE_URL);
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.userType);
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
-
+  const subLinks = [
+    {
+      title: "python",
+      link: "/catalog/python"
+    },
+    {
+      title: "Web Dev",
+      link: "/catalog/web-dev"
+    }
+  ]
   // sublinks and setSublinks useState()
   const [sublinks, setSubLinks] = useState([]);
   // function to get and setSublinks in the sublinks
@@ -25,6 +32,7 @@ const Navbar = () => {
         "GET",
         courseEndpoints.GET_ALL_CATEGORIES_API
       );
+      console.log(result);
       setSubLinks(result.data.data);
     } catch (error) {
       console.log("Could not fetched catalogList");
