@@ -82,16 +82,22 @@ const Navbar = () => {
 
                     <div className="absolute visible opacity-0 w-[300px] flex flex-col  left-1/2 top-1/2 -translate-x-4/5 -translate-y-[42vh] rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-75 group-hover:visible group-hover:opacity-100">
                       <div className=" absolute -z-1 p-4 transition-all duration-300 translate-x-[11vw] -translate-y-[4vh] rotate-45 w-6 h-6 bg-richblack-5"></div>
-                      {subLinks.map((element, index) => {
-                        return (
-                          <Link key={index}
-                            className="w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
-                            to={element.links}
-                          >
-                            <div>{element.title}</div>
-                          </Link>
-                        );
-                      })}
+
+                      {subLinks.length ? (
+                        subLinks.map((element, index) => {
+                          return (
+                            <Link
+                              key={index}
+                              className="w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
+                              to={element.links}
+                            >
+                              {element.title}
+                            </Link>
+                          );
+                        })
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   </div>
                 ) : (
