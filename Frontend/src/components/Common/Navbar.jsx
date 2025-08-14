@@ -96,7 +96,7 @@ const Navbar = () => {
                           );
                         })
                       ) : (
-                        <div></div>
+                        <div>No Categories</div>
                       )}
                     </div>
                   </div>
