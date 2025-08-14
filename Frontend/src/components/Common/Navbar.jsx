@@ -10,6 +10,7 @@ import { apiConnector } from "../../services/apiConnector";
 import { courseEndpoints } from "../../services/apis";
 
 const Navbar = () => {
+  console.log(process.env.REACT_APP_BASE_URL);
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.userType);
   const { totalItems } = useSelector((state) => state.cart);
