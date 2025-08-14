@@ -33,7 +33,7 @@ const LoginPage = () => {
             <div className="bg-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-lg flex flex-row gap-2 px-2 py-1 rounded-full w-fit">
               {selectionTab.map((element, index) => {
                 return (
-                  <div
+                  <div key={index}
                     className={`${
                       currentTab === element
                         ? "bg-richblack-900 text-pure-greys-5"
@@ -99,10 +99,10 @@ const LoginPage = () => {
         {/* image and background zigZag */}
         <div>
           <div className="relative z-5">
-            <img className="h-[420px]" src={loginImage} alt="" />
+            <img className="md:max-h-[420px]" src={loginImage} alt="" />
           </div>
           <div className="absolute z-0 translate-y-[-92%] translate-x-[3%]">
-            <img src={backgroundZigZag} alt="" />
+            <img className="md:max-h-[380px]" src={backgroundZigZag} alt="" />
           </div>
         </div>
       </div>
