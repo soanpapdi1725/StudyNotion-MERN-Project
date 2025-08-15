@@ -60,11 +60,12 @@ const Navbar = () => {
 
   return (
     <div className="h-15 flex items-center justify-center border-b-[1px] border-pure-greys-700">
-      <div className="mx-auto flex flex-row justify-between items-center w-11/12 max-w-max-content">
+      <div className="mx-auto flex flex-row justify-around items-center w-11/12 max-w-max-content">
         <Link to={"/"}>
           <img
             width={160}
             height={42}
+            className="max-w-[100px]"
             loading="lazy"
             src={studyNotionLogo}
             alt="StudyNotionImage"
@@ -72,7 +73,7 @@ const Navbar = () => {
         </Link>
         {/* nav links */}
         <nav>
-          <ul className="flex flex-row gap-4 text-richblack-100">
+          <ul className="lg:flex hidden  flex-row gap-4 text-richblack-100">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
