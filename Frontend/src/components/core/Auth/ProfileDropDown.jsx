@@ -8,13 +8,15 @@ const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   return (
-    <button
+    <button className="relative"
       onClick={() => {
         setOpen(!open);
       }}
     >
       {/* image and drop down wla div */}
-      <div></div>
+      <div>
+        <img {/**src={user?.image} */} src={}  alt={`profileImage${user?.firstName}`} />
+      </div>
     </button>
   );
 };

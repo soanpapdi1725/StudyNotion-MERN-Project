@@ -127,7 +127,7 @@ const Navbar = () => {
               {totalItems > 0 && <span>{totalItems}</span>}
             </Link>
           )}
-          {token === null && (
+          {token !== null && (
             <Link
               className="bg-richblack-800 cursor-pointer outline-none border-richblack-400 text-base px-3 py-2 rounded-md"
               to={"/login"}
@@ -135,7 +135,7 @@ const Navbar = () => {
               <button className="cursor-pointer">Login</button>
             </Link>
           )}
-          {token === null && (
+          {token !== null && (
             <Link
               className="bg-richblack-800  border-richblack-400 px-3 py-2 rounded-md"
               to={"/signup"}
@@ -144,7 +144,7 @@ const Navbar = () => {
             </Link>
           )}
 
-          {token !== null && <ProfileDropDown />}
+          {token === null && <ProfileDropDown />}
         </div>
       </div>
     </div>
