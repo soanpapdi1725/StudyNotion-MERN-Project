@@ -4,11 +4,11 @@ import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "../../utils/constants";
 import { FiShoppingCart } from "react-icons/fi";
-import ProfileDropDown from "../core/Auth/ProfileDropDown";
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../services/apiConnector";
 import { courseEndpoints } from "../../services/apis";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import ProfileButton from "../core/Auth/ProfileButton";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -76,19 +76,19 @@ const Navbar = () => {
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
-                  <div className="group flex flex-row items-center gap-1 hover:text-richblack-5">
+                  <div className="group cursor-pointer flex flex-row items-center gap-1 hover:text-richblack-5">
                     <p>{link.title}</p>
-                    <IoIosArrowDropdownCircle className="group-hover:-rotate-180 group-hover:scale-95 transform-3d transition-all group-hover:text-richblack-5 duration-500" />
+                    <IoIosArrowDropdownCircle className="group-hover:-rotate-180 group-hover:scale-95 transform-3d transition-all group-hover:text-richblack-5 duration-400" />
 
-                    <div className="absolute visible opacity-0 w-[300px] flex flex-col  left-1/2 top-1/2 -translate-x-4/5 -translate-y-[42vh] rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-75 group-hover:visible group-hover:opacity-100">
-                      <div className=" absolute -z-1 p-4 transition-all duration-300 translate-x-[11vw] -translate-y-[4vh] rotate-45 w-6 h-6 bg-richblack-5"></div>
+                    <div className="absolute visible opacity-0 w-[300px] flex flex-col  right-[46.2%] top-[8vh]  group-hover:translate-y-0 translate-y-10 rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-300 group-hover:visible group-hover:opacity-100 ease-in-out ">
+                      <div className=" absolute -z-0 p-4 bg-richblack-5 rotate-45 w-6 h-6 -top-[8%] right-4"></div>
 
                       {subLinks.length ? (
                         subLinks.map((element, index) => {
                           return (
                             <Link
                               key={index}
-                              className="w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
+                              className="relative z-5 w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
                               to={element.links}
                             >
                               {element.title}
@@ -144,7 +144,7 @@ const Navbar = () => {
             </Link>
           )}
 
-          {token === null && <ProfileDropDown />}
+          {token === null && <ProfileButton />}
         </div>
       </div>
     </div>
