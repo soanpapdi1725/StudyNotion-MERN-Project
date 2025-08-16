@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { setSignUpData } from "../../../Slices/authSlice";
 import { useNavigate } from "react-router";
+import { sendotp } from "../../../services/operations/authOperations";
 
 const SignupForm = ({ selectionTab }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const SignupForm = ({ selectionTab }) => {
   const [eyeButton2, setEyeButton2] = useState(true);
   const [selectedCode, setselectCode] = useState("+91");
 
-  const disPatch = useDispatch();
+  const dispatch = useDispatch();
   // signupForm Data and setting of Data and also function for handling on Submit
   const [formData, setFormData] = useState({
     firstName: "",
@@ -56,18 +57,19 @@ const SignupForm = ({ selectionTab }) => {
     };
     console.log(signUpData);
 
-    disPatch(setSignUpData(signUpData));
+    dispatch(setSignUpData(signUpData));
 
     // dispatch for send otp operation function
+    dispatch(sendotp(email, navigate));
     // reset values
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      contactNumber: "",
-    });
+    // setFormData({
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   contactNumber: "",
+    // });
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
   return (

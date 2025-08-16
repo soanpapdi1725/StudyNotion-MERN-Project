@@ -23,6 +23,7 @@ const LoginForm = ({ selectionTab }) => {
     event.preventDefault();
 
     // dispatch login email, pass and navigate
+    
     // reset
     setLoginFormData({
       email: "",

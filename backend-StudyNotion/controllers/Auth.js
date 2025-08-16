@@ -10,8 +10,16 @@ require("dotenv").config();
 // OTP send Controller
 exports.sendOTP = async (req, res) => {
   try {
+    // Debug: Log the entire request body
+    console.log("Request body:", req.body);
+
     // user ki email fetch kari
     const { email } = req.body;
+
+    // Debug: Log the extracted email
+    console.log("Extracted email:", email);
+
+    // Validate email is present
 
     // checking user exists in DB or not in User collection
     const checkUserExist = await User.findOne({ email });

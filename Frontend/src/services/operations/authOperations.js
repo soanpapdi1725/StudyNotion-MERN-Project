@@ -16,6 +16,7 @@ export const sendotp = (email, navigate) => {
     const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
+      console.log(email);
       const response = await apiConnector("POST", SEND_OTP_API, {
         email,
       });
@@ -33,3 +34,6 @@ export const sendotp = (email, navigate) => {
     toast.dismiss(toastId);
   };
 };
+
+
+export const 
