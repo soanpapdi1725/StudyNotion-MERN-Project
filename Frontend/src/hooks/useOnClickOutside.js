@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useOnClickOutside = (ref, handlerFunction) => {
+export const useOnClickOutside = (ref, handlerFunction) => {
   // define kar diya ek useEffect Hook jo monitor krega ref(jo bhi button me lagega) uske changes ko
   useEffect(() => {
     // listener Function call hoga jab jab mouseDown or touchStart jesi chize hogi
@@ -18,14 +18,14 @@ const useOnClickOutside = (ref, handlerFunction) => {
     // Add eventlistener for mouseDown and touchStart events on the Document
     document.addEventListener("mousedown", listenerFunction);
     document.addEventListener("touchstart", listenerFunction);
-    document.addEventListener("scroll", listenerFunction)
+    document.addEventListener("scroll", listenerFunction);
 
     // saaf safai kr do warna wo listener function hamesha
     // active rahege or memory leak krenge jis se website slow hogi
     return () => {
       document.removeEventListener("mousedown", listenerFunction);
       document.removeEventListener("touchstart", listenerFunction);
-      document.removeEventListener("scroll", listenerFunction)
+      document.removeEventListener("scroll", listenerFunction);
     };
   }, [ref, handlerFunction]);
 };

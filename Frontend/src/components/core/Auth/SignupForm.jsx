@@ -3,20 +3,25 @@ import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import SliderTab from "../../Common/SliderTab";
 import countrycode from "../../../data/countrycode.json";
-import Button from "../../Common/Button";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setSignUpData } from "../../../Slices/authSlice";
+import { useNavigate } from "react-router";
 
 const SignupForm = ({ selectionTab }) => {
-  const [currentTab, setCurrentTab] = useState(selectionTab[0]);
+  const navigate = useNavigate();
+
+  const [accountType, setAccountType] = useState(selectionTab[0]);
   const [eyeButton, setEyeButton] = useState(true);
   const [eyeButton2, setEyeButton2] = useState(true);
   const [selectedCode, setselectCode] = useState("+91");
 
+  const disPatch = useDispatch();
   // signupForm Data and setting of Data and also function for handling on Submit
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    accountType: ACCOUNT_TYPE.STUDENT,
     email: "",
     password: "",
     confirmPassword: "",
@@ -25,7 +30,6 @@ const SignupForm = ({ selectionTab }) => {
   const {
     firstName,
     lastName,
-    accountType,
     password,
     confirmPassword,
     email,
@@ -39,27 +43,49 @@ const SignupForm = ({ selectionTab }) => {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log(formData)
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      return toast.error("Password Does not match");
+    }
+
+    const signUpData = {
+      ...formData,
+      accountType,
+      contactNumber: `${selectedCode}${contactNumber}`,
+    };
+    console.log(signUpData);
+
+    disPatch(setSignUpData(signUpData));
+
+    // dispatch for send otp operation function
+    // reset values
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      contactNumber: "",
+    });
+    setAccountType(ACCOUNT_TYPE.STUDENT);
+  };
   return (
-    <form className="flex  flex-col gap-3 w-full" method="post">
+    <form
+      onSubmit={handleOnSubmit}
+      className="flex  flex-col gap-3 w-full"
+      method="post"
+    >
       <div className="bg-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-lg flex flex-row gap-2 px-2 py-1 rounded-full w-fit">
         {selectionTab.map((element, index) => {
           return (
-            <div>
-              <SliderTab
-                element={element}
-                index={index}
-                currentTab={currentTab}
-                setMyData={setCurrentTab}
-                style={"px-3 py-1 text-lg"}
-              />
-              <input
-                type="hidden"
-                onChange={handleOnChange}
-                name="accountType"
-                value={element}
-              />
-            </div>
+            <SliderTab
+              element={element}
+              key={index}
+              currentTab={accountType}
+              setMyData={setAccountType}
+              style={"px-3 py-1 text-lg"}
+            />
           );
         })}
       </div>
@@ -78,6 +104,7 @@ const SignupForm = ({ selectionTab }) => {
               name="firstName"
               required
               onChange={handleOnChange}
+              value={firstName}
             />
           </div>
           <div className="flex flex-col gap-1 w-full">
@@ -91,6 +118,7 @@ const SignupForm = ({ selectionTab }) => {
               name="lastName"
               required
               onChange={handleOnChange}
+              value={lastName}
             />
           </div>
         </div>
@@ -105,6 +133,7 @@ const SignupForm = ({ selectionTab }) => {
             name="email"
             required
             onChange={handleOnChange}
+            value={email}
           />
         </div>
         <div className="w-full flex flex-col gap-1 items-start">
@@ -120,6 +149,7 @@ const SignupForm = ({ selectionTab }) => {
                 value={selectedCode}
                 onChange={(event) => {
                   setselectCode(event.target.value);
+                  handleOnChange;
                 }}
               >
                 <option className="bg-black" value="+91">
@@ -140,6 +170,7 @@ const SignupForm = ({ selectionTab }) => {
               placeholder="1234567890"
               name="contactNumber"
               required
+              value={contactNumber}
               onChange={handleOnChange}
             />
           </div>
@@ -156,6 +187,7 @@ const SignupForm = ({ selectionTab }) => {
               placeholder="Enter Password"
               name="password"
               required
+              value={password}
               onChange={handleOnChange}
             />
             <div
@@ -177,6 +209,7 @@ const SignupForm = ({ selectionTab }) => {
               placeholder="Enter confirm Password"
               name="confirmPassword"
               required
+              value={confirmPassword}
               onChange={handleOnChange}
             />
             <div
@@ -191,10 +224,11 @@ const SignupForm = ({ selectionTab }) => {
         </div>
       </div>
 
-      <button className="mt-8 " type="submit">
-        <Button active={true} linkto={""}>
-          <div className="text-xl font-medium"> Create Account</div>
-        </Button>
+      <button
+        className="mt-8 px-4 py-2 rounded-lg w-full hover:bg-yellow-100 bg-yellow-50 text-richblack-900"
+        type="submit"
+      >
+        Create Account
       </button>
     </form>
   );

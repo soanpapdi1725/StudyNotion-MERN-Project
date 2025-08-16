@@ -26,17 +26,7 @@ const Navbar = () => {
       links: "/catalog/Python",
     },
   ];
-  const [sublinks, setSubLinks] = useState([
-    {
-      title: "MERN",
-      links: "/catalog/MERN",
-    },
-    {
-      title: "Python",
-      links: "/catalog/Python",
-    },
-  ]);
-  console.log(sublinks);
+  const [sublinks, setSubLinks] = useState([]);
   // function to get and setSublinks in the sublinks
   const fetchSublinks = async () => {
     try {
@@ -44,7 +34,7 @@ const Navbar = () => {
         "GET",
         courseEndpoints.GET_ALL_CATEGORIES_API
       );
-      console.log(result);
+      console.log(result)
       setSubLinks(result.data.data);
     } catch (error) {
       console.log("Could not fetched catalogList");
@@ -80,7 +70,11 @@ const Navbar = () => {
                     <p>{link.title}</p>
                     <IoIosArrowDropdownCircle className="group-hover:-rotate-180 group-hover:scale-95 transform-3d transition-all group-hover:text-richblack-5 duration-400" />
 
-                    <div className="absolute visible opacity-0 w-[300px] flex flex-col  right-[46.2%] top-[8vh]  group-hover:translate-y-0 translate-y-10 rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-300 group-hover:visible group-hover:opacity-100 ease-in-out ">
+                    <div
+                      className={`absolute visible opacity-0 w-[300px] flex flex-col ${
+                        token === null ? "right-[49.2%]" : "right-[45.7%]"
+                      }  top-[8vh]  group-hover:translate-y-0 translate-y-10 rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-300 group-hover:visible group-hover:opacity-100 ease-in-out `}
+                    >
                       <div className=" absolute -z-0 p-4 bg-richblack-5 rotate-45 w-6 h-6 -top-[8%] right-4"></div>
 
                       {subLinks.length ? (

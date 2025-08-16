@@ -29,7 +29,7 @@ const ProfileButton = () => {
   return (
     <button
       ref={ref}
-      className="relative overflow-visible"
+      className="relative lg:-right-10 overflow-visible"
       onClick={() => {
         setOpen(!open);
       }}
@@ -50,7 +50,7 @@ const ProfileButton = () => {
       </div>
       {open && (
         <div
-          className={`absolute h-screen w-screen flex flex-col top-[154%] right-0 divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400 lg:w-[258px]
+          className={`absolute h-screen flex flex-col top-[154%] w-screen -translate-x-[100%] lg:translate-x-0 lg:left-0 divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400 lg:w-[258px]
           `}
           onClick={(event) => {
             event.stopPropagation();

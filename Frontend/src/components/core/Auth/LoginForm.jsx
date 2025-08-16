@@ -2,13 +2,40 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import Button from "../../Common/Button";
-
-const LoginForm = ({selectionTab}) => {
+import { useNavigate } from "react-router";
+const LoginForm = ({ selectionTab }) => {
   const [eyeButton, setEyeButton] = useState(false);
+  const navigate = useNavigate();
+  const [loginFormData, setLoginFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = loginFormData;
+  const handleOnChange = (event) => {
+    setLoginFormData((prevData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  // Handle on Submit function
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+
+    // dispatch login email, pass and navigate
+    // reset
+    setLoginFormData({
+      email: "",
+      password: "",
+    });
+    console.log(loginFormData);
+  };
   return (
-    <form className="flex flex-col gap-3 w-[90%]" method="post">
-
-
+    <form
+      onSubmit={handleOnSubmit}
+      className="flex flex-col gap-3 w-[90%]"
+      method="post"
+    >
       <div className="flex flex-col gap-5">
         {/* email id */}
         <div className="w-full flex flex-col gap-1">
@@ -18,7 +45,9 @@ const LoginForm = ({selectionTab}) => {
             className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
             placeholder="Enter email Address"
             name="email"
+            value={email}
             required
+            onChange={handleOnChange}
           />
         </div>
 
@@ -31,6 +60,8 @@ const LoginForm = ({selectionTab}) => {
             placeholder="Enter Password"
             name="password"
             required
+            value={password}
+            onChange={handleOnChange}
           />
           <div
             onClick={() => {
@@ -48,10 +79,11 @@ const LoginForm = ({selectionTab}) => {
       >
         Forgot Password?
       </a>
-      <button className="mt-8" type="submit">
-        <Button active={true} linkto={""}>
-          <div className="text-xl font-medium">Sign in</div>
-        </Button>
+      <button
+        className="mt-8 px-4 py-2 rounded-lg w-full hover:bg-yellow-100 bg-yellow-50 text-richblack-900"
+        type="submit"
+      >
+        Sign in
       </button>
     </form>
   );

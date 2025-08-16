@@ -4,6 +4,7 @@ import Home from "./pages/Homes";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import Navbar from "./components/Common/navbar";
+import ProtectRoute from "./components/Common/ProtectRoute";
 
 const App = () => {
   return (
@@ -11,8 +12,15 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectRoute>
+              <LoginPage />
+            </ProtectRoute>
+          }
+        />
+        <Route path="/signup" element={<ProtectRoute><SignupPage /></ProtectRoute>} />
       </Routes>
     </div>
   );

@@ -3,9 +3,10 @@ const SliderTab = ({
   currentTab,
   setMyData,
   style,
+  
 }) => {
   return (
-    <div key={index}
+    <div 
       className={`${
         currentTab === element
           ? "bg-richblack-900 text-pure-greys-5 transform-3d"
