@@ -1,0 +1,60 @@
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
+import { useState } from "react";
+import Button from "../../Common/Button";
+
+const LoginForm = ({selectionTab}) => {
+  const [eyeButton, setEyeButton] = useState(false);
+  return (
+    <form className="flex flex-col gap-3 w-[90%]" method="post">
+
+
+      <div className="flex flex-col gap-5">
+        {/* email id */}
+        <div className="w-full flex flex-col gap-1">
+          <p className="text-base">Email Address:</p>
+          <input
+            type="email"
+            className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+            placeholder="Enter email Address"
+            name="email"
+            required
+          />
+        </div>
+
+        {/* password and eye */}
+        <div className="relative w-full  flex flex-col gap-1">
+          <p className="text-base">Password:</p>
+          <input
+            type={`${eyeButton ? "password" : "text"}`}
+            className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg w-full"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+          <div
+            onClick={() => {
+              setEyeButton(!eyeButton);
+            }}
+            className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
+          >
+            {eyeButton ? <IoEye /> : <IoMdEyeOff />}
+          </div>
+        </div>
+      </div>
+      <a
+        className="text-end font-extralight text-blue-100 hover:underline active:underline"
+        href="/reset-password-token"
+      >
+        Forgot Password?
+      </a>
+      <button className="mt-8" type="submit">
+        <Button active={true} linkto={""}>
+          <div className="text-xl font-medium">Sign in</div>
+        </Button>
+      </button>
+    </form>
+  );
+};
+
+export default LoginForm;
