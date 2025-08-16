@@ -18,7 +18,7 @@ const subLinks = [
   },
 ];
 const ProfileButton = () => {
-  const { user } = useSelector((state) => state.userType);
+  const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

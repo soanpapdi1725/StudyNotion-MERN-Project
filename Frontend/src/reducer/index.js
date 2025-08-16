@@ -1,10 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import authSlice from "../Slices/authSlice";
-import userTypeSlice from "../Slices/userTypeSlice";
+import profileSlice from "../Slices/profileSlice";
 import cartSlice from "../Slices/cartSlice";
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
-  userType: userTypeSlice,
+  userDetail: profileSlice,
   cart: cartSlice,
 });
 

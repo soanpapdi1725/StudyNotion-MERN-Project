@@ -1,9 +1,10 @@
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-import Button from "../../Common/Button";
 import { useNavigate } from "react-router";
-const LoginForm = ({ selectionTab }) => {
+import { useDispatch } from "react-redux";
+import { login } from "../../../services/operations/authOperations";
+const LoginForm = () => {
   const [eyeButton, setEyeButton] = useState(false);
   const navigate = useNavigate();
   const [loginFormData, setLoginFormData] = useState({
@@ -18,18 +19,17 @@ const LoginForm = ({ selectionTab }) => {
     }));
   };
   // Handle on Submit function
-
+  const dispatch = useDispatch();
   const handleOnSubmit = (event) => {
     event.preventDefault();
 
     // dispatch login email, pass and navigate
-    
+    dispatch(login(email, password, navigate));
     // reset
     setLoginFormData({
       email: "",
       password: "",
     });
-    console.log(loginFormData);
   };
   return (
     <form

@@ -12,7 +12,7 @@ import ProfileButton from "../core/Auth/ProfileButton";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.userType);
+  const { user } = useSelector((state) => state.userDetail);
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
   // sublinks and setSublinks useState()
