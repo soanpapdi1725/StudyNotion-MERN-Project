@@ -160,13 +160,6 @@ const Home = () => {
           <div></div>
         </div>
       </div>
-
-      {/* Footer */}
-      <div className="bg-richblack-800">
-        <div className="w-11/12 max-w-max-content mx-auto ">
-          <Footer />
-        </div>
-      </div>
     </div>
   );
 };

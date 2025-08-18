@@ -5,6 +5,7 @@ import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import Navbar from "./components/Common/navbar";
 import ProtectRoute from "./components/Common/ProtectRoute";
+import Footer from "./components/Common/Footer";
 
 const App = () => {
   return (
@@ -20,8 +21,16 @@ const App = () => {
             </ProtectRoute>
           }
         />
-        <Route path="/signup" element={<ProtectRoute><SignupPage /></ProtectRoute>} />
+        <Route
+          path="/signup"
+          element={
+            <ProtectRoute>
+              <SignupPage />
+            </ProtectRoute>
+          }
+        />
       </Routes>
+      <Footer />
     </div>
   );
 };

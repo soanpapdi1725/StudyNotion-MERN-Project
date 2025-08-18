@@ -61,7 +61,7 @@ const Template = ({ title, description1, description2, image, formType }) => {
               </div>
             </div>
           </div>
-          <Footer />
+
         </div>
       )}
     </div>
