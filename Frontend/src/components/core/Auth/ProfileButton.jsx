@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import dummyImage from "../../../assets/Images/dummyProfile.jpg";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
-import { NavbarLinks } from "../../../data/navbar-links";
+import { logout } from "../../../services/operations/authOperations";
 
 const subLinks = [
   {
@@ -39,7 +38,7 @@ const ProfileButton = () => {
         {/**src={user?.image} */}
         <img
           className="object-cover w-[30px] rounded-full aspect-square"
-          src={dummyImage}
+          src={user?.image}
           alt={`profileImage${user?.firstName}`}
         />
         <AiOutlineCaretDown
@@ -68,7 +67,12 @@ const ProfileButton = () => {
               DashBoard
             </div>
           </Link>
-          <div className="w-full" onClick={() => {}}>
+          <div
+            className="w-full"
+            onClick={() => {
+              dispatch(logout(navigate));
+            }}
+          >
             <div className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md ">
               <VscSignOut className="text-xl" />
               Logout
