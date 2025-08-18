@@ -6,6 +6,7 @@ import SignupPage from "./pages/Signup";
 import Navbar from "./components/Common/navbar";
 import ProtectRoute from "./components/Common/ProtectRoute";
 import Footer from "./components/Common/Footer";
+import ErrorPage from "./pages/Error404";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             </ProtectRoute>
           }
         />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>
