@@ -76,7 +76,7 @@ const LoginForm = () => {
       </div>
       <a
         className="text-end font-extralight text-blue-100 hover:underline active:underline"
-        href="/reset-password-token"
+        href="/reset-password"
       >
         Forgot Password?
       </a>

@@ -14,27 +14,35 @@ const ResetPassword = () => {
         <div className="mx-auto w-11/12 max-w-max-content ">
           <div className="flex justify-center items-center">
             <div className="flex flex-col items-center w-[32%] gap-8">
-              <div className="flex flex-col text-start w-full">
-                <h1 className="text-4xl">
+              <div className="flex flex-col text-start gap-2 w-full">
+                <h1 className="text-3xl font-bold">
                   {" "}
                   {!emailSent ? "Reset Your Password" : "Check email"}{" "}
                 </h1>
                 <p className="w-[95%] text-richblack-100 ">
                   {!emailSent
                     ? `Have no fear. We’ll email you instructions to reset your password. If you dont have access to your email we can try account recovery`
-                    : `We have sent the reset email to ${onEmailSent}`}
+                    : `We have sent the reset email to ${onEmailSent.current}`}
                 </p>
               </div>
-              <form method="post" className="w-full flex flex-col gap-2">
-                <label htmlFor="emailId">
-                  Email Address <span className="text-pink-200">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="myemail@mail.com"
-                  className="w-full bg-richblack-800 text-pure-greys-25 h-12 px-2 py-1 rounded-lg text-lg outline-none"
-                />
-              </form>
+              {!emailSent && (
+                <form method="post" className="w-full flex flex-col gap-8">
+                  <div className="flex flex-col w-full gap-2">
+                    <label htmlFor="emailId">
+                      Email Address <span className="text-pink-200">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="myemail@mail.com"
+                      className="w-full bg-richblack-800 text-pure-greys-25 h-12 px-2 py-1 rounded-lg text-lg outline-none"
+                      ref={onEmailSent}
+                    />
+                  </div>
+                  <button className="w-full bg-yellow-50 rounded-lg hover:bg-yellow-100 text-richblack-900 px-2 py-2">
+                    Reset Password
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
