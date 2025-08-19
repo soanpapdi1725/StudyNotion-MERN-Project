@@ -1,5 +1,4 @@
 import React from "react";
-import HighlightText from "../components/core/homepage/HighlightText";
 
 const ErrorPage = () => {
   return (

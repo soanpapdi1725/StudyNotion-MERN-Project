@@ -7,6 +7,7 @@ import Navbar from "./components/Common/navbar";
 import ProtectRoute from "./components/Common/ProtectRoute";
 import Footer from "./components/Common/Footer";
 import ErrorPage from "./pages/Error404";
+import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             </ProtectRoute>
           }
         />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />

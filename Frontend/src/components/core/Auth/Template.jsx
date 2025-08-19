@@ -1,9 +1,8 @@
-import { BounceLoader, HashLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 import backgroundZigZag from "../../../assets/Images/bghome.svg";
 import LoginForm from "./LoginForm";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import SignupForm from "./SignupForm";
-import Footer from "../../Common/Footer";
 import { useSelector } from "react-redux";
 const selectionTab = [ACCOUNT_TYPE.STUDENT, ACCOUNT_TYPE.INSTRUCTOR];
 
