@@ -79,3 +79,23 @@ export const logout = (navigate) => {
     navigate("/");
   };
 };
+
+export const resetPasswordToken = (email, navigate) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Sending Reset Link...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("POST", RESET_PASSWORD_TOKEN_API, {
+        email,
+      });
+      console.log("SENDING RESET LINK...response", response);
+      if (!response.data.success) {
+        toast.error(response.data.message);
+      }
+      toast.success(response.data.message);
+    } catch (error) {
+      console.log("Error while sending Reset Link", error);
+      toast.error("Could Not Able to send Reset Link");
+    }
+  };
+};
