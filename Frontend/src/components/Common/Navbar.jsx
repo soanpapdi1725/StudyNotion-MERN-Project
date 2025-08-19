@@ -16,16 +16,7 @@ const Navbar = () => {
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
   // sublinks and setSublinks useState()
-  const subLinks = [
-    {
-      title: "MERN",
-      links: "/catalog/MERN",
-    },
-    {
-      title: "Python",
-      links: "/catalog/Python",
-    },
-  ];
+
   const [sublinks, setSubLinks] = useState([]);
   // function to get and setSublinks in the sublinks
   const fetchSublinks = async () => {
@@ -34,7 +25,6 @@ const Navbar = () => {
         "GET",
         courseEndpoints.GET_ALL_CATEGORIES_API
       );
-      console.log(result)
       setSubLinks(result.data.data);
     } catch (error) {
       console.log("Could not fetched catalogList");
@@ -77,15 +67,15 @@ const Navbar = () => {
                     >
                       <div className=" absolute -z-0 p-4 bg-richblack-5 rotate-45 w-6 h-6 -top-[8%] right-4"></div>
 
-                      {subLinks.length ? (
-                        subLinks.map((element, index) => {
+                      {sublinks.length ? (
+                        sublinks.map((element, index) => {
                           return (
                             <Link
                               key={index}
                               className="relative z-5 w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
-                              to={element.links}
+                              to={element.categoryName}
                             >
-                              {element.title}
+                              {element.categoryName}
                             </Link>
                           );
                         })
