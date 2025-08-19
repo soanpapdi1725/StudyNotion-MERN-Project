@@ -80,7 +80,7 @@ export const logout = (navigate) => {
   };
 };
 
-export const resetPasswordToken = (email, navigate) => {
+export const resetPasswordToken = (email, setEmailSent, navigate) => {
   return async (dispatch) => {
     const toastId = toast.loading("Sending Reset Link...");
     dispatch(setLoading(true));
@@ -93,6 +93,7 @@ export const resetPasswordToken = (email, navigate) => {
         toast.error(response.data.message);
       }
       toast.success(response.data.message);
+      setEmailSent(true);
     } catch (error) {
       console.log("Error while sending Reset Link", error);
       toast.error("Could Not Able to send Reset Link");

@@ -15,8 +15,7 @@ const ResetPassword = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    dispatch(resetPasswordToken(onEmailSent, navigate));
-    setEmailSent(true);
+    dispatch(resetPasswordToken(onEmailSent, setEmailSent, navigate));
   };
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
@@ -31,16 +30,15 @@ const ResetPassword = () => {
                   {" "}
                   {!emailSent ? "Reset Your Password" : "Check email"}{" "}
                 </h1>
-                <p
-                  
-                  className="w-full text-lg text-richblack-100 "
-                >
+                <p className="w-full text-lg text-richblack-100 ">
                   {!emailSent ? (
                     `Have no fear. We’ll email you instructions to reset your password. If you dont have access to your email we can try account recovery`
                   ) : (
                     <div className="w-full">
-                      We have sent the reset email to {" "}
-                     <span className="font-edu-sa text-base bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6ffcb] bg-clip-text text-transparent">{onEmailSent}</span>
+                      We have sent the reset email to{" "}
+                      <span className="font-edu-sa text-base bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6ffcb] bg-clip-text text-transparent">
+                        {onEmailSent}
+                      </span>
                     </div>
                   )}
                 </p>
