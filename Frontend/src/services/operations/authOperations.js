@@ -97,5 +97,7 @@ export const resetPasswordToken = (email, navigate) => {
       console.log("Error while sending Reset Link", error);
       toast.error("Could Not Able to send Reset Link");
     }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 };

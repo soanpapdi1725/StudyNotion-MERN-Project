@@ -48,7 +48,7 @@ exports.resetPassToken = async (req, res) => {
     return res.status(200).json({
       success: true,
       message:
-        "Reset Password link successfully sent, Please check given email id and Change password",
+        "Reset Password link successfully sent, Please check email",
     });
   } catch (error) {
     console.log("Error while sending Reset password link", error);
