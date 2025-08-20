@@ -3,7 +3,7 @@ const mailsender = require("../utils/mailSender");
 const crypto = require("crypto");
 const bcryptjs = require("bcryptjs");
 const resetPasswordTemplate = require("../mail/templates/resetPassLink");
-const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+const { passwordResetMail } = require("../mail/templates/PasswordResetMail");
 // Reset Password Token Controller
 exports.resetPassToken = async (req, res) => {
   try {
@@ -116,7 +116,7 @@ exports.resetPassword = async (req, res) => {
     await mailsender(
       user.email,
       "Password Changed Confirmation",
-      passwordUpdated(user.email, user.firstName)
+      passwordResetMail(user.email, user.firstName)
     );
     // response bhej denge
     return res.status(200).json({
