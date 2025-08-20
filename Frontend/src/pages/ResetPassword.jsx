@@ -4,7 +4,6 @@ import { HashLoader } from "react-spinners";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router";
 import { resetPasswordToken } from "../services/operations/authOperations";
-import HighlightText from "../components/core/homepage/HighlightText";
 
 const ResetPassword = () => {
   const [emailSent, setEmailSent] = useState(false);

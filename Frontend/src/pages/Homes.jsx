@@ -6,7 +6,6 @@ import Banner from "../assets/Images/banner.mp4";
 import CodeBlock from "../components/core/homepage/CodeBlock";
 import LearningLanguageSection from "../components/core/homepage/LearningLanguageSection";
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
-import Footer from "../components/Common/Footer";
 import InstructorSection from "../components/core/homepage/InstructorSection";
 import ExploreMore from "../components/core/homepage/ExploreMore";
 const Home = () => {
