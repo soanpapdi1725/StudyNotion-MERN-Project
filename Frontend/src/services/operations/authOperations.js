@@ -102,3 +102,13 @@ export const resetPasswordToken = (email, setEmailSent, navigate) => {
     toast.dismiss(toastId);
   };
 };
+
+export const resetPasswordDone = (password, confirmPassword, token) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Changing Your password");
+    dispatch(setLoading(true));
+    try {
+      const response =
+    } catch (error) {}
+  };
+};

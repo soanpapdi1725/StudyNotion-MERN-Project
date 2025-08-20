@@ -1,10 +1,28 @@
 import { HashLoader } from "react-spinners";
-
-import { useSelector } from "react-redux";
+import { FaCheck } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import toast from "react-hot-toast";
+
+const passInstructions = [
+  "One Lowercase Character",
+  "One Special Character",
+  "One Uppercase Character",
+  "8 Characters minimum",
+  "One Number",
+];
 const UpdatePassword = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get("token");
+  if (!token) {
+    return <Navigate to={"/login"} />;
+  }
+  const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -19,21 +37,29 @@ const UpdatePassword = () => {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log(passData);
+
+  const handleOnSubmitPassword = (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      return toast.error("Password Not matching");
+    }
+    dispatch(resetPasswordDone(password, confirmPassword, token));
+
+  };
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
       {loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">
-          <div className="flex flex-col items-start justify-center gap-4 ">
+          <div className="flex flex-col items-start justify-center gap-6 ">
             <div className="flex flex-col gap-4">
               <h1 className="text-3xl font-bold">Choose New Password</h1>
               <p className="text-lg text-richblack-100">
                 Almost done. Enter your new password and youre all set.
               </p>
             </div>
-            <form className="w-full flex flex-col gap-4" method="post">
+            <form className="w-full flex flex-col gap-8" method="post">
               <label
                 htmlFor="password"
                 className="flex flex-col gap-2 relative"
@@ -85,8 +111,20 @@ const UpdatePassword = () => {
                 </div>
               </label>
               {/* Check Marks for a password should be */}
-              <div>
-
+              <div className="flex justify-center">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                  {passInstructions.map((instruction, index) => {
+                    return (
+                      <div
+                        className="text-suar-100 flex items-center gap-1 text-sm"
+                        key={index}
+                      >
+                        <FaCheck />
+                        <p>{instruction}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
               <button
                 className="w-full bg-yellow-50 py-2 rounded-lg text-lg font-medium px-2 text-richblack-900"
@@ -95,6 +133,13 @@ const UpdatePassword = () => {
                 Reset Password
               </button>
             </form>
+            <Link
+              to={"/login"}
+              className="flex flex-row group gap-3 items-center justify-start translate-x-0 active:-translate-x-10 transition-all ease-in-out duration-500"
+            >
+              <FaArrowLeftLong />
+              Back to Login
+            </Link>
           </div>
         </div>
       )}
