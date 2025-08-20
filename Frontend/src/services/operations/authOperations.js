@@ -125,7 +125,6 @@ export const resetPasswordDone = (
       }
       toast.success("Password Changed Successfully");
       setPassChanged(true);
-      return response.email;
     } catch (error) {
       console.log("Error while Changing the Password");
       toast.error(error.message);

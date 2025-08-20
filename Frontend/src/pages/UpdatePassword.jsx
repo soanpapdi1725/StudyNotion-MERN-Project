@@ -56,7 +56,8 @@ const UpdatePassword = () => {
   };
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
-      {!passChanged && loading ? (
+      {passChanged && <PassChangeSuccess email={responseEmail} />}
+      {loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">
@@ -155,7 +156,6 @@ const UpdatePassword = () => {
           </div>
         </div>
       )}
-      {passChanged && <PassChangeSuccess email={responseEmail} />}
     </div>
   );
 };
