@@ -24,7 +24,7 @@ const UpdatePassword = () => {
   }
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
-  const [passChanged, setPassChanged] = useState(false)
+  const [passChanged, setPassChanged] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passData, setPassData] = useState({
@@ -45,11 +45,10 @@ const UpdatePassword = () => {
       return toast.error("Password Not matching");
     }
     dispatch(resetPasswordDone(password, confirmPassword, token));
-
   };
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
-      {loading ? (
+      {loading && !passChanged ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">
@@ -144,6 +143,7 @@ const UpdatePassword = () => {
           </div>
         </div>
       )}
+      {passChanged && <PassChangeSuccess />}
     </div>
   );
 };

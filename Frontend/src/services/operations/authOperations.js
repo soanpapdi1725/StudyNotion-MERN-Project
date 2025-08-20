@@ -114,11 +114,11 @@ export const resetPasswordDone = (password, confirmPassword, token) => {
         token,
       });
 
-      console.log("RESET PASSWORD RESPONSE....", response)
-      if(!response.data.success){
+      console.log("RESET PASSWORD RESPONSE....", response);
+      if (!response.data.success) {
         toast.error(response.data.message);
       }
-      
+      toast.success("Password Changed Successfully");
     } catch (error) {}
   };
 };

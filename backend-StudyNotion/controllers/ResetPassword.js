@@ -47,8 +47,7 @@ exports.resetPassToken = async (req, res) => {
     // response send kr do uske baad
     return res.status(200).json({
       success: true,
-      message:
-        "Reset Password link successfully sent, Please check email",
+      message: "Reset Password link successfully sent, Please check email",
     });
   } catch (error) {
     console.log("Error while sending Reset password link", error);
@@ -98,6 +97,7 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Reset Password Link is Expired",
+        email: user.email,
       });
     }
     // hash karenge new password
