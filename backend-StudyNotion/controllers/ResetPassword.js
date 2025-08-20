@@ -113,7 +113,11 @@ exports.resetPassword = async (req, res) => {
       },
       { new: true }
     );
-    await mailsender(user.email, "Password Changed Confirmation", passwordUpdated)
+    await mailsender(
+      user.email,
+      "Password Changed Confirmation",
+      passwordUpdated(user.email, user.firstName)
+    );
     // response bhej denge
     return res.status(200).json({
       success: true,

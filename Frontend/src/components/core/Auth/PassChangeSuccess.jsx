@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const PassChangeSuccess = ({ email }) => {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col w-[22%] gap-3">
+      <div className="flex flex-col w-[45%] gap-4">
         <h1 className="text-3xl font-semibold text-richblack-5">
           Reset complete!
         </h1>
