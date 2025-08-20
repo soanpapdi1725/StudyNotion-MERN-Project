@@ -24,6 +24,7 @@ const UpdatePassword = () => {
   }
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
+  const [passChanged, setPassChanged] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passData, setPassData] = useState({

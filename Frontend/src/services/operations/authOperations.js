@@ -108,7 +108,17 @@ export const resetPasswordDone = (password, confirmPassword, token) => {
     const toastId = toast.loading("Changing Your password");
     dispatch(setLoading(true));
     try {
-      const response =
+      const response = await apiConnector("POST", RESET_PASSWORD_API, {
+        password,
+        confirmPassword,
+        token,
+      });
+
+      console.log("RESET PASSWORD RESPONSE....", response)
+      if(!response.data.success){
+        toast.error(response.data.message);
+      }
+      
     } catch (error) {}
   };
 };
