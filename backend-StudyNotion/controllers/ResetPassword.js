@@ -97,7 +97,6 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Reset Password Link is Expired",
-        email: user.email,
       });
     }
     // hash karenge new password
@@ -115,6 +114,7 @@ exports.resetPassword = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Password Reset Successful",
+      email: user.email,
     });
   } catch (error) {
     console.log("Error while changing password", error);

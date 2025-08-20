@@ -7,6 +7,8 @@ import { IoMdEyeOff } from "react-icons/io";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import PassChangeSuccess from "../components/core/Auth/PassChangeSuccess";
+import { resetPasswordDone } from "../services/operations/authOperations";
 
 const passInstructions = [
   "One Lowercase Character",
@@ -38,17 +40,23 @@ const UpdatePassword = () => {
       [event.target.name]: event.target.value,
     }));
   };
-
+  let responseEmail;
   const handleOnSubmitPassword = (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       return toast.error("Password Not matching");
     }
-    dispatch(resetPasswordDone(password, confirmPassword, token));
+    dispatch(
+      resetPasswordDone(password, confirmPassword, token, setPassChanged)
+    );
+    setPassData({
+      password: "",
+      confirmPassword: "",
+    });
   };
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
-      {loading && !passChanged ? (
+      {!passChanged && loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">
@@ -59,7 +67,11 @@ const UpdatePassword = () => {
                 Almost done. Enter your new password and youre all set.
               </p>
             </div>
-            <form className="w-full flex flex-col gap-8" method="post">
+            <form
+              onSubmit={handleOnSubmitPassword}
+              className="w-full flex flex-col gap-8"
+              method="post"
+            >
               <label
                 htmlFor="password"
                 className="flex flex-col gap-2 relative"
@@ -143,7 +155,7 @@ const UpdatePassword = () => {
           </div>
         </div>
       )}
-      {passChanged && <PassChangeSuccess />}
+      {passChanged && <PassChangeSuccess email={responseEmail} />}
     </div>
   );
 };

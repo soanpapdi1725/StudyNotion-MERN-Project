@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const PassChangeSuccess = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const PassChangeSuccess = ({ email }) => {
+  return <div>passChanged {email}</div>;
+};
 
-export default PassChangeSuccess
+export default PassChangeSuccess;

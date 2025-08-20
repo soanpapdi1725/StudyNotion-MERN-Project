@@ -103,7 +103,12 @@ export const resetPasswordToken = (email, setEmailSent, navigate) => {
   };
 };
 
-export const resetPasswordDone = (password, confirmPassword, token) => {
+export const resetPasswordDone = (
+  password,
+  confirmPassword,
+  token,
+  setPassChanged
+) => {
   return async (dispatch) => {
     const toastId = toast.loading("Changing Your password");
     dispatch(setLoading(true));
@@ -119,6 +124,13 @@ export const resetPasswordDone = (password, confirmPassword, token) => {
         toast.error(response.data.message);
       }
       toast.success("Password Changed Successfully");
-    } catch (error) {}
+      setPassChanged(true);
+      return response.email;
+    } catch (error) {
+      console.log("Error while Changing the Password");
+      toast.error(error.message);
+    }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
   };
 };
