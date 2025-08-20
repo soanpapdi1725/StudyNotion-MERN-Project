@@ -26,7 +26,6 @@ const UpdatePassword = () => {
   }
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
-  const [passChanged, setPassChanged] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passData, setPassData] = useState({
@@ -40,24 +39,33 @@ const UpdatePassword = () => {
       [event.target.name]: event.target.value,
     }));
   };
-  let responseEmail;
-  const handleOnSubmitPassword = (event) => {
+  const [responseEmail, setResponseEmail] = useState(null);
+  const handleOnSubmitPassword = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       return toast.error("Password Not matching");
     }
-    dispatch(
-      resetPasswordDone(password, confirmPassword, token, setPassChanged)
-    );
+    try {
+      const email = await dispatch(
+        resetPasswordDone(password, confirmPassword, token)
+      );
+      setResponseEmail(email);
+    } catch (error) {}
+
     setPassData({
       password: "",
       confirmPassword: "",
     });
   };
+
+  if (setResponseEmail) {
+    location.pathname = "/update-password";
+  }
   return (
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
-      {passChanged && <PassChangeSuccess email={responseEmail} />}
-      {loading ? (
+      {responseEmail ? (
+        <PassChangeSuccess email={responseEmail} />
+      ) : loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">

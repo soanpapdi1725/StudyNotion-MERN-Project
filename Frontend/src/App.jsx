@@ -9,6 +9,7 @@ import Footer from "./components/Common/Footer";
 import ErrorPage from "./pages/Error404";
 import ResetPassword from "./pages/ResetPassword";
 import UpdatePassword from "./pages/UpdatePassword";
+import PassChangeSuccess from "./components/core/Auth/PassChangeSuccess";
 
 const App = () => {
   return (
@@ -33,8 +34,7 @@ const App = () => {
           }
         />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/update-password" element={<ProtectRoute><UpdatePassword /></ProtectRoute>
-          } />
+        <Route path="/update-password" element={<UpdatePassword />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
