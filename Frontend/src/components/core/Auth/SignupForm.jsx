@@ -147,7 +147,6 @@ const SignupForm = ({ selectionTab }) => {
               <select
                 className="bg-richblack-800  scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
                 id="countryCode"
-                required
                 value={selectedCode}
                 onChange={(event) => {
                   setselectCode(event.target.value);
@@ -171,7 +170,6 @@ const SignupForm = ({ selectionTab }) => {
               className="bg-richblack-800 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
               placeholder="1234567890"
               name="contactNumber"
-              required
               value={contactNumber}
               onChange={handleOnChange}
             />

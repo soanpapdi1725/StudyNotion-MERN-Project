@@ -131,7 +131,7 @@ exports.postSignUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     // saving user info data to DB
     const profileDetails = await Profile.create({
-      contactNumber: null,
+      contactNumber: contactNumber,
       gender: null,
       dateOfBirth: null,
       about: null,
@@ -141,7 +141,6 @@ exports.postSignUp = async (req, res) => {
       lastName,
       password: hashedPassword,
       email,
-      contactNumber,
       accountType,
       additionalDetails: profileDetails._id,
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
