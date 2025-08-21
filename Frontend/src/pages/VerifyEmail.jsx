@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { HashLoader } from "react-spinners";
 import OtpInput from "react-otp-input";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { sendotp, signupUser } from "../services/operations/authOperations";
 import { GiBackwardTime } from "react-icons/gi";
+import toast from "react-hot-toast";
 
 const VerifyEmail = () => {
   const { loading, signUpData } = useSelector((state) => state.auth);
+  if (!signUpData) {
+    toast.error("Please Sign up first", { duration: 1500 });
+    return <Navigate to={"/signup"} />;
+  }
   const [otp, setOtp] = useState("");
   const {
     firstName,
@@ -46,8 +51,8 @@ const VerifyEmail = () => {
       {loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
-        <div className="mx-auto flex items-center justify-center w-11/12 max-w-max-content">
-          <div className="flex flex-col items-center gap-4 justify-start">
+        <div className="mx-auto flex items-center justify-center w-11/12  max-w-max-content">
+          <div className="flex flex-col items-center gap-4 justify-start mx-4">
             {/* title heading and subheading */}
             <div className="flex flex-col gap-4">
               <h1 className="text-3xl font-semibold">Verify Email</h1>
@@ -83,7 +88,7 @@ const VerifyEmail = () => {
                 Back to Login
               </Link>
               <button
-                className="text-blue-100 h-4 flex items-center gap-1 cursor-pointer"
+                className="text-blue-100  flex items-center gap-1 cursor-pointer"
                 onClick={onResendClick}
               >
                 <GiBackwardTime fontSize={20} />
