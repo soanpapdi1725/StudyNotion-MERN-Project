@@ -10,6 +10,7 @@ import ErrorPage from "./pages/Error404";
 import ResetPassword from "./pages/ResetPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import PassChangeSuccess from "./components/core/Auth/PassChangeSuccess";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/update-password" element={<UpdatePassword />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
