@@ -66,14 +66,27 @@ const VerifyEmail = () => {
               method="post"
               onSubmit={handleOnSubmitOtp}
             >
-              <OtpInput
-                containerStyle={"flex gap-4 w-full py-1 justify-center"}
-                value={otp}
-                numInputs={6}
-                onChange={setOtp}
-                inputStyle={"h-12 bg-richblack-800 text-lg rounded-md"}
-                renderInput={(props) => <input {...props} />}
-              />
+              {" "}
+              <div>
+                <OtpInput
+                  containerStyle={
+                    "flex gap-2 sm:gap-3 md:gap-4 w-full py-1 justify-center"
+                  }
+                  value={otp}
+                  numInputs={6}
+                  onChange={setOtp}
+                  renderInput={(props) => (
+                    <input
+                      {...props}
+                      className="h-10 w-8 sm:h-12 sm:w-10 md:w-12 bg-richblack-800 text-sm sm:text-lg text-center text-white border border-richblack-600 rounded-md outline-none shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]"
+                      style={{
+                        minWidth: "32px",
+                        width: "clamp(32px, 8vw, 48px)",
+                      }}
+                    />
+                  )}
+                />
+              </div>
               <button className="w-full bg-yellow-50 hover:bg-yellow-100 text-richblack-900 p-2.5 rounded-lg text-lg">
                 Verify Email
               </button>
