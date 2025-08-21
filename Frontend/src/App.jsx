@@ -34,9 +34,9 @@ const App = () => {
             </ProtectRoute>
           }
         />
+        <Route path="/signup/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/update-password" element={<UpdatePassword />} />
-        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />

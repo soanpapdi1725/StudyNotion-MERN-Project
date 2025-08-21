@@ -3,6 +3,7 @@ import { setLoading, setToken } from "../../Slices/authSlice";
 import { apiConnector } from "../apiConnector";
 import { authEndpoints } from "../apis";
 import { setUser } from "../../Slices/profileSlice";
+import { useNavigate } from "react-router";
 
 const {
   SEND_OTP_API,
@@ -26,7 +27,7 @@ export const sendotp = (email, navigate) => {
         toast.error(response.message);
       }
       toast.success("OTP SEND SUCCESSFULLY");
-      navigate("/verify-email");
+      navigate("/signup/verify-email");
     } catch (error) {
       console.log("SEND OTP ERROR......", error);
       toast.error("could not send otp");
@@ -80,7 +81,7 @@ export const logout = (navigate) => {
   };
 };
 
-export const resetPasswordToken = (email, setEmailSent, navigate) => {
+export const resetPasswordToken = (email, setEmailSent) => {
   return async (dispatch) => {
     const toastId = toast.loading("Sending Reset Link...");
     dispatch(setLoading(true));
@@ -103,11 +104,7 @@ export const resetPasswordToken = (email, setEmailSent, navigate) => {
   };
 };
 
-export const resetPasswordDone = (
-  password,
-  confirmPassword,
-  token,
-) => {
+export const resetPasswordDone = (password, confirmPassword, token) => {
   return async (dispatch) => {
     const toastId = toast.loading("Changing Your password");
     dispatch(setLoading(true));
@@ -132,5 +129,49 @@ export const resetPasswordDone = (
       toast.dismiss(toastId);
       dispatch(setLoading(false));
     }
+  };
+};
+
+export const signupUser = (
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword,
+  otp,
+  contactNumber,
+  accountType,
+  navigate
+) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Creating Your Id");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("POST", SIGNUP_API, {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        otp,
+        contactNumber,
+        accountType,
+      });
+
+      console.log("SIGNUP RESPONSE...", response);
+      if (!response.data.success) {
+        toast.error(response.data.success);
+        toast.dismiss(toastId);
+        dispatch(setLoading(false));
+      }
+      toast.success("Account Created Successfully");
+      toast.success("Please Login Your Account");
+      navigate("/login");
+    } catch (error) {
+      console.log("Error while registering New Account", error);
+      toast.error(error.message);
+    }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
   };
 };

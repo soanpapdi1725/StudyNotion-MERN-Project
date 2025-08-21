@@ -62,14 +62,14 @@ const SignupForm = ({ selectionTab }) => {
     // dispatch for send otp operation function
     dispatch(sendotp(email, navigate));
     // reset values
-    // setFormData({
-    //   firstName: "",
-    //   lastName: "",
-    //   email: "",
-    //   password: "",
-    //   confirmPassword: "",
-    //   contactNumber: "",
-    // });
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      contactNumber: "",
+    });
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
   return (
@@ -198,7 +198,7 @@ const SignupForm = ({ selectionTab }) => {
               }}
               className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
             >
-              {eyeButton2 ? <IoEye /> : <IoMdEyeOff />}
+              {eyeButton ? <IoEye /> : <IoMdEyeOff />}
             </div>
           </div>
           <div className="relative w-full flex flex-col gap-1">
@@ -220,7 +220,7 @@ const SignupForm = ({ selectionTab }) => {
               }}
               className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
             >
-              {eyeButton ? <IoEye /> : <IoMdEyeOff />}
+              {eyeButton2 ? <IoEye /> : <IoMdEyeOff />}
             </div>
           </div>
         </div>

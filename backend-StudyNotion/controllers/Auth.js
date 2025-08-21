@@ -105,7 +105,7 @@ exports.postSignUp = async (req, res) => {
       });
     }
     // user ka password confirm password same hai ya nahi
-    if (confirmPassword !== password) {
+    if (password !== confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "Password and Confirm password does not match",
