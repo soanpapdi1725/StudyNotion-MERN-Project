@@ -6,16 +6,6 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
 import { logout } from "../../../services/operations/authOperations";
 
-const subLinks = [
-  {
-    title: "MERN",
-    links: "/catalog/MERN",
-  },
-  {
-    title: "Python",
-    links: "/catalog/Python",
-  },
-];
 const ProfileButton = () => {
   const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
@@ -25,10 +15,14 @@ const ProfileButton = () => {
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
+
+  const onClickLogout = () => {
+    dispatch(logout(navigate));
+  };
   return (
-    <div>
+    <div ref={ref}>
       <button
-        ref={ref}
+        
         className="relative lg:left-[2vw] overflow-visible"
         onClick={() => {
           setOpen(!open);
@@ -54,9 +48,6 @@ const ProfileButton = () => {
           <div
             className={`flex flex-col h-screen  divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400
           `}
-            onClick={(event) => {
-              event.stopPropagation();
-            }}
           >
             <Link
               className="w-full"
@@ -70,13 +61,11 @@ const ProfileButton = () => {
                 DashBoard
               </div>
             </Link>
-            <div
-              className="w-full"
-              onClick={() => {
-                dispatch(logout(navigate));
-              }}
-            >
-              <div className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md ">
+            <div className="w-full cursor-pointer">
+              <div
+                onClick={onClickLogout}
+                className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md "
+              >
                 <VscSignOut className="text-xl" />
                 Logout
               </div>
