@@ -44,9 +44,9 @@ const ProfileButton = () => {
         </div>
       </button>
       {open && (
-        <div className="absolute h-screen right-0 top-[10vh] xl:top-[7.9vh] sm:w-[248px] hidden sm:block">
+        <div className="absolute h-screen right-0 top-15 sm:w-[248px] hidden sm:block">
           <div
-            className={`flex flex-col h-screen  divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400
+            className={`flex flex-col h-screen divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400
           `}
           >
             <Link

@@ -52,27 +52,23 @@ const Navbar = () => {
         </Link>
         {/* nav links */}
         <nav>
-          <ul className="lg:flex hidden  flex-row gap-4 text-richblack-100">
+          <ul className="lg:flex hidden  flex-row gap-4 text-richblack-25">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
-                  <div className="group cursor-pointer flex flex-row items-center gap-1 hover:text-richblack-5">
+                  <div className="group relative cursor-pointer flex flex-row items-center gap-1 hover:text-richblack-5">
                     <p>{link.title}</p>
                     <IoIosArrowDropdownCircle className="group-hover:-rotate-180 group-hover:scale-95 transform-3d transition-all group-hover:text-richblack-5 duration-400" />
 
-                    <div
-                      className={`absolute visible opacity-0 w-[300px] flex flex-col ${
-                        token === null ? "right-[49.2%]" : "right-[45.7%]"
-                      }  top-[8vh]  group-hover:translate-y-0 translate-y-10 rounded-md bg-richblack-5 p-4  text-richblack-900  gap-4  duration-300 group-hover:visible group-hover:opacity-100 ease-in-out `}
-                    >
-                      <div className=" absolute -z-0 p-4 bg-richblack-5 rotate-45 w-6 h-6 -top-[8%] right-4"></div>
+                    <div className="absolute invisible opacity-0 w-[250px] flex flex-col left-1/2 transform -translate-x-4/5 ml-2 top-full mt-2 group-hover:translate-y-0 translate-y-2 rounded-md bg-richblack-5 p-4 text-richblack-900 gap-4 duration-300 group-hover:visible group-hover:opacity-100 ease-in-out z-50">
+                      <div className="absolute -z-10 bg-richblack-5 rotate-45 w-4 h-4 -top-2 right-5"></div>
 
                       {sublinks.length ? (
                         sublinks.map((element, index) => {
                           return (
                             <Link
                               key={index}
-                              className="relative z-5 w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
+                              className="relative z-10 w-full flex items-center h-12 p-4 font-normal hover:bg-richblack-50 rounded-md"
                               to={element.categoryName}
                             >
                               {element.categoryName}
@@ -104,7 +100,7 @@ const Navbar = () => {
         </nav>
 
         {/* Login/Signup/Dashboard */}
-        <div className="flex  gap-x-4 items-center text-richblack-100">
+        <div className="flex gap-x-4 items-center text-richblack-100">
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link className="relative" to={"/cart"}>
               <FiShoppingCart />
