@@ -39,8 +39,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-15 flex items-center justify-center border-b-[1px] border-pure-greys-700">
-      <div className="mx-auto flex flex-row justify-around items-center w-11/12 max-w-max-content">
+    <div className="h-15 flex w-full items-center justify-center border-b-[1px] border-pure-greys-700">
+      <div className="mx-auto overflow-visible flex flex-row justify-around items-center w-11/12 max-w-max-content">
         <Link to={"/"}>
           <img
             width={160}
@@ -104,7 +104,7 @@ const Navbar = () => {
         </nav>
 
         {/* Login/Signup/Dashboard */}
-        <div className="flex gap-x-4 items-center text-richblack-100">
+        <div className="flex  gap-x-4 items-center text-richblack-100">
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link className="relative" to={"/cart"}>
               <FiShoppingCart />

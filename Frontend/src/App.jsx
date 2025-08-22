@@ -3,14 +3,13 @@ import { Route, Routes } from "react-router";
 import Home from "./pages/Homes";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
-import Navbar from "./components/Common/navbar";
 import ProtectRoute from "./components/Common/ProtectRoute";
 import Footer from "./components/Common/Footer";
 import ErrorPage from "./pages/Error404";
 import ResetPassword from "./pages/ResetPassword";
 import UpdatePassword from "./pages/UpdatePassword";
-import PassChangeSuccess from "./components/core/Auth/PassChangeSuccess";
 import VerifyEmail from "./pages/VerifyEmail";
+import Navbar from "./components/Common/Navbar";
 
 const App = () => {
   return (

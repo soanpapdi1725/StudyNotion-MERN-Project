@@ -26,61 +26,65 @@ const ProfileButton = () => {
     setOpen(false);
   });
   return (
-    <button
-      ref={ref}
-      className="relative lg:-right-10 overflow-visible"
-      onClick={() => {
-        setOpen(!open);
-      }}
-    >
-      {/* image and drop down wla div */}
-      <div className="flex items-center gap-x-1">
-        {/**src={user?.image} */}
-        <img
-          className="object-cover w-[30px] rounded-full aspect-square"
-          src={user?.image}
-          alt={`profileImage${user?.firstName}`}
-        />
-        <AiOutlineCaretDown
-          className={`${
-            open ? "rotate-180 " : "rotate-0"
-          } duration-300 transition-all`}
-        />
-      </div>
+    <div>
+      <button
+        ref={ref}
+        className="relative lg:left-[2vw] overflow-visible"
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        {/* image and drop down wla div */}
+        <div className="flex items-center gap-x-1">
+          {/**src={user?.image} */}
+          <img
+            className="object-cover w-[30px] rounded-full aspect-square"
+            src={user?.image}
+            alt={`profileImage${user?.firstName}`}
+          />
+          <AiOutlineCaretDown
+            className={`${
+              open ? "rotate-180 " : "rotate-0"
+            } duration-300 transition-all`}
+          />
+        </div>
+      </button>
       {open && (
-        <div
-          className={`absolute h-screen flex flex-col top-[154%] w-screen -translate-x-[100%] lg:translate-x-0 lg:left-0 divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400 lg:w-[258px]
-          `}
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
-        >
-          <Link
-            className="w-full"
-            to={"/dashboard/my-profile"}
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <div className="flex flex-row w-full justify-center items-center gap-x-3 py-3 text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md">
-              <VscDashboard className="text-xl" />
-              DashBoard
-            </div>
-          </Link>
+        <div className="absolute h-screen right-0 top-[10vh] xl:top-[7.9vh] sm:w-[248px] hidden sm:block">
           <div
-            className="w-full"
-            onClick={() => {
-              dispatch(logout(navigate));
+            className={`flex flex-col h-screen  divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400
+          `}
+            onClick={(event) => {
+              event.stopPropagation();
             }}
           >
-            <div className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md ">
-              <VscSignOut className="text-xl" />
-              Logout
+            <Link
+              className="w-full"
+              to={"/dashboard/my-profile"}
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <div className="flex flex-row w-full justify-center items-center gap-x-3 py-3 text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md">
+                <VscDashboard className="text-xl" />
+                DashBoard
+              </div>
+            </Link>
+            <div
+              className="w-full"
+              onClick={() => {
+                dispatch(logout(navigate));
+              }}
+            >
+              <div className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md ">
+                <VscSignOut className="text-xl" />
+                Logout
+              </div>
             </div>
           </div>
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

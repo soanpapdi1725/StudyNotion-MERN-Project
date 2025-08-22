@@ -44,6 +44,12 @@ const SignupForm = ({ selectionTab }) => {
       [event.target.name]: event.target.value,
     }));
   };
+  const handleOnTopPage = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const handleOnSubmit = (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -58,9 +64,9 @@ const SignupForm = ({ selectionTab }) => {
     console.log(signUpData);
 
     dispatch(setSignUpData(signUpData));
-
     // dispatch for send otp operation function
     dispatch(sendotp(email, navigate));
+    handleOnTopPage();
     // reset values
     setFormData({
       firstName: "",

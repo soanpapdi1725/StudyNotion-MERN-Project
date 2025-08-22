@@ -25,11 +25,6 @@ const LoginForm = () => {
 
     // dispatch login email, pass and navigate
     dispatch(login(email, password, navigate));
-    // reset
-    setLoginFormData({
-      email: "",
-      password: "",
-    });
   };
   return (
     <form

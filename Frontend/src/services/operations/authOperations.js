@@ -76,7 +76,7 @@ export const logout = (navigate) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     toast.success("Logout Successful");
-    navigate("/");
+    navigate("/login");
   };
 };
 
