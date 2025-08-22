@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HashLoader } from "react-spinners";
 import OtpInput from "react-otp-input";
@@ -11,9 +11,10 @@ import toast from "react-hot-toast";
 const VerifyEmail = () => {
   const { loading, signUpData } = useSelector((state) => state.auth);
   if (!signUpData) {
-    toast.error("Please Sign up first", { duration: 1500 });
+    toast.error("Please Register first", { duration: 2000 });
     return <Navigate to={"/signup"} />;
   }
+
   const [otp, setOtp] = useState("");
   const {
     firstName,
@@ -78,6 +79,7 @@ const VerifyEmail = () => {
                   renderInput={(props) => (
                     <input
                       {...props}
+                      placeholder="-"
                       className="h-10 w-8 sm:h-12 sm:w-10 md:w-12 bg-richblack-800 text-sm sm:text-lg text-center text-white border border-richblack-600 rounded-md outline-none shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]"
                       style={{
                         minWidth: "32px",
