@@ -12,7 +12,7 @@ const { cloudinaryConnect } = require("./config/cloudinary");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 4000;
 
@@ -24,7 +24,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "studynotion-2517-ef48b.firebaseapp.com",
+      "studynotion-2517-ef48b.web.app",
+    ],
     credentials: true,
   })
 );

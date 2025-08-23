@@ -38,8 +38,11 @@ const LoginForm = () => {
       const userData = {
         email: user.email,
         googleId: user.providerData[0].uid,
+        image: user.photoURL,
       };
-      dispatch(googleLogin(userData.email, userData.googleId, navigate));
+      dispatch(
+        googleLogin(userData.email, userData.googleId, userData.image, navigate)
+      );
     } catch (error) {
       console.log("Error while logging in with google");
     }

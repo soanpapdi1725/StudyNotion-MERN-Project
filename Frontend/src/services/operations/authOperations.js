@@ -223,7 +223,7 @@ export const googleSignUp = (
   };
 };
 
-export const googleLogin = (email, googleId, navigate) => {
+export const googleLogin = (email, googleId, image, navigate) => {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
@@ -231,6 +231,7 @@ export const googleLogin = (email, googleId, navigate) => {
       const response = await apiConnector("POST", GOOGLE_LOGIN_API, {
         email,
         googleId,
+        image,
       });
       console.log("CONSOLE FOR GOOGLE LOGIN....", response);
       if (!response.data.success) {

@@ -77,16 +77,22 @@ exports.postGoogleRegister = async (req, res) => {
 exports.postGoogleLogin = async (req, res) => {
   try {
     // email, uid request ki body se uthaunga
-    const { email, googleId } = req.body;
+    const { email, googleId, image } = req.body;
     // email, uid khali ni honi chahiye
-    if (!email || !googleId) {
+    if (!email || !googleId || !image) {
       return res.status(400).json({
         success: false,
         message: "Invalid way to sign in",
       });
     }
     // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
-    const checkUserExist = await User.findOne({ email, googleId });
+    const checkUserExist = await User.findOneAndUpdate(
+      { email, googleId },
+      {
+        image: image,
+      },
+      { new: true }
+    );
     if (!checkUserExist) {
       return res.status(401).json({
         success: false,
