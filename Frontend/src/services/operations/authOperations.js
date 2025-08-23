@@ -216,7 +216,6 @@ export const googleSignUp = (
       navigate("/login");
     } catch (error) {
       console.log("Error while Registering with Google", error);
-      console.log(error.response.data.message)
       toast.error(error.response.data.message);
     }
     toast.dismiss(toastId);
