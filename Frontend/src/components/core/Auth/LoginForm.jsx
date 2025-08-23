@@ -3,7 +3,12 @@ import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { login } from "../../../services/operations/authOperations";
+import {
+  googleLogin,
+  login,
+} from "../../../services/operations/authOperations";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../../../Config/firebaseConfig";
 const LoginForm = () => {
   const [eyeButton, setEyeButton] = useState(false);
   const navigate = useNavigate();
@@ -25,6 +30,19 @@ const LoginForm = () => {
 
     // dispatch login email, pass and navigate
     dispatch(login(email, password, navigate));
+  };
+  const handleOnGoogleAuthLogin = async () => {
+    try {
+      const response = await signInWithPopup(auth, provider);
+      const user = response.user;
+      const userData = {
+        email: user.email,
+        googleId: user.providerData[0].uid,
+      };
+      dispatch(googleLogin(userData.email, userData.googleId, navigate));
+    } catch (error) {
+      console.log("Error while logging in with google");
+    }
   };
   return (
     <div className="w-full flex flex-col gap-6">
@@ -91,7 +109,7 @@ const LoginForm = () => {
             <div className="h-[1px] w-16 bg-pure-greys-600"></div>
           </div>
           <button
-            // onClick={handleOnGoogleAuth}
+            onClick={handleOnGoogleAuthLogin}
             className="flex items-center justify-center gap-3 w-full max-w-xs px-6 py-3 bg-white hover:bg-richblack-50 border border-gray-300 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md group"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">

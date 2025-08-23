@@ -85,43 +85,36 @@ const SignupForm = ({ selectionTab }) => {
   };
   const handleOnGoogleAuth = async () => {
     // signInWithPopup is the function which helps in opening the pop up after click
-    const response = await signInWithPopup(auth, provider);
-    const user = response.user;
-    console.log(user);
-    const [firstName, ...rest] = user.displayName.split(" ");
-    const lastName = rest.join(" ");
-    const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      email: user.email,
-      googleId: user.providerData[0].uid,
-      image: user.photoURL,
-      contactNumber: `${selectedCode}${!user.phoneNumber && ""}`,
-      accountType: accountType,
-    };
-    console.log(userData);
-    dispatch(
-      googleSignUp(
-        userData.firstName,
-        userData.lastName,
-        userData.email,
-        userData.googleId,
-        userData.image,
-        userData.contactNumber,
-        userData.accountType,
-        navigate
-      )
-    );
-    userData = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      googleId: "",
-      image: "",
-      contactNumber: "",
-      accountType: "",
-    };
-    console.log(userData);
+    try {
+      const response = await signInWithPopup(auth, provider);
+      const user = response.user;
+      console.log(user);
+      const [firstName, ...rest] = user.displayName.split(" ");
+      const lastName = rest.join(" ");
+      const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: user.email,
+        googleId: user.providerData[0].uid,
+        image: user.photoURL,
+        contactNumber: `${selectedCode}${!user.phoneNumber && ""}`,
+        accountType: accountType,
+      };
+      dispatch(
+        googleSignUp(
+          userData.firstName,
+          userData.lastName,
+          userData.email,
+          userData.googleId,
+          userData.image,
+          userData.contactNumber,
+          userData.accountType,
+          navigate
+        )
+      );
+    } catch (error) {
+      console.log("Error while getting response from Google signUp", error);
+    }
   };
   return (
     <div className="w-full flex flex-col gap-6">

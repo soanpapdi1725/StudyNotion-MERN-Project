@@ -31,7 +31,7 @@ export const sendotp = (email, navigate) => {
       navigate("/signup/verify-email");
     } catch (error) {
       console.log("SEND OTP ERROR......", error);
-      toast.error("could not send otp");
+      toast.error(error.response.data.message);
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
@@ -64,7 +64,7 @@ export const login = (email, password, navigate) => {
       navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("Error while setting token and user in login in", error);
-      toast.error("Could not login...Please try Again");
+      toast.error(error.response.data.message);
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
@@ -98,7 +98,7 @@ export const resetPasswordToken = (email, setEmailSent) => {
       setEmailSent(true);
     } catch (error) {
       console.log("Error while sending Reset Link", error);
-      toast.error("Could Not Able to send Reset Link");
+      toast.error(error.response.data.message);
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
@@ -126,7 +126,7 @@ export const resetPasswordDone = (password, confirmPassword, token) => {
       return response.data.email;
     } catch (error) {
       console.log("Error while Changing the Password");
-      toast.error(error.message);
+      toast.error(error.response.data.message);
       toast.dismiss(toastId);
       dispatch(setLoading(false));
     }
@@ -171,7 +171,7 @@ export const signupUser = (
       navigate("/login");
     } catch (error) {
       console.log("Error while registering New Account", error);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
     toast.dismiss(toastId);
     dispatch(setLoading(false));
@@ -207,8 +207,8 @@ export const googleSignUp = (
       });
       console.log("GOOGLE LOGIN CONSOLE....", response);
       if (!response.data.success) {
-        toast.error(response.data.message);
         toast.dismiss(toastId);
+        toast.error(response.data.message);
         dispatch(setLoading(false));
         return;
       }
@@ -216,6 +216,44 @@ export const googleSignUp = (
       navigate("/login");
     } catch (error) {
       console.log("Error while Registering with Google", error);
+      toast.error(error.response.data.message);
+    }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
+  };
+};
+
+export const googleLogin = (email, googleId, navigate) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("POST", GOOGLE_LOGIN_API, {
+        email,
+        googleId,
+      });
+      console.log("CONSOLE FOR GOOGLE LOGIN....", response);
+      if (!response.data.success) {
+        toast.dismiss(toastId);
+        toast.error(response.data.message);
+        dispatch(setLoading(false));
+        return;
+      }
+      const { token, user, message } = response.data;
+      dispatch(setToken(token));
+      const userImage = response.data?.user?.image
+        ? response.data?.user?.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data?.user?.firstName} ${response.data?.user?.lastName}`;
+      dispatch(setUser({ ...user, image: userImage }));
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...user, image: userImage })
+      );
+      toast.success(message);
+      navigate("/dashboard/my-profile");
+    } catch (error) {
+      console.log("Error while Login in with google", error);
       toast.error(error.response.data.message);
     }
     toast.dismiss(toastId);

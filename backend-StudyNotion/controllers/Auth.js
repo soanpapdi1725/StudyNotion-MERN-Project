@@ -215,7 +215,7 @@ exports.postLogin = async (req, res) => {
         user: checkUserExist,
         token: token,
         success: true,
-        message: "user Login Successfully",
+        message: "user Logged In Successfully",
       });
     } else {
       return res.status(401).json({

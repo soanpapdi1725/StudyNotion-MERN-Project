@@ -102,6 +102,7 @@ exports.postGoogleLogin = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "2h",
     });
+    checkUserExist.googleId = undefined;
     const options = {
       httpOnly: true,
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -110,6 +111,8 @@ exports.postGoogleLogin = async (req, res) => {
     res.cookie("token", token, options).status(200).json({
       success: true,
       message: "User Logged In Successfully",
+      user: checkUserExist,
+      token: token,
     });
   } catch (error) {
     console.log("Error while login with Google", error);
