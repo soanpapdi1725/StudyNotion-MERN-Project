@@ -3,6 +3,7 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 exports.postGoogleRegister = async (req, res) => {
   try {
     // request ki body se name(firstName and lastName), email, photoUrl(image), googleID, accountType, authProvider
