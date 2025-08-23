@@ -18,7 +18,7 @@ exports.postGoogleRegister = async (req, res) => {
     } = req.body;
     // khali toh nahi hai ye
     if (!firstName || !email || !googleId || !image || !accountType) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
@@ -26,7 +26,7 @@ exports.postGoogleRegister = async (req, res) => {
     // email verify krunga ki ye hamare database me pehle se toh nahi hai na
     const checkUserExist = await User.findOne({ email: email });
     if (checkUserExist) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: `User already Exists with ${email}`,
       });
@@ -65,7 +65,7 @@ exports.postGoogleRegister = async (req, res) => {
     });
   } catch (error) {
     console.log("Error while creating Account With Google", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to register with Google...Please Try Again",
     });
@@ -80,7 +80,7 @@ exports.postGoogleLogin = async (req, res) => {
     const { email, googleId } = req.body;
     // email, uid khali ni honi chahiye
     if (!email || !googleId) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Invalid way to sign in",
       });
@@ -88,7 +88,7 @@ exports.postGoogleLogin = async (req, res) => {
     // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
     const checkUserExist = await User.findOne({ email, googleId });
     if (!checkUserExist) {
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: "You Are Not Register with Us",
       });
@@ -113,7 +113,7 @@ exports.postGoogleLogin = async (req, res) => {
     });
   } catch (error) {
     console.log("Error while login with Google", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to login with Google, Please Try Again",
     });

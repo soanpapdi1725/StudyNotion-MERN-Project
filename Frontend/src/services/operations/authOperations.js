@@ -12,6 +12,8 @@ const {
   CHANGE_PASSWORD_API,
   RESET_PASSWORD_TOKEN_API,
   RESET_PASSWORD_API,
+  GOOGLE_LOGIN_API,
+  GOOGLE_SIGNUP_API,
 } = authEndpoints;
 export const sendotp = (email, navigate) => {
   return async (dispatch) => {
@@ -162,6 +164,7 @@ export const signupUser = (
         toast.error(response.data.success);
         toast.dismiss(toastId);
         dispatch(setLoading(false));
+        return;
       }
       toast.success("Account Created Successfully");
       toast.success("Please Login Your Account");
@@ -169,6 +172,52 @@ export const signupUser = (
     } catch (error) {
       console.log("Error while registering New Account", error);
       toast.error(error.message);
+    }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
+  };
+};
+
+// **********************************************************************************************************
+//                                          GOOGLE REGISTER/LOGIN API OPERATIONS
+// **********************************************************************************************************
+
+export const googleSignUp = (
+  firstName,
+  lastName,
+  email,
+  googleId,
+  image,
+  contactNumber,
+  accountType,
+  navigate
+) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("POST", GOOGLE_SIGNUP_API, {
+        firstName,
+        lastName,
+        email,
+        googleId,
+        image,
+        contactNumber,
+        accountType,
+      });
+      console.log("GOOGLE LOGIN CONSOLE....", response);
+      if (!response.data.success) {
+        toast.error(response.data.message);
+        toast.dismiss(toastId);
+        dispatch(setLoading(false));
+        return;
+      }
+      toast.success("Account Registered Successfully");
+      navigate("/login");
+    } catch (error) {
+      console.log("Error while Registering with Google", error);
+      console.log(error.response.data.message)
+      toast.error(error.response.data.message);
     }
     toast.dismiss(toastId);
     dispatch(setLoading(false));

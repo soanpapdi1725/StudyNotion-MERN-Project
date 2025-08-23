@@ -12,4 +12,6 @@ export const authEndpoints = {
   CHANGE_PASSWORD_API: BASE_URL + "/auth/change-password",
   RESET_PASSWORD_TOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESET_PASSWORD_API: BASE_URL + "/auth/reset-password",
+  GOOGLE_SIGNUP_API: BASE_URL + "/auth/google/signup",
+  GOOGLE_LOGIN_API: BASE_URL + "/auth/google/login",
 };

@@ -8,7 +8,10 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { setSignUpData } from "../../../Slices/authSlice";
 import { useNavigate } from "react-router";
-import { sendotp } from "../../../services/operations/authOperations";
+import {
+  googleSignUp,
+  sendotp,
+} from "../../../services/operations/authOperations";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../../../Config/firebaseConfig";
 
@@ -93,9 +96,32 @@ const SignupForm = ({ selectionTab }) => {
       email: user.email,
       googleId: user.providerData[0].uid,
       image: user.photoURL,
-      contactNumber: `${selectedCode}${user.phoneNumber}`,
+      contactNumber: `${selectedCode}${!user.phoneNumber && ""}`,
       accountType: accountType,
     };
+    console.log(userData);
+    dispatch(
+      googleSignUp(
+        userData.firstName,
+        userData.lastName,
+        userData.email,
+        userData.googleId,
+        userData.image,
+        userData.contactNumber,
+        userData.accountType,
+        navigate
+      )
+    );
+    userData = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      googleId: "",
+      image: "",
+      contactNumber: "",
+      accountType: "",
+    };
+    console.log(userData);
   };
   return (
     <div className="w-full flex flex-col gap-6">
