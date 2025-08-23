@@ -1,5 +1,7 @@
+const accountCreationSuccessTemplate = require("../mail/templates/AccountCreatedSuccessfully");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
+const mailSender = require("../utils/mailSender");
 
 exports.postGoogleRegister = async (req, res) => {
   try {
@@ -44,8 +46,27 @@ exports.postGoogleRegister = async (req, res) => {
       googleId: googleId,
       image: image,
       additionalDetails: profileDetails._id,
+      accountType: accountType,
+      authProvider: "google",
     });
+
     // mail send krunga
+
+    await mailSender(
+      email,
+      "Account Created Successfully",
+      accountCreationSuccessTemplate(firstName, accountType)
+    );
     // response done
-  } catch (error) {}
+    res.status(200).json({
+      success: true,
+      message: "Account Created Successfully",
+    });
+  } catch (error) {
+    console.log("Error while creating Account With Google", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to register with Google...Please Try Again",
+    });
+  }
 };
