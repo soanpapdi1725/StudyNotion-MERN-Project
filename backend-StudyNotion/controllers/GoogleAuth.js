@@ -2,7 +2,7 @@ const accountCreationSuccessTemplate = require("../mail/templates/AccountCreated
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
-
+const jwt = require("jsonwebtoken");
 exports.postGoogleRegister = async (req, res) => {
   try {
     // request ki body se name(firstName and lastName), email, photoUrl(image), googleID, accountType, authProvider
@@ -71,20 +71,50 @@ exports.postGoogleRegister = async (req, res) => {
   }
 };
 
-
 // login with google
 
-exports.postGoogleLogin = async (req,res) => {
-    try {
-        // email, uid request ki body se uthaunga 
-        // email, uid khali ni honi chahiye
-        // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
-        // 
-    } catch (error) {
-        console.log("Error while login with Google", error);
-        res.status(500).json({
-            success: false,
-            message: "Failed to login with Google, Please Try Again"
-        })
+exports.postGoogleLogin = async (req, res) => {
+  try {
+    // email, uid request ki body se uthaunga
+    const { email, googleId } = req.body;
+    // email, uid khali ni honi chahiye
+    if (!email || !googleId) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid way to sign in",
+      });
     }
-}
+    // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
+    const checkUserExist = await User.findOne({ email, googleId });
+    if (!checkUserExist) {
+      res.status(401).json({
+        success: false,
+        message: "You Are Not Register with Us",
+      });
+    }
+    // if exist jwt sign karwaunga with payload email, user._id, accountType
+    const payload = {
+      email: checkUserExist.email,
+      accountType: checkUserExist.accountType,
+      id: User._id,
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "2h",
+    });
+    const options = {
+      httpOnly: true,
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+    };
+    // res.cookie set krunga token ke name se or options set krunga and status ke saath response bhej dunga
+    res.cookie("token", token, options).status(200).json({
+      success: true,
+      message: "User Logged In Successfully",
+    });
+  } catch (error) {
+    console.log("Error while login with Google", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to login with Google, Please Try Again",
+    });
+  }
+};
