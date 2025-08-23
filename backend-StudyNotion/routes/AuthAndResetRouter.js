@@ -13,6 +13,8 @@ const {
   postChangePass,
 } = require("../controllers/Auth");
 
+const { postGoogleRegister } = require("../controllers/GoogleAuth");
+
 // **********************************************************************************************************
 //                                          Authentication Routes
 // **********************************************************************************************************
@@ -21,6 +23,10 @@ authAndResetRouter.post("/signup", postSignUp);
 authAndResetRouter.post("/sendotp", sendOTP);
 authAndResetRouter.post("/change-password", postChangePass);
 
+// **********************************************************************************************************
+//                                          Authentication Routes using Google
+// **********************************************************************************************************
+authAndResetRouter.post("/google/signup", postGoogleRegister);
 // **********************************************************************************************************
 //                                          Reset password Routes
 // **********************************************************************************************************

@@ -70,3 +70,21 @@ exports.postGoogleRegister = async (req, res) => {
     });
   }
 };
+
+
+// login with google
+
+exports.postGoogleLogin = async (req,res) => {
+    try {
+        // email, uid request ki body se uthaunga 
+        // email, uid khali ni honi chahiye
+        // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
+        // 
+    } catch (error) {
+        console.log("Error while login with Google", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to login with Google, Please Try Again"
+        })
+    }
+}
