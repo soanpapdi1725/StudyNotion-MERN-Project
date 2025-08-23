@@ -6,11 +6,26 @@ const userSchema = new mongoose.Schema(
     lastName: { type: String, required: true, trim: true },
     email: { type: String, required: true, trim: true },
     contactNumber: { type: Number, trim: true },
-    password: { type: String, required: true, trim: true },
+    authProvider: {
+      type: String,
+      enum: ["local", "google"],
+      default: "local",
+      required: true,
+    },
+    password: {
+      type: String,
+      required: () => {
+        return this.authProvider === "local";
+      },
+      trim: true,
+    },
     accountType: {
       type: String,
       enum: ["Student", "Instructor", "Admin"],
       required: true,
+    },
+    googleId: {
+      type: String,
     },
     active: { type: Boolean, default: true },
     approve: { type: Boolean, default: true },

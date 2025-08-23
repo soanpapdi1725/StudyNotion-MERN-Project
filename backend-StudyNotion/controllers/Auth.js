@@ -144,6 +144,7 @@ exports.postSignUp = async (req, res) => {
       accountType,
       additionalDetails: profileDetails._id,
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
+      authProvider: "local",
     });
 
     // sending email to user that his account is created

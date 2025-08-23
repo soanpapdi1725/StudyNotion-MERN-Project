@@ -8,8 +8,9 @@ const selectionTab = [ACCOUNT_TYPE.STUDENT, ACCOUNT_TYPE.INSTRUCTOR];
 
 const Template = ({ title, description1, description2, image, formType }) => {
   const { loading } = useSelector((state) => state.auth);
+
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center ">
       {loading ? (
         <HashLoader size={40} color="#ffffff" loading={loading} />
       ) : (
@@ -32,14 +33,16 @@ const Template = ({ title, description1, description2, image, formType }) => {
                 </div>
               </div>
               {/* login /SignUp form */}
-              {formType === "login" ? (
-                <LoginForm selectionTab={selectionTab} />
-              ) : (
-                <SignupForm selectionTab={selectionTab} />
-              )}
+              <div className={`${formType === "login" && "w-full"}`}>
+                {formType === "login" ? (
+                  <LoginForm selectionTab={selectionTab} />
+                ) : (
+                  <SignupForm selectionTab={selectionTab} />
+                )}
+              </div>
             </div>
             {/* image and background zigZag */}
-            <div>
+            <div className="">
               <div className="relative z-5">
                 <img
                   alt="Students"
@@ -49,7 +52,7 @@ const Template = ({ title, description1, description2, image, formType }) => {
                   src={image}
                 />
               </div>
-              <div className="absolute z-0 translate-y-[-92%] translate-x-[3%]">
+              <div className="absolute z-0 translate-y-[-92%] translate-x-[0%]">
                 <img
                   width={558}
                   height={504}
@@ -60,7 +63,6 @@ const Template = ({ title, description1, description2, image, formType }) => {
               </div>
             </div>
           </div>
-
         </div>
       )}
     </div>
