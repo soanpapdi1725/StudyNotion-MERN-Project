@@ -118,7 +118,7 @@ const Navbar = () => {
             )}
             {token === null && (
               <Link
-                className="bg-richblack-800 border border border-richblack-100/20 px-3 py-2 rounded-md"
+                className="bg-richblack-800  border border-richblack-100/20 px-3 py-2 rounded-md"
                 to={"/signup"}
               >
                 <button className="cursor-pointer">Sign up</button>
