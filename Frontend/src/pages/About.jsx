@@ -2,6 +2,7 @@ import HighlightText from "../components/core/homepage/HighlightText";
 import aboutus1 from "../assets/Images/aboutus1.webp";
 import aboutus2 from "../assets/Images/aboutus2.webp";
 import aboutus3 from "../assets/Images/aboutus3.webp";
+import foundingStoryImage from "../assets/Images/FoundingStory.png";
 import Quotes from "../components/core/About/Quotes";
 import Footer from "../components/Common/Footer";
 import Ambition from "../components/core/About/Ambition";
@@ -11,7 +12,7 @@ const AboutPage = () => {
       {/* sections */}
       {/** Section 1 */}
       <section
-        className="w-screen h-[100vh] md:h-[80vh] lg:h-[75vh]
+        className="w-screen h-fit md:h-[80vh] lg:h-[75vh]
        bg-richblack-700 flex flex-col items-center justify-center py-18"
       >
         <div className="w-11/12 max-w-max-content flex flex-col items-center">
@@ -36,13 +37,54 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="h-fit w-screen py-24 m flex justify-center border-[1px] border-t-0 border-b-richblack-700">
+      <section className="h-fit w-screen py-24 flex justify-center border-[1px] border-t-0 border-b-richblack-700">
         {" "}
         <Quotes />
       </section>
 
-      <section className="my-14 ">
-        <Ambition />
+      <section className="my-24 mx-10 lg:mx-20">
+        <div className="flex flex-col gap-24">
+          <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center gap-10">
+            <Ambition
+              title={"Our Founding Story"}
+              data={`Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.`}
+              data2={
+                "As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential."
+              }
+              backgroundGradient={
+                "font-bold bg-gradient-to-br from-[#a63287] via-[#fc221e] to-[#fc8038] bg-clip-text text-transparent rounded-md"
+              }
+            />
+            <div className="w-full lg:w-[50%] my-10 lg:mt-0 lg:ml-24">
+              <img
+                className="max-w-full shadow-[0px_2px_20px_5px_rgba(231,_76,_27,_0.5)]"
+                src={foundingStoryImage}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-10 lg:mt-24">
+            <Ambition
+              title={"Our Vision"}
+              data={
+                "With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience."
+              }
+              backgroundGradient={
+                "font-bold bg-gradient-to-b from-[#fa6c25] via-[#f57622] to-[#ffdbbaf1] bg-clip-text text-transparent rounded-md"
+              }
+            />
+            <Ambition
+              title={"Our Mission"}
+              data={
+                "Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities."
+              }
+              backgroundGradient={
+                "font-bold bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6ffcb] bg-clip-text text-transparent rounded-md"
+              }
+              specificStyling={"lg:ml-24 lg:my-0 my-18"}
+            />
+          </div>
+        </div>
       </section>
       <div className="w-screen">
         <Footer />
