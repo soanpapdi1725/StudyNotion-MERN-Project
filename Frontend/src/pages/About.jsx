@@ -8,13 +8,14 @@ import Footer from "../components/Common/Footer";
 import Ambition from "../components/core/About/Ambition";
 import AchievementSection from "../components/core/About/AchievementSection";
 import AboutFeatures from "../components/core/About/AboutFeatures";
+import ContactSectionForm from "../components/core/About/ContactSectionForm";
 const AboutPage = () => {
   return (
     <div className="mx-auto w-screen h-screen text-white overflow-y-scroll overflow-x-hidden flex flex-col items-center">
       {/* sections */}
       {/** Section 1 */}
       <section
-        className="w-screen h-fit md:h-[80vh] lg:h-[75vh]
+        className="w-screen h-fit md:h-[80vh]
        bg-richblack-700 flex flex-col items-center justify-center py-18"
       >
         <div className="w-11/12 max-w-max-content flex flex-col items-center">
@@ -44,7 +45,7 @@ const AboutPage = () => {
         <Quotes />
       </section>
 
-      <section className="my-24 mx-10 lg:mx-20">
+      <section className="my-24 mx-auto w-11/12 max-w-max-content lg:mx-20">
         <div className="flex flex-col gap-24">
           <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center gap-10">
             <Ambition
@@ -92,11 +93,11 @@ const AboutPage = () => {
       <section className="w-screen h-[400px] flex justify-center text-white bg-richblack-700">
         <AchievementSection />
       </section>
-      <section className="w-screen m-auto p-2 flex flex-col items-center justify-center gap-5 mb-[140px] text-white">
+      <section className="m-auto w-11/12 max-w-max-content p-2 flex flex-col items-center justify-center gap-5 text-white">
         <AboutFeatures />
       </section>
-      <section className="">
-        
+      <section className=" my-14">
+        <ContactSectionForm />
       </section>
       <div className="w-screen">
         <Footer />

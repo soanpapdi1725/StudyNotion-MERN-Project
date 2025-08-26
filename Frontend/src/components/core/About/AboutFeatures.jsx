@@ -52,7 +52,7 @@ const AboutFeatures = () => {
       </div>
       {featureData1.map((element, index) => {
           return (
-            <div
+            <div key={index}
               className={`${
                 (index + 1) % 2 === 0 ? "bg-richblack-800" : "bg-richblack-700"
               } ${index === 2 ? "lg:col-start-2": ""} lg:h-[280px]`}
