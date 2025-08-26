@@ -6,6 +6,7 @@ import foundingStoryImage from "../assets/Images/FoundingStory.png";
 import Quotes from "../components/core/About/Quotes";
 import Footer from "../components/Common/Footer";
 import Ambition from "../components/core/About/Ambition";
+import AchievementSection from "../components/core/About/AchievementSection";
 const AboutPage = () => {
   return (
     <div className="mx-auto w-screen h-screen text-white overflow-y-scroll overflow-x-hidden flex flex-col items-center">
@@ -37,7 +38,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="h-fit w-screen py-24 flex justify-center border-[1px] border-t-0 border-b-richblack-700">
+      <section className="h-fit w-screen py-24 flex justify-center border-b-[1px] border-richblack-700">
         {" "}
         <Quotes />
       </section>
@@ -85,6 +86,10 @@ const AboutPage = () => {
             />
           </div>
         </div>
+      </section>
+      {/* achievement wala section */}
+      <section className="w-screen h-[400px] text-white bg-richblack-700">
+          <AchievementSection />
       </section>
       <div className="w-screen">
         <Footer />
