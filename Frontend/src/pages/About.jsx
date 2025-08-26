@@ -7,6 +7,7 @@ import Quotes from "../components/core/About/Quotes";
 import Footer from "../components/Common/Footer";
 import Ambition from "../components/core/About/Ambition";
 import AchievementSection from "../components/core/About/AchievementSection";
+import AboutFeatures from "../components/core/About/AboutFeatures";
 const AboutPage = () => {
   return (
     <div className="mx-auto w-screen h-screen text-white overflow-y-scroll overflow-x-hidden flex flex-col items-center">
@@ -88,8 +89,14 @@ const AboutPage = () => {
         </div>
       </section>
       {/* achievement wala section */}
-      <section className="w-screen h-[400px] text-white bg-richblack-700">
-          <AchievementSection />
+      <section className="w-screen h-[400px] flex justify-center text-white bg-richblack-700">
+        <AchievementSection />
+      </section>
+      <section className="w-screen m-auto p-2 flex flex-col items-center justify-center gap-5 mb-[140px] text-white">
+        <AboutFeatures />
+      </section>
+      <section className="">
+        
       </section>
       <div className="w-screen">
         <Footer />
