@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Homes";
 import LoginPage from "./pages/Login";
@@ -10,13 +9,16 @@ import ResetPassword from "./pages/ResetPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import Navbar from "./components/Common/Navbar";
+import AboutPage from "./pages/About";
 
 const App = () => {
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
       <Routes>
+        {/* HOME PAGE */}
         <Route path="/" element={<Home />} />
+        {/* AUTH LOGIN SIGNIN RESET-PASS UPDATE-PASS VERIY EMAIl */}
         <Route
           path="/login"
           element={
@@ -36,6 +38,9 @@ const App = () => {
         <Route path="/signup/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/update-password" element={<UpdatePassword />} />
+        {/* ABOUT PAGE */}
+        <Route path="/about" element={<AboutPage />} />
+        {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
