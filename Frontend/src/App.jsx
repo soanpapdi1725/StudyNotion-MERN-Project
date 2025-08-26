@@ -43,7 +43,6 @@ const App = () => {
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 };

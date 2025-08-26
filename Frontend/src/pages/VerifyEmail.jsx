@@ -7,6 +7,7 @@ import { Link, Navigate, useNavigate } from "react-router";
 import { sendotp, signupUser } from "../services/operations/authOperations";
 import { GiBackwardTime } from "react-icons/gi";
 import toast from "react-hot-toast";
+import Footer from "../components/Common/Footer";
 
 const VerifyEmail = () => {
   const { loading, signUpData } = useSelector((state) => state.auth);
@@ -48,9 +49,13 @@ const VerifyEmail = () => {
     dispatch(sendotp(email, navigate));
   };
   return (
+    <div>
     <div className="lg:w-screen flex items-center justify-center h-screen text-richblack-5">
       {loading ? (
-        <HashLoader size={40} color="#ffffff" loading={loading} />
+        <div className="h-screen flex items-center">
+          {" "}
+          <HashLoader size={40} color="#ffffff" loading={loading} />
+        </div>
       ) : (
         <div className="mx-auto flex items-center justify-center w-11/12  max-w-max-content">
           <div className="flex flex-col items-center gap-4 justify-start mx-4">
@@ -113,6 +118,11 @@ const VerifyEmail = () => {
           </div>
         </div>
       )}
+      
+    </div>
+    <div className="w-screen">
+        <Footer />
+      </div>
     </div>
   );
 };

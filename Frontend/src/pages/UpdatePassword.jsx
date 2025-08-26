@@ -9,6 +9,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import PassChangeSuccess from "../components/core/Auth/PassChangeSuccess";
 import { resetPasswordDone } from "../services/operations/authOperations";
+import Footer from "../components/Common/Footer";
 
 const passInstructions = [
   "One Lowercase Character",
@@ -62,11 +63,15 @@ const UpdatePassword = () => {
     location.pathname = "/update-password";
   }
   return (
+     <div>
     <div className="flex lg:min-w-screen min-h-screen justify-center items-center text-richblack-5">
       {responseEmail ? (
         <PassChangeSuccess email={responseEmail} />
       ) : loading ? (
-        <HashLoader size={40} color="#ffffff" loading={loading} />
+        <div className="h-screen flex items-center">
+          {" "}
+          <HashLoader size={40} color="#ffffff" loading={loading} />
+        </div>
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content flex flex-col items-center justify-center">
           <div className="flex flex-col items-start justify-center gap-6 ">
@@ -164,6 +169,10 @@ const UpdatePassword = () => {
           </div>
         </div>
       )}
+     </div>
+     <div className="w-screen">
+          <Footer />
+        </div>
     </div>
   );
 };

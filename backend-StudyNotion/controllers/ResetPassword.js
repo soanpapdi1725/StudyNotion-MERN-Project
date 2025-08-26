@@ -26,6 +26,13 @@ exports.resetPassToken = async (req, res) => {
         message: "This Email is not registered with us",
       });
     }
+    if (checkUserExist.authProvider !== "local") {
+      return res.status(401).json({
+        success: false,
+        message:
+          "This id is registered with Google cannot be used for resetting password",
+      });
+    }
     // generate token
     const token = crypto.randomUUID();
     // update particular User's database with key token and resetPassExpiration

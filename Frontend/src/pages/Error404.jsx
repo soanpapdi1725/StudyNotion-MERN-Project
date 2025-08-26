@@ -3,8 +3,9 @@ import React from "react";
 const ErrorPage = () => {
   return (
     <div className="flex h-screen w-screen justify-center items-center text-3xl text-blue-5">
-      <div>
-        Error - 404 Page not Found
+      <div>Error - 404 Page not Found</div>
+      <div className="w-screen">
+        <Footer />
       </div>
     </div>
   );

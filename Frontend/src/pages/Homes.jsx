@@ -8,6 +8,7 @@ import LearningLanguageSection from "../components/core/homepage/LearningLanguag
 import TimeLineSection from "../components/core/homepage/TimeLineSection";
 import InstructorSection from "../components/core/homepage/InstructorSection";
 import ExploreMore from "../components/core/homepage/ExploreMore";
+import Footer from "../components/Common/Footer";
 const Home = () => {
   return (
     <div className="">
@@ -158,6 +159,9 @@ const Home = () => {
           {/* review Slider here 👇🏼*/}
           <div></div>
         </div>
+      </div>
+      <div className="w-screen">
+        <Footer />
       </div>
     </div>
   );

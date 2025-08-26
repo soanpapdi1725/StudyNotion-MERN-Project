@@ -4,6 +4,7 @@ import LoginForm from "./LoginForm";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import SignupForm from "./SignupForm";
 import { useSelector } from "react-redux";
+import Footer from "../../Common/Footer";
 const selectionTab = [ACCOUNT_TYPE.STUDENT, ACCOUNT_TYPE.INSTRUCTOR];
 
 const Template = ({ title, description1, description2, image, formType }) => {
@@ -12,7 +13,10 @@ const Template = ({ title, description1, description2, image, formType }) => {
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center ">
       {loading ? (
-        <HashLoader size={40} color="#ffffff" loading={loading} />
+        <div className="h-screen flex items-center">
+          {" "}
+          <HashLoader size={40} color="#ffffff" loading={loading} />
+        </div>
       ) : (
         <div className="mx-auto w-11/12 max-w-max-content text-pure-greys-5">
           {/* main div */}
@@ -65,6 +69,9 @@ const Template = ({ title, description1, description2, image, formType }) => {
           </div>
         </div>
       )}
+      <div className="w-screen">
+        <Footer />
+      </div>
     </div>
   );
 };
