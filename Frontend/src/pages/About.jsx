@@ -99,6 +99,10 @@ const AboutPage = () => {
       <section className=" my-14">
         <ContactSectionForm />
       </section>
+      <section className="my-20">
+        <h1 className="text-4xl font-bold">Reviews From other learners</h1>
+        {/* reviews slider */}
+      </section>
       <div className="w-full">
         <Footer />
       </div>
