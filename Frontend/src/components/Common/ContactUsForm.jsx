@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HashLoader } from "react-spinners";
-import toast from "react-hot-toast";
 import selectionCode from "../../data/countrycode.json";
+import { useDispatch } from "react-redux";
+import { contactUsConnection } from "../../services/operations/contactUsOperations";
 const ContactUsForm = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState("+91");
   const {
@@ -13,20 +15,7 @@ const ContactUsForm = () => {
     reset,
   } = useForm();
   const submitContactForm = async (formData) => {
-    const toastId = toast.loading("Sending your data");
-    setLoading(true);
-    const fullPhoneNumber = formData.countryCode + ` ` + formData.contactNumber;
-    formData.contactNumber = fullPhoneNumber;
-    delete formData.countryCode;
-    console.log("logging Data", formData);
-    try {
-      const response = { status: "Ok" };
-      console.log("logging Response", response);
-    } catch (error) {
-      console.log("Error while registering the contact info of user");
-    }
-    setLoading(false);
-    toast.dismiss(toastId);
+    dispatch(contactUsConnection(formData, setLoading));
   };
   useEffect(() => {
     if (isSubmitSuccessful) {

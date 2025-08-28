@@ -12,6 +12,7 @@ const { cloudinaryConnect } = require("./config/cloudinary");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+const contactUsRouter = require("./routes/ContactUsRoute");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 4000;
@@ -51,6 +52,7 @@ app.use("/api/v1/auth", authAndResetRouter);
 app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/course", courseRouter);
 app.use("/api/v1/payment", paymentRouter);
+app.use("/api/v1", contactUsRouter);
 
 app.get("/", (req, res) => {
   return res.json({
