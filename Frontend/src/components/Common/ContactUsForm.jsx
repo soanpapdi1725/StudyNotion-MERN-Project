@@ -128,7 +128,7 @@ const ContactUsForm = () => {
                         <option
                           key={index}
                           value={country.code}
-                          className="bg-black"
+                          className="rounded-full bg-richblack-900"
                         >
                           {country.code} - {country.country}
                         </option>

@@ -90,7 +90,7 @@ const AboutPage = () => {
         </div>
       </section>
       {/* achievement wala section */}
-      <section className="w-full flex justify-center text-white bg-richblack-700 py-20">
+      <section className="w-full h-fit flex justify-center text-white bg-richblack-700 py-5">
         <AchievementSection />
       </section>
       <section className="m-auto w-11/12 max-w-max-content p-2 flex flex-col items-center justify-center gap-5 text-white">
