@@ -11,11 +11,11 @@ import AboutFeatures from "../components/core/About/AboutFeatures";
 import ContactSectionForm from "../components/core/About/ContactSectionForm";
 const AboutPage = () => {
   return (
-    <div className="mx-auto w-screen h-screen text-white overflow-y-scroll overflow-x-hidden flex flex-col items-center">
+    <div className="mx-auto w-full text-white flex flex-col items-center">
       {/* sections */}
       {/** Section 1 */}
       <section
-        className="w-screen h-fit md:h-[80vh]
+        className="w-full h-fit
        bg-richblack-700 flex flex-col items-center justify-center py-18"
       >
         <div className="w-11/12 max-w-max-content flex flex-col items-center">
@@ -90,7 +90,7 @@ const AboutPage = () => {
         </div>
       </section>
       {/* achievement wala section */}
-      <section className="w-screen h-[400px] flex justify-center text-white bg-richblack-700">
+      <section className="w-screen flex justify-center text-white bg-richblack-700">
         <AchievementSection />
       </section>
       <section className="m-auto w-11/12 max-w-max-content p-2 flex flex-col items-center justify-center gap-5 text-white">
@@ -99,7 +99,7 @@ const AboutPage = () => {
       <section className=" my-14">
         <ContactSectionForm />
       </section>
-      <div className="w-screen">
+      <div className="w-full">
         <Footer />
       </div>
     </div>
