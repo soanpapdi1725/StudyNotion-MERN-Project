@@ -17,13 +17,13 @@ const contactUsData = [
     title: "Visit us",
     info1: "Come and say hello at our office HQ.",
     info2:
-      "Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016",
+      "Shaheed Bhagat Singh Marg Flyover, Maya Enclave, New Delhi, Delhi-110058, India",
   },
   {
     icon: <IoCall fontSize={25} />,
     title: "Call us",
     info1: "Mon - Fri From 8am to 5pm",
-    info2: "+91 6366 000 666",
+    info2: "+91 011 2852 0198",
   },
 ];
 const ContactUs = () => {
