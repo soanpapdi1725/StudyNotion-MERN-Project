@@ -47,8 +47,8 @@ const ContactUs = () => {
               );
             })}
           </div>
-          <div className="text-richblack-200 lg:w-[60%] px-6 sm:px-14 gap-10 flex flex-col border-[1px] border-richblack-600 py-12 rounded-xl">
-            <div className="flex flex-col gap-2">
+          <div className="text-richblack-200 lg:w-[60%] sm:px-10 gap-10 flex flex-col border-[1px] border-richblack-600 py-12 rounded-xl">
+            <div className="flex flex-col gap-2 mx-4">
               <h1 className="text-4xl text-richblack-25 font-bold">
                 Got a Idea? We've got the skills. Let's team up
               </h1>

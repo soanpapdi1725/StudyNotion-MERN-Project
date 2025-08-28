@@ -35,7 +35,7 @@ const ContactUsForm = () => {
           <HashLoader size={40} color="#ffffff" loading={loading} />
         </div>
       ) : (
-        <form onSubmit={handleSubmit(submitContactForm)}>
+        <form className="mx-4" onSubmit={handleSubmit(submitContactForm)}>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4 w-full">
               <div className="flex flex-col sm:flex-row gap-4 w-full">
