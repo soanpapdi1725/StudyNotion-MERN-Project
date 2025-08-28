@@ -10,6 +10,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import Navbar from "./components/Common/Navbar";
 import AboutPage from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/update-password" element={<UpdatePassword />} />
         {/* ABOUT PAGE */}
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

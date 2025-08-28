@@ -37,10 +37,10 @@ const ContactUsForm = () => {
       ) : (
         <form onSubmit={handleSubmit(submitContactForm)}>
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-4 w-full">
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
                 {/* FirstName & LastName */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2 sm:w-[50%]">
                   {/* FirstName */}
                   <label htmlFor="firstName">First Name</label>
                   <input
@@ -68,7 +68,7 @@ const ContactUsForm = () => {
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2 sm:w-[50%]">
                   {/* LastName */}
                   <label htmlFor="lastName">Last Name</label>
                   <input
@@ -88,7 +88,7 @@ const ContactUsForm = () => {
               )}
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {/* Email */}
               <label htmlFor="email">Email</label>
               <input
@@ -106,7 +106,7 @@ const ContactUsForm = () => {
               )}
             </div>
             {/* Country Code and Phone Number */}
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col gap-2 w-full">
               <label className="text-start" htmlFor="countryCode">
                 Phone Number
               </label>
@@ -173,7 +173,7 @@ const ContactUsForm = () => {
               )}
             </div>
             {/* Message */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <label htmlFor="message">Message</label>
               <textarea
                 name="message"
