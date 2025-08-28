@@ -15,3 +15,7 @@ export const authEndpoints = {
   GOOGLE_SIGNUP_API: BASE_URL + "/auth/google/signup",
   GOOGLE_LOGIN_API: BASE_URL + "/auth/google/login",
 };
+
+export const Contact_us_Endpoint = {
+  Contact_Us_API: BASE_URL + "/contact-us",
+};

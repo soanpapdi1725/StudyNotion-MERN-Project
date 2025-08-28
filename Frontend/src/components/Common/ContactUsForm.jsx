@@ -109,7 +109,7 @@ const ContactUsForm = () => {
           />
           {errors.message && <span>Please Enter Your Message</span>}
         </div>
-        <button className="bg-yellow-50 hover:bg-yellow-100 active:bg-yellow-100 rounded-lg text-richblack-900 h-12 py-2 px-2.5" type="submit">Send Message</button>
+        <button className="bg-yellow-50 hover:bg-yellow-100 active:bg-yellow-100 rounded-lg text-richblack-900 h-12 py-2 px-2.5 text-base" type="submit">Send Message</button>
       </div>
     </form>
   );
