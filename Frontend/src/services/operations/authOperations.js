@@ -61,7 +61,7 @@ export const login = (email, password, navigate) => {
         "user",
         JSON.stringify({ ...response.data.user, image: userImage })
       );
-      navigate("/dashboard/my-profile");
+      navigate("/my-profile");
     } catch (error) {
       console.log("Error while setting token and user in login in", error);
       toast.error(error.response.data.message);

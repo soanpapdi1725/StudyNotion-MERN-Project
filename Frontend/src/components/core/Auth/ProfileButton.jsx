@@ -25,7 +25,6 @@ const ProfileButton = () => {
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
-
   const matchRoutes = (route) => {
     return matchPath({ path: route }, location.pathname);
   };
@@ -67,7 +66,9 @@ const ProfileButton = () => {
             <Link
               className="w-full"
               to={"/my-profile"}
-              
+               onClick={()=> {
+                console.log("Profile button clicked")
+              }}
             >
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3     px-2 text-md ${
@@ -77,32 +78,36 @@ const ProfileButton = () => {
                 }`}
               >
                 <CgProfile className="text-xl  w-full" />
-                <span className="col-span-3 ">My Profile</span>
+                <span className="col-span-3 ">Profile</span>
               </div>
             </Link>
             <Link
               className="w-full"
-              to={"/EnrolledCourses"}
-              
+              to={"/my-courses"}
+              onClick={()=> {
+                console.log("course button clicked")
+              }}
             >
               <div
-                className={`grid grid-cols-4 w-full items-center justify-center py-3 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md ${
-                  matchRoutes("/enrolledCourses")
+                className={`grid grid-cols-4 w-full items-center justify-center py-3  px-2 text-md ${
+                  matchRoutes("/my-courses")
                     ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
                 }`}
               >
                 <SiGitbook className="text-xl w-full" />
-                <span className="col-span-3 ">Enrolled Courses</span>
+                <span className="col-span-3 ">My Courses</span>
               </div>
             </Link>
             <Link
               className="w-full"
               to={"/cart"}
-              
+              onClick={()=> {
+                console.log("Cart button clicked")
+              }}
             >
               <div
-                className={`grid grid-cols-4 w-full items-center justify-center py-3  hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md ${
+                className={`grid grid-cols-4 w-full items-center justify-center py-3   px-2 text-md ${
                   matchRoutes("/cart")
                     ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
