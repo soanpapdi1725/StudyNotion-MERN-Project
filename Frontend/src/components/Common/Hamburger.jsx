@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { NavbarLinks } from "../../data/navbar-links";
-import dummyImage from "../../assets/Images/images.jpeg";
+import { RxCross1 } from "react-icons/rx";
 import { VscSignOut } from "react-icons/vsc";
 import { apiConnector } from "../../services/apiConnector";
 import { courseEndpoints } from "../../services/apis";
@@ -57,7 +57,11 @@ const Hamburger = () => {
             setHamburger(!hamburger);
           }}
         >
-          <RxHamburgerMenu className={`${hamburger ? "text-yellow-25" : ""}`} />
+          {!hamburger ? (
+            <RxHamburgerMenu />
+          ) : (
+            <RxCross1 className={`${hamburger ? "text-yellow-25" : ""}`} />
+          )}
         </div>
       </div>
       <div className="absolute z-99 w-[95%] h-[90%] left-2 right-2 top-14">
