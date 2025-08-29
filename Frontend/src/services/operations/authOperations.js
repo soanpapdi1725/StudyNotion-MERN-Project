@@ -252,7 +252,7 @@ export const googleLogin = (email, googleId, image, navigate) => {
         JSON.stringify({ ...user, image: userImage })
       );
       toast.success(message);
-      navigate("/dashboard/my-profile");
+      navigate("/my-profile");
     } catch (error) {
       console.log("Error while Login in with google", error);
       toast.error(error.response.data.message);

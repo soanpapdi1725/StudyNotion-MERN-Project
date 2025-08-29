@@ -1,28 +1,40 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import {
+  Link,
+  matchPath,
+  matchRoutes,
+  useLocation,
+  useNavigate,
+} from "react-router";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
-import { VscDashboard, VscSignOut } from "react-icons/vsc";
+import { VscSignOut } from "react-icons/vsc";
 import { logout } from "../../../services/operations/authOperations";
+import { SiGitbook } from "react-icons/si";
+import { CgProfile } from "react-icons/cg";
+import { BsBookmarkStarFill } from "react-icons/bs";
 
 const ProfileButton = () => {
   const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
 
+  const matchRoutes = (route) => {
+    return matchPath({ path: route }, location.pathname);
+  };
   const onClickLogout = () => {
     dispatch(logout(navigate));
   };
   return (
-    <div ref={ref}>
+    <div className="h-fit" ref={ref}>
       <button
-        
         className="relative lg:left-[2vw] overflow-visible"
         onClick={() => {
           setOpen(!open);
@@ -43,36 +55,76 @@ const ProfileButton = () => {
           />
         </div>
       </button>
-      {open && (
-        <div className="absolute h-screen right-0 top-15 sm:w-[248px] hidden sm:block">
-          <div
-            className={`flex flex-col h-screen divide-y-[1px] overflow-hidden rounded-tl-none rounded-bl-md divide-richblack-700 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 transition-all duration-400
+
+      <div className="absolute w-[250px] right-0 top-14">
+        <div
+          className={`flex flex-col divide-y-[2px] overflow-hidden ${
+            open ? "translate-x-0" : "translate-x-full"
+          } tran rounded-lg divide-richblack-600 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 backdrop-blur-lg transition-all duration-400
           `}
-          >
+        >
+          <div className="flex flex-col ">
             <Link
               className="w-full"
-              to={"/dashboard/my-profile"}
-              onClick={() => {
-                setOpen(false);
-              }}
+              to={"/my-profile"}
+              
             >
-              <div className="flex flex-row w-full justify-center items-center gap-x-3 py-3 text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md">
-                <VscDashboard className="text-xl" />
-                DashBoard
+              <div
+                className={`grid grid-cols-4 w-full items-center justify-center py-3     px-2 text-md ${
+                  matchRoutes("/my-profile")
+                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
+                }`}
+              >
+                <CgProfile className="text-xl  w-full" />
+                <span className="col-span-3 ">My Profile</span>
               </div>
             </Link>
-            <div className="w-full cursor-pointer">
+            <Link
+              className="w-full"
+              to={"/EnrolledCourses"}
+              
+            >
               <div
-                onClick={onClickLogout}
-                className="w-full gap-x-3 items-center justify-center px-2 py-3 flex text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 text-md "
+                className={`grid grid-cols-4 w-full items-center justify-center py-3 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md ${
+                  matchRoutes("/enrolledCourses")
+                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
+                }`}
               >
-                <VscSignOut className="text-xl" />
-                Logout
+                <SiGitbook className="text-xl w-full" />
+                <span className="col-span-3 ">Enrolled Courses</span>
               </div>
+            </Link>
+            <Link
+              className="w-full"
+              to={"/cart"}
+              
+            >
+              <div
+                className={`grid grid-cols-4 w-full items-center justify-center py-3  hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md ${
+                  matchRoutes("/cart")
+                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
+                }`}
+              >
+                <BsBookmarkStarFill className="text-xl w-full" />
+                <span className="col-span-3 ">Cart</span>
+              </div>
+            </Link>
+          </div>
+
+          <div className="w-full cursor-pointer">
+            <div
+              onClick={onClickLogout}
+              className="grid grid-cols-4 w-full items-center justify-center py-3 text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md"
+            >
+              <VscSignOut className="text-xl w-full" />
+              <span className="col-span-3 ">Logout</span>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
