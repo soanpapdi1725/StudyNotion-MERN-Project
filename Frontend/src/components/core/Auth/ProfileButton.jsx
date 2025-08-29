@@ -1,12 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Link,
-  matchPath,
-  matchRoutes,
-  useLocation,
-  useNavigate,
-} from "react-router";
+import { Link, matchPath, useLocation, useNavigate } from "react-router";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import { VscSignOut } from "react-icons/vsc";
@@ -32,7 +26,7 @@ const ProfileButton = () => {
     dispatch(logout(navigate));
   };
   return (
-    <div className="h-fit" ref={ref}>
+    <div className="h-fit hidden md:block" ref={ref}>
       <button
         className="relative lg:left-[2vw] overflow-visible"
         onClick={() => {
@@ -59,59 +53,41 @@ const ProfileButton = () => {
         <div
           className={`flex flex-col divide-y-[2px] overflow-hidden ${
             open ? "translate-x-0" : "translate-x-full"
-          } tran rounded-lg divide-richblack-600 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 backdrop-blur-lg transition-all duration-400
+          } tran rounded-tl-none rounded-bl-lg divide-richblack-600 z-[999] border-[1px] ease-in-out border-richblack-700 bg-richblack-800 backdrop-blur-lg transition-all duration-400
           `}
         >
           <div className="flex flex-col ">
-            <Link
-              className="w-full"
-              to={"/my-profile"}
-               onClick={()=> {
-                console.log("Profile button clicked")
-              }}
-            >
+            <Link className="w-full" to={"/my-profile"}>
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3     px-2 text-md ${
                   matchRoutes("/my-profile")
-                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
-                }`}
+                } duration-200 transition-all transform-3d ease-in-out`}
               >
                 <CgProfile className="text-xl  w-full" />
                 <span className="col-span-3 ">Profile</span>
               </div>
             </Link>
-            <Link
-              className="w-full"
-              to={"/my-courses"}
-              onClick={()=> {
-                console.log("course button clicked")
-              }}
-            >
+            <Link className="w-full" to={"/my-courses"}>
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3  px-2 text-md ${
                   matchRoutes("/my-courses")
-                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
-                }`}
+                } duration-200 transition-all transform-3d ease-in-out`}
               >
                 <SiGitbook className="text-xl w-full" />
                 <span className="col-span-3 ">My Courses</span>
               </div>
             </Link>
-            <Link
-              className="w-full"
-              to={"/cart"}
-              onClick={()=> {
-                console.log("Cart button clicked")
-              }}
-            >
+            <Link className="w-full" to={"/cart"}>
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3   px-2 text-md ${
                   matchRoutes("/cart")
-                    ? "bg-yellow-400 text-richblack-5 border-r-20 border-yellow-25"
+                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
-                }`}
+                } duration-200 transition-all transform-3d ease-in-out`}
               >
                 <BsBookmarkStarFill className="text-xl w-full" />
                 <span className="col-span-3 ">Cart</span>

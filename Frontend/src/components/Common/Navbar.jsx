@@ -9,6 +9,7 @@ import { apiConnector } from "../../services/apiConnector";
 import { courseEndpoints } from "../../services/apis";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import ProfileButton from "../core/Auth/ProfileButton";
+import Hamburger from "./Hamburger";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -53,7 +54,7 @@ const Navbar = () => {
           </Link>
           {/* nav links */}
           <nav>
-            <ul className="lg:flex hidden  flex-row gap-x-6 text-richblack-25 text-medium">
+            <ul className="md:flex hidden  flex-row gap-x-6 text-richblack-25 text-medium">
               {NavbarLinks.map((link, index) => (
                 <li key={index}>
                   {link.title === "Catalog" ? (
@@ -110,7 +111,7 @@ const Navbar = () => {
             )}
             {token === null && (
               <Link
-                className="bg-richblack-800 cursor-pointer outline-none border border-richblack-100/20 text-base px-3 py-2 rounded-md"
+                className="bg-richblack-800  hidden md:block cursor-pointer outline-none border border-richblack-100/20 text-base px-3 py-2 rounded-md"
                 to={"/login"}
               >
                 <button className="cursor-pointer">Login</button>
@@ -118,7 +119,7 @@ const Navbar = () => {
             )}
             {token === null && (
               <Link
-                className="bg-richblack-800  border border-richblack-100/20 px-3 py-2 rounded-md"
+                className="bg-richblack-800 hidden md:block  border border-richblack-100/20 px-3 py-2 rounded-md"
                 to={"/signup"}
               >
                 <button className="cursor-pointer">Sign up</button>
@@ -126,6 +127,8 @@ const Navbar = () => {
             )}
 
             {token !== null && <ProfileButton />}
+
+            <Hamburger />
           </div>
         </div>
       </div>
