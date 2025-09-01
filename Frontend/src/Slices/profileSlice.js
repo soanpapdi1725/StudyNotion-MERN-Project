@@ -4,6 +4,7 @@ const initialState = {
   user: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null,
+  loading: false,
 };
 
 const userTypeSlice = createSlice({
@@ -13,8 +14,11 @@ const userTypeSlice = createSlice({
     setUser: (state, value) => {
       state.user = value.payload;
     },
+    setLoading: (state, value) => {
+      state.loading = value.payload;
+    },
   },
 });
 
-export const { setUser } = userTypeSlice.actions;
+export const { setUser, setLoading } = userTypeSlice.actions;
 export default userTypeSlice.reducer;

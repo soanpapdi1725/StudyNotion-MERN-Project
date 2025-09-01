@@ -41,7 +41,10 @@ const App = () => {
         <Route path="/update-password" element={<UpdatePassword />} />
         {/* ABOUT PAGE */}
         <Route path="/about" element={<AboutPage />} />
+        {/* Contact us PAGE */}
         <Route path="/contact-us" element={<ContactUs />} />
+        {/* Dashboard page - Myprofile */}
+        <Route path="/dashboard/my-profile" element={<MyProfile />} />
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
