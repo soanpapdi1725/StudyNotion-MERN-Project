@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, matchPath, useLocation, useNavigate } from "react-router";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
-import { VscSignOut } from "react-icons/vsc";
+import { VscSignOut, VscDashboard } from "react-icons/vsc";
 import { logout } from "../../../services/operations/authOperations";
-import { SiGitbook } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
-import { BsBookmarkStarFill } from "react-icons/bs";
 
 const ProfileButton = () => {
   const { user } = useSelector((state) => state.userDetail);
@@ -57,40 +55,16 @@ const ProfileButton = () => {
           `}
         >
           <div className="flex flex-col ">
-            <Link className="w-full" to={"/my-profile"}>
+            <Link className="w-full" to={"/dashboard/my-profile"}>
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3     px-2 text-md ${
-                  matchRoutes("/my-profile")
+                  matchRoutes("/dashboard/my-profile")
                     ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
                 } duration-200 transition-all transform-3d ease-in-out`}
               >
-                <CgProfile className="text-xl  w-full" />
-                <span className="col-span-3 ">Profile</span>
-              </div>
-            </Link>
-            <Link className="w-full" to={"/my-courses"}>
-              <div
-                className={`grid grid-cols-4 w-full items-center justify-center py-3  px-2 text-md ${
-                  matchRoutes("/my-courses")
-                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
-                    : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
-                } duration-200 transition-all transform-3d ease-in-out`}
-              >
-                <SiGitbook className="text-xl w-full" />
-                <span className="col-span-3 ">My Courses</span>
-              </div>
-            </Link>
-            <Link className="w-full" to={"/cart"}>
-              <div
-                className={`grid grid-cols-4 w-full items-center justify-center py-3   px-2 text-md ${
-                  matchRoutes("/cart")
-                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
-                    : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
-                } duration-200 transition-all transform-3d ease-in-out`}
-              >
-                <BsBookmarkStarFill className="text-xl w-full" />
-                <span className="col-span-3 ">Cart</span>
+                <VscDashboard className="text-xl  w-full" />
+                <span className="col-span-3 ">Dashboard</span>
               </div>
             </Link>
           </div>
