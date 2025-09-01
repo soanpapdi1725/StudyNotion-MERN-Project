@@ -61,7 +61,7 @@ export const login = (email, password, navigate) => {
         "user",
         JSON.stringify({ ...response.data.user, image: userImage })
       );
-      navigate("/my-profile");
+      navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("Error while setting token and user in login in", error);
       toast.error(error.response.data.message);
@@ -252,7 +252,7 @@ export const googleLogin = (email, googleId, image, navigate) => {
         JSON.stringify({ ...user, image: userImage })
       );
       toast.success(message);
-      navigate("/my-profile");
+      navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("Error while Login in with google", error);
       toast.error(error.response.data.message);
