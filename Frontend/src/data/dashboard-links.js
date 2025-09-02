@@ -3,7 +3,7 @@ export const sidebarLinks = [
   {
     id: 1,
     name: "My Profile",
-    path: "/my-profile",
+    path: "/dashboard/my-profile",
     icon: "VscAccount",
   },
   {
@@ -23,21 +23,21 @@ export const sidebarLinks = [
   {
     id: 4,
     name: "Add Course",
-    path: "/add-course",
+    path: "/dashboard/add-course",
     type: ACCOUNT_TYPE.INSTRUCTOR,
     icon: "VscAdd",
   },
   {
     id: 5,
     name: "Enrolled Courses",
-    path: "/enrolled-courses",
+    path: "/dashboard/enrolled-courses",
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscMortarBoard",
   },
   {
     id: 6,
     name: "Purchase History",
-    path: "/purchase-history",
+    path: "/dashboard/purchase-history",
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscHistory",
   },

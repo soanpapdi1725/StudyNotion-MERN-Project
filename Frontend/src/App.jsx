@@ -11,6 +11,8 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Navbar from "./components/Common/Navbar";
 import AboutPage from "./pages/About";
 import ContactUs from "./pages/ContactUs";
+import MyProfile from "./pages/Common Dashboard/MyProfile";
+import Sidebar from "./components/core/Dashboard/Sidebar";
 
 const App = () => {
   return (

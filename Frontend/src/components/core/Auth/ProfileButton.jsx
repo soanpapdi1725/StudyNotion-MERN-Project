@@ -59,7 +59,7 @@ const ProfileButton = () => {
               <div
                 className={`grid grid-cols-4 w-full items-center justify-center py-3     px-2 text-md ${
                   matchRoutes("/dashboard/my-profile")
-                    ? "bg-yellow-400 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
+                    ? "bg-yellow-600 text-richblack-5 border-r-6 xl:border-r-20 border-yellow-25"
                     : "hover:text-yellow-25 hover:bg-richblack-700 text-richblack-100"
                 } duration-200 transition-all transform-3d ease-in-out`}
               >
