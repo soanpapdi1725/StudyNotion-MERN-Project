@@ -10,16 +10,16 @@ const SidebarLinks = ({ name, iconName, path }) => {
   return (
     <NavLink
       to={path}
-      className={`grid grid-cols-4 w-full items-center justify-center py-3 text-richblack-100  px-2 text-md ${
+      className={`grid grid-cols-1 sm:grid-cols-4 w-full items-center justify-center py-3 text-richblack-100  px-2 text-md ${
         matchRoute(path)
-          ? "bg-yellow-600 border-l-5 border-yellow-50"
+          ? "bg-yellow-600 lg:border-l-5 lg:border-b-0 border-b-5 border-yellow-50 rounded-lg "
           : "hover:text-yellow-25 hover:bg-richblack-700"
-      } text-white`}
+      } text-white transition-all duration-200 ease-in-out transform-border`}
     >
       <span>
-        <Icon className="text-xl w-full" />
+        <Icon className="text-2xl sm:text-xl w-full" />
       </span>
-      <span className="col-span-3 ">{name}</span>
+      <span className="sm:col-span-3 hidden sm:inline">{name}</span>
     </NavLink>
   );
 };

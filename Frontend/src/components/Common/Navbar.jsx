@@ -127,8 +127,7 @@ const Navbar = () => {
             )}
 
             {token !== null && <ProfileButton />}
-
-            <Hamburger />
+              <Hamburger />
           </div>
         </div>
       </div>
