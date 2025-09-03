@@ -47,42 +47,16 @@ const App = () => {
         <Route path="/about" element={<AboutPage />} />
         {/* Contact us PAGE */}
         <Route path="/contact-us" element={<ContactUs />} />
-        {/* Dashboard page - Myprofile */}
-        <Route
-          path="/dashboard/my-profile"
-          element={
-            <Dashboard>
-              <MyProfile />
-            </Dashboard>
-          }
-        />
-        {/* Dashboard page - EnrolledCourses */}
-        <Route
-          path="/dashboard/enrolled-courses"
-          element={
-            <Dashboard>
-              <EnrolledCourses />
-            </Dashboard>
-          }
-        />
-        {/* Dashboard page - PurchaseHistory */}
-        <Route
-          path="/dashboard/purchase-history"
-          element={
-            <Dashboard>
-              <PurchaseHistory />
-            </Dashboard>
-          }
-        />
-        {/* Dashboard page - Settings */}
-        <Route
-          path="/dashboard/Settings"
-          element={
-            <Dashboard>
-              <Settings />
-            </Dashboard>
-          }
-        />
+        {/* Dashboard Routes - */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="my-profile" element={<MyProfile />} />
+          {/* Dashboard page - EnrolledCourses */}
+          <Route path="enrolled-courses" element={<EnrolledCourses />} />
+          {/* Dashboard page - PurchaseHistory */}
+          <Route path="purchase-history" element={<PurchaseHistory />} />
+          {/* Dashboard page - Settings */}
+          <Route path="settings" element={<Settings />} />
+        </Route>
 
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
