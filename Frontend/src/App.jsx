@@ -3,7 +3,6 @@ import Home from "./pages/Homes";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import ProtectRoute from "./components/Common/ProtectRoute";
-import Footer from "./components/Common/Footer";
 import ErrorPage from "./pages/Error404";
 import ResetPassword from "./pages/ResetPassword";
 import UpdatePassword from "./pages/UpdatePassword";
@@ -11,8 +10,9 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Navbar from "./components/Common/Navbar";
 import AboutPage from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import MyProfile from "./pages/Common Dashboard/MyProfile";
-import Sidebar from "./components/core/Dashboard/Sidebar";
+import MyProfile from "./components/core/Dashboard/Pages/MyProfile";
+import Dashboard from "./pages/Dashboard";
+import EnrolledCourses from "./components/core/Dashboard/Pages/EnrolledCourses";
 
 const App = () => {
   return (
@@ -46,7 +46,22 @@ const App = () => {
         {/* Contact us PAGE */}
         <Route path="/contact-us" element={<ContactUs />} />
         {/* Dashboard page - Myprofile */}
-        <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        <Route
+          path="/dashboard/my-profile"
+          element={
+            <Dashboard>
+              <MyProfile />
+            </Dashboard>
+          }
+        />
+        <Route
+          path="/dashboard/enrolled-courses"
+          element={
+            <Dashboard>
+              <EnrolledCourses />
+            </Dashboard>
+          }
+        />
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
