@@ -13,6 +13,8 @@ import ContactUs from "./pages/ContactUs";
 import MyProfile from "./components/core/Dashboard/Pages/MyProfile";
 import Dashboard from "./pages/Dashboard";
 import EnrolledCourses from "./components/core/Dashboard/Pages/EnrolledCourses";
+import Settings from "./components/core/Dashboard/Pages/Settings";
+import PurchaseHistory from "./components/core/Dashboard/Pages/PurchaseHistory";
 
 const App = () => {
   return (
@@ -54,6 +56,7 @@ const App = () => {
             </Dashboard>
           }
         />
+        {/* Dashboard page - EnrolledCourses */}
         <Route
           path="/dashboard/enrolled-courses"
           element={
@@ -62,6 +65,25 @@ const App = () => {
             </Dashboard>
           }
         />
+        {/* Dashboard page - PurchaseHistory */}
+        <Route
+          path="/dashboard/purchase-history"
+          element={
+            <Dashboard>
+              <PurchaseHistory />
+            </Dashboard>
+          }
+        />
+        {/* Dashboard page - Settings */}
+        <Route
+          path="/dashboard/Settings"
+          element={
+            <Dashboard>
+              <Settings />
+            </Dashboard>
+          }
+        />
+
         {/* ERROR PAGE */}
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

@@ -10,8 +10,10 @@ const SidebarLinks = ({ name, iconName, path }) => {
   return (
     <NavLink
       to={path}
-      className={`grid grid-cols-4 w-full items-center justify-center py-3 text-richblack-100 hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md ${
-        matchRoute(path) ? "bg-yellow-400 border-l-1 border-yellow-50" : ""
+      className={`grid grid-cols-4 w-full items-center justify-center py-3 text-richblack-100  px-2 text-md ${
+        matchRoute(path)
+          ? "bg-yellow-600 border-l-5 border-yellow-50"
+          : "hover:text-yellow-25 hover:bg-richblack-700"
       } text-white`}
     >
       <span>
