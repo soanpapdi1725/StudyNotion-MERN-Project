@@ -3,6 +3,11 @@ import { Link, useNavigate } from "react-router";
 import { FiEdit } from "react-icons/fi";
 import Footer from "../../../Common/Footer";
 
+const personalDetailsData = [{
+title: "Firstname",
+value: `${}`
+}]
+
 const MyProfile = () => {
   const { user } = useSelector((state) => state.userDetail);
   const navigate = useNavigate();
@@ -59,10 +64,13 @@ const MyProfile = () => {
         </div>
         <div className="flex flex-row justify-between items-start gap-8 sm:items-center bg-richblack-800 py-10 px-2 sm:px-8 rounded-lg">
           {/* Personal Details */}
-          <div>
-            <h1>
+          <div className="flex flex-col">
+            <h1 className="text-xl sm:text-3xl">
               Personal Details
             </h1>
+            <div className="grid grid-cols-1 md:grid-cols-3">
+
+            </div>
           </div>
           {/* edit button */}
           <Link
