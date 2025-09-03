@@ -3,10 +3,14 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import { HashLoader } from "react-spinners";
 import Sidebar from "../components/core/Dashboard/Sidebar";
+import ConfirmationModal from "../components/Common/ConfirmationModal";
 const Dashboard = () => {
   const { loading: authloading } = useSelector((state) => state.auth);
   const { loading: profileLoading } = useSelector((state) => state.userDetail);
-
+  const handleModalData = (data) => {
+    console.log(data)
+    return data;
+  };
   if (profileLoading || authloading) {
     return (
       <div>
@@ -19,8 +23,8 @@ const Dashboard = () => {
     );
   }
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex">
-      <Sidebar />
+    <div className="flex justify-between relative min-h-[calc(100vh-3.5rem)]">
+      <Sidebar/>
       <div className="h-[calc(100vh-3.5rem)] overflow-auto">
         <div className="mx-auto w-11/12 max-w-[1000px] py-10">
           <Outlet />

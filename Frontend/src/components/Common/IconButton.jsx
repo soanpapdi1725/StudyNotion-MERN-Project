@@ -10,7 +10,7 @@ const IconButton = ({
     <button
       onClick={OnClickButton}
       disabled={disabled}
-      className={`${customClasses}`}
+      className={`${customClasses} cursor-pointer rounded-md border-[1px] border-richblack-600 px-2.5 py-1`}
       type={type}
     >
       {children ? (
