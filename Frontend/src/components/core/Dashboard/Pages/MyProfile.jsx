@@ -19,7 +19,7 @@ const MyProfile = () => {
             />
             <div className="flex flex-col w-full">
               {/* Name */}
-              <h1 className="text-lg sm:text-3xl">
+              <h1 className="text-xl sm:text-3xl">
                 {user?.firstName} {user?.lastName}
               </h1>
               {/* Email */}
@@ -39,7 +39,7 @@ const MyProfile = () => {
         </div>
         <div className="flex flex-row justify-between items-start sm:items-center gap-8 bg-richblack-800 py-10 px-2 sm:px-8 rounded-lg mt-">
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl">About</h1>
+            <h1 className="sm:text-3xl text-xl">About</h1>
             <p className="text-sm text-richblack-400">
               {user?.additionalDetails?.about ||
                 `Write Something About Yourself...`}
@@ -60,7 +60,9 @@ const MyProfile = () => {
         <div className="flex flex-row justify-between items-start gap-8 sm:items-center bg-richblack-800 py-10 px-2 sm:px-8 rounded-lg">
           {/* Personal Details */}
           <div>
-            
+            <h1>
+              Personal Details
+            </h1>
           </div>
           {/* edit button */}
           <Link
