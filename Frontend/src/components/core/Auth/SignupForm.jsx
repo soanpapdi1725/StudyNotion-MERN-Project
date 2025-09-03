@@ -21,7 +21,7 @@ const SignupForm = ({ selectionTab }) => {
   const [accountType, setAccountType] = useState(selectionTab[0]);
   const [eyeButton, setEyeButton] = useState(true);
   const [eyeButton2, setEyeButton2] = useState(true);
-  const [selectedCode, setselectCode] = useState("+91");
+  const [selectedCode, setselectCode] = useState("");
 
   const dispatch = useDispatch();
   // signupForm Data and setting of Data and also function for handling on Submit

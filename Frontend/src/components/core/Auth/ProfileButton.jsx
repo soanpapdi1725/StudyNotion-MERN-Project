@@ -36,6 +36,7 @@ const ProfileButton = () => {
           {/**src={user?.image} */}
           <img
             className="object-cover w-[30px] rounded-full aspect-square"
+            loading="lazy"
             src={user?.image}
             alt={`profileImage${user?.firstName}`}
           />

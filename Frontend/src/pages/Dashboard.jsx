@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import { HashLoader } from "react-spinners";
 import Sidebar from "../components/core/Dashboard/Sidebar";
 import ConfirmationModal from "../components/Common/ConfirmationModal";
+import Footer from "../components/Common/Footer";
 const Dashboard = () => {
   const { loading: authloading } = useSelector((state) => state.auth);
   const { loading: profileLoading } = useSelector((state) => state.userDetail);
@@ -23,14 +24,14 @@ const Dashboard = () => {
     );
   }
   return (
-    <div className="flex  relative min-h-[calc(100vh-3.5rem)]">
-      <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] overflow-auto bg-blue-200 mx-auto w-11/12 max-w-[1000px] py-10 px-10">
-        <div className="w-full">
-          <Outlet />
+      <div className="flex relative min-h-[calc(100vh-3.5rem)] w-full">
+        <Sidebar />
+        <div className="h-[calc(100vh-3.5rem)] overflow-auto  w-full">
+          <div className="w-full">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
