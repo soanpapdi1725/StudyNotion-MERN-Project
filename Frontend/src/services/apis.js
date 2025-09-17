@@ -1,4 +1,6 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL =
+  import.meta.env.VITE_BASE_URL ||
+  import.meta.env.VITE_BACKEND_BASE_URL_ONRENDER;
 
 export const courseEndpoints = {
   GET_ALL_CATEGORIES_API: BASE_URL + "/course/getAllCategories",

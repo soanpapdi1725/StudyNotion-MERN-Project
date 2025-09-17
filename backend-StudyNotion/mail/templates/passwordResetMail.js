@@ -1,4 +1,4 @@
-exports.PasswordResetMail = (email, name) => {
+exports.passwordResetMail = (email, name) => {
   return `<!DOCTYPE html>
     <html>
     
