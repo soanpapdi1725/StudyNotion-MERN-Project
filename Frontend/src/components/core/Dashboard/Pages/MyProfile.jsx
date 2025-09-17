@@ -38,7 +38,6 @@ const MyProfile = () => {
       alternateValue: "Add Date of birth",
     },
   ];
-  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col justify-center text-white my-20 gap-15 mx-auto w-11/12 max-w-[1000px]">
@@ -70,7 +69,7 @@ const MyProfile = () => {
             <FiEdit />
           </Link>
         </div>
-        <div className="flex flex-row justify-between items-start sm:items-center gap-8 bg-richblack-800 py-10 px-2 sm:px-8 rounded-lg mt-">
+        <div className="flex flex-row justify-between items-start sm:items-center gap-8 bg-richblack-800 py-10 px-2 sm:px-8 rounded-lg ">
           <div className="flex flex-col gap-2">
             <h1 className="sm:text-3xl text-xl font-bold">About</h1>
             <p className="text-sm text-richblack-400">

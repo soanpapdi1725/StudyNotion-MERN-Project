@@ -7,9 +7,11 @@ exports.auth = async (req, res, next) => {
   try {
     // extract token from cookie
     const token =
-      req.cookies.token ||
+      req.header("Authorization").replace("Bearer ", "") ||
       req.body.token ||
-      req.header("Authorisation").replace("bearer ", "");
+      req.cookies.token;
+
+    console.log("Extracted token:", token);
 
     //   if token is missing return response
     if (!token) {
@@ -25,6 +27,7 @@ exports.auth = async (req, res, next) => {
       console.log(decode);
       req.user = decode; // decrypted value ko set kar diya
     } catch (error) {
+      console.log(error);
       return res.status(401).json({
         // 401-unauthorized
         success: false,

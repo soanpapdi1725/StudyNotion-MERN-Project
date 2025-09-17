@@ -72,7 +72,7 @@ const Sidebar = () => {
       <div
         className={`${
           !confirmationModal
-            ? "hidden "
+            ? "hidden"
             : "backdrop-blur-xs text-white flex justify-center items-center absolute z-9999 top-0 w-full h-full"
         } `}
       >

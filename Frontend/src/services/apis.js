@@ -21,3 +21,9 @@ export const authEndpoints = {
 export const Contact_us_Endpoint = {
   Contact_Us_API: BASE_URL + "/contact-us",
 };
+
+export const Profile_Endpoints = {
+  UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
+  CHANGE_PROFILE_IMAGE_API: BASE_URL + "/profile/changeProfileImage",
+  DELETE_ACCOUNT_API: BASE_URL + "/profile/deleteAccount",
+};

@@ -126,6 +126,7 @@ exports.updateUserImage = async (req, res) => {
     const newUserImage = req.files.newUserImage;
     // get user id from request user ki id se
     const userId = req.user.id;
+    console.log(userId);
     // upload kro cloudinary pe height and quality daal ke
     const userDetails = await User.findById(userId);
     if (!userDetails) {
@@ -151,7 +152,9 @@ exports.updateUserImage = async (req, res) => {
       {
         new: true,
       }
-    );
+    )
+      .populate("additionalDetails")
+      .exec();
     // return response
 
     return res.status(200).json({

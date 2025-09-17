@@ -3,7 +3,6 @@ import { setLoading, setToken } from "../../Slices/authSlice";
 import { apiConnector } from "../apiConnector";
 import { authEndpoints } from "../apis";
 import { setUser } from "../../Slices/profileSlice";
-import { useNavigate } from "react-router";
 
 const {
   SEND_OTP_API,
@@ -25,7 +24,7 @@ export const sendotp = (email, navigate) => {
       });
       console.log("SENDING OTP....", response);
       if (!response.data.success) {
-        toast.error(response.message);
+        toast.error(response.data.message);
       }
       toast.success("OTP SEND SUCCESSFULLY");
       navigate("/signup/verify-email");
