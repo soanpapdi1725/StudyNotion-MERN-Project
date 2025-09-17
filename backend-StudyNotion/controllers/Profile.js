@@ -7,18 +7,25 @@ exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
 
-    const { dateOfBirth = "", about = "", gender, contactNumber } = req.body;
+    const {
+      firstName,
+      lastName,
+      dateOfBirth = "",
+      about = "",
+      gender,
+      contactNumber,
+    } = req.body;
     // get user Id from JWT decode wali jagah se
     const userId = req.user.id;
-    // validate kr lo jo bhi aya hai sahi hai ya nahi
-    if (!contactNumber || !gender) {
-      return res.status(400).json({
-        success: false,
-        message: "ContactNumber and Gender cannot be empty",
-      });
-    }
     // user ko find karo DB se
-    const userDetails = await User.findById(userId);
+    const userDetails = await User.findByIdAndUpdate(
+      userId,
+      {
+        firstName: firstName,
+        lastName: lastName,
+      },
+      { new: true }
+    );
     const profileId = userDetails.additionalDetails;
 
     const profileDetails = await Profile.findById(profileId);
@@ -63,7 +70,11 @@ exports.deleteAccount = async (req, res) => {
 
     await User.findByIdAndDelete(userId);
     // Account deletion mail
-    await mailSender(userDetails.email, "Account Deletion Confirmation Mail", accountDeletionSuccessTemplate(userDetails.firstName));
+    await mailSender(
+      userDetails.email,
+      "Account Deletion Confirmation Mail",
+      accountDeletionSuccessTemplate(userDetails.firstName)
+    );
     // Fir user ki detail bhi detail
     return res.status(200).json({
       success: true,
