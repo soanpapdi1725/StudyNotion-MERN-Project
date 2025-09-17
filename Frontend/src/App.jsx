@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import EnrolledCourses from "./components/core/Dashboard/Pages/EnrolledCourses";
 import Settings from "./components/core/Dashboard/Pages/Settings";
 import PurchaseHistory from "./components/core/Dashboard/Pages/PurchaseHistory";
+import PrivateRoute from "./components/Common/PrivateRoute";
 
 const App = () => {
   return (
@@ -48,7 +49,14 @@ const App = () => {
         {/* Contact us PAGE */}
         <Route path="/contact-us" element={<ContactUs />} />
         {/* Dashboard Routes - */}
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
           <Route path="my-profile" element={<MyProfile />} />
           {/* Dashboard page - EnrolledCourses */}
           <Route path="enrolled-courses" element={<EnrolledCourses />} />
