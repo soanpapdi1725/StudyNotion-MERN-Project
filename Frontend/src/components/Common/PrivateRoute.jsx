@@ -1,5 +1,4 @@
-import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+  import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
@@ -7,7 +6,6 @@ const PrivateRoute = ({ children }) => {
   if (user !== null) {
     return children;
   } else {
-    toast.error("Please Login first");
     return <Navigate to={"/login"} />;
   }
 };
