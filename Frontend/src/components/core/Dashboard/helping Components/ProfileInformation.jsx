@@ -150,6 +150,7 @@ const ProfileInformation = () => {
               <div className="w-24">
                 <select
                   className="bg-richblack-700 text-md md:text-xl scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
+                  name="countryCode"
                   id="countryCode"
                   {...register("countryCode", {
                     value: countryCode,

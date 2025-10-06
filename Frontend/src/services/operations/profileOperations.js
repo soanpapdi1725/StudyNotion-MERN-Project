@@ -74,5 +74,21 @@ export const removeProfileImage = () => {
 };
 
 export const updateUserInfo = (formData) => {
-  
+  const fullContactNumber = formData.countryCode + " " + formData.contactNumber;
+  formData.contactNumber = fullContactNumber;
+  delete formData.countryCode;
+  console.log("formData.....", formData);
+  return async (dispatch) => {
+    const toastId = toast.loading("Updating your info...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData);
+      console.log("PROFILE UPDATION RESPONSE.......", response);
+      
+    } catch (error) {
+    } finally {
+      toast.dismiss(toastId);
+      dispatch(setLoading(false));
+    }
+  };
 };

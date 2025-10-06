@@ -14,9 +14,9 @@ exports.updateProfile = async (req, res) => {
       firstName,
       lastName = "",
       dateOfBirth = "",
-      about = "",
       gender,
       contactNumber = "",
+      about = "",
     } = req.body;
     // get user Id from JWT decode wali jagah se
     const userId = req.user.id;
@@ -39,12 +39,14 @@ exports.updateProfile = async (req, res) => {
     profileDetails.dateOfBirth = dateOfBirth;
 
     await profileDetails.save();
-
+    const newUserData = await User.findById(userId)
+      .populate("additionalDetails")
+      .exec();
     // response return
     return res.status(200).json({
       success: true,
       message: "Profile Updated Successfully",
-      data: profileDetails,
+      data: newUserData,
     });
   } catch (error) {
     console.log("Error while updating Profile", error);
