@@ -1,7 +1,10 @@
 const accountDeletionSuccessTemplate = require("../mail/templates/AccountDeleted");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
-const { imageUploadToCloudinary } = require("../utils/imageUploader");
+const {
+  imageUploadToCloudinary,
+  imageAndVideoDeleteFromCloudinary,
+} = require("../utils/imageUploader");
 const mailSender = require("../utils/mailSender");
 exports.updateProfile = async (req, res) => {
   try {
@@ -198,6 +201,39 @@ exports.getEnrolledCourses = async (req, res) => {
       success: false,
       message:
         "Failed to get Enrolled courses of the student, Please Try Again",
+    });
+  }
+};
+
+exports.onImageRemove = async (req, res) => {
+  try {
+    // User ki id nikalenge jo bhi JWT se set kri hai hamne or usko decode kra hai
+    const userId = req.user.id;
+    // user nikalenge database me se
+    const { firstName, lastName, imagePublicId } = await User.findById(userId);
+    // cloudinary pe uski image remove kr denge
+    const imageDeleted = await imageAndVideoDeleteFromCloudinary(imagePublicId);
+    console.log(imageDeleted);
+    // user ke naam se dicebear ki image daal denge
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
+        imagePublicId: null,
+      },
+      { new: true }
+    );
+    // response return kr denge
+    return res.status(200).json({
+      success: true,
+      message: "User Image removed successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log("Error while deleting image of user", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to remove the image",
     });
   }
 };

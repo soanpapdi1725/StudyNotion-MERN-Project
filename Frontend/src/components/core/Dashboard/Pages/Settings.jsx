@@ -5,6 +5,7 @@ import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { HashLoader } from "react-spinners";
 import { changeProfileImage } from "../../../../services/operations/profileOperations";
+import { MdDelete } from "react-icons/md";
 
 const Settings = () => {
   const { user } = useSelector((state) => state.userDetail);
@@ -60,7 +61,9 @@ const Settings = () => {
                 />
               </div>
               <div className="flex flex-col gap-4 justify-center">
-                <h1 className="sm:text-2xl text-xl text-center">Change Profile Picture</h1>
+                <h1 className="sm:text-2xl text-xl text-center">
+                  Change Profile Picture
+                </h1>
                 {/* buttons such as file or upload one */}
                 <form
                   className="flex flex-row gap-4 justify-center items-center"
@@ -108,6 +111,11 @@ const Settings = () => {
                       className="bg-suar-50 px-4 py-2 hover:bg-suar-100 active:bg-suar-100 rounded-lg text-richblack-900 h-12 text-lg font-semibold duration-100 transition-all ease-in-out"
                     >
                       See Preview
+                    </div>
+                  )}
+                  {!user.image.includes("dicebear") && (
+                    <div className="bg-richblack-700 font-bold text-3xl p-2 rounded-lg active:bg-richblack-800">
+                      <MdDelete className="text-pink-300 active:text-pink-500 hover:text-pink-400 duration-150 transition-all ease-in-out"/>
                     </div>
                   )}
                 </form>
