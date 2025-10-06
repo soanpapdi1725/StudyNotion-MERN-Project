@@ -11,13 +11,11 @@ import {
 import { MdDelete } from "react-icons/md";
 import ProfileInformation from "../helping Components/profileInformation";
 
-
 const Settings = () => {
-  const { user } = useSelector((state) => state.userDetail);
+  const { user, loading } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const [imagePreview, setImagePreview] = useState(null);
   const [viewImagePreview, setViewImagePreview] = useState(false);
-  const [loading, setLoading] = useState(false);
   const {
     register,
     formState: { errors, isSubmitSuccessful },
@@ -42,11 +40,11 @@ const Settings = () => {
     // Create FormData object for file upload
     const uploadData = new FormData();
     uploadData.append("newUserImage", file);
-    dispatch(changeProfileImage(uploadData, setLoading));
+    dispatch(changeProfileImage(uploadData));
     setImagePreview(null);
   };
   const RemoveProfile = () => {
-    dispatch(removeProfileImage(setLoading));
+    dispatch(removeProfileImage());
   };
   if (loading) {
     return (
@@ -155,7 +153,7 @@ const Settings = () => {
             <h1 className="sm:text-2xl text-xl text-left md:text-left font-bold">
               Profile Information
             </h1>
-            <ProfileInformation setLoading={setLoading} />
+            <ProfileInformation/>
           </div>
         </div>
         {viewImagePreview && (

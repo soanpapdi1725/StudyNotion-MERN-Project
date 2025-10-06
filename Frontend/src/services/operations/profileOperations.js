@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { Profile_Endpoints } from "../apis";
-import { setUser } from "../../Slices/profileSlice";
+import { setLoading, setUser } from "../../Slices/profileSlice";
 
 const {
   CHANGE_PROFILE_IMAGE_API,
@@ -10,10 +10,10 @@ const {
   REMOVE_IMAGE_API,
 } = Profile_Endpoints;
 
-export const changeProfileImage = (formData, setLoading) => {
+export const changeProfileImage = (formData) => {
   return async (dispatch) => {
     const toastId = toast.loading("Uploading Image...");
-    setLoading(true);
+    dispatch(setLoading(true));
     try {
       const token = JSON.parse(localStorage.getItem("token"));
       console.log(token);
@@ -41,15 +41,15 @@ export const changeProfileImage = (formData, setLoading) => {
       toast.error(error.response.data.message);
     } finally {
       toast.dismiss(toastId);
-      setLoading(false);
+      dispatch(setLoading(false));
     }
   };
 };
 
-export const removeProfileImage = (setLoading) => {
+export const removeProfileImage = () => {
   return async (dispatch) => {
     const toastId = toast.loading("Removing Profile Image...");
-    setLoading(true);
+    dispatch(setLoading(true));
     try {
       const token = JSON.parse(localStorage.getItem("token"));
       const response = await apiConnector("DELETE", REMOVE_IMAGE_API, null, {
@@ -68,7 +68,11 @@ export const removeProfileImage = (setLoading) => {
       toast.error(error.response.data.message);
     } finally {
       toast.dismiss(toastId);
-      setLoading(false);
+      dispatch(setLoading(false));
     }
   };
+};
+
+export const updateUserInfo = (formData) => {
+  
 };

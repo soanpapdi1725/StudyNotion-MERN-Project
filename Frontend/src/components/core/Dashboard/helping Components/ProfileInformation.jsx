@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import selectionCode from "../../../../data/countrycode.json";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-const ProfileInformation = ({ setLoading }) => {
+import { updateUserInfo } from "../../../../services/operations/profileOperations";
+const ProfileInformation = () => {
   const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const {
@@ -47,8 +48,8 @@ const ProfileInformation = ({ setLoading }) => {
     "Other",
   ];
   const aboutValue = watch("about", "");
-  const handleSubmitUserDetails = (formData) => {
-    
+  const handleSubmitUserDetails = async (formData) => {
+    dispatch(updateUserInfo(formData));
   };
   return (
     <form
