@@ -6,6 +6,7 @@ const profileRouter = express.Router();
 const {
   getUserDetails,
   getEnrolledCourses,
+  onImageRemove,
 } = require("../controllers/Profile");
 //delete from profile controller
 const { deleteAccount } = require("../controllers/Profile");
@@ -28,5 +29,6 @@ profileRouter.delete("/deleteAccount", auth, deleteAccount);
 // put
 profileRouter.put("/updateProfile", auth, updateProfile);
 profileRouter.put("/changeProfileImage", auth, updateUserImage);
+profileRouter.delete("/ImageRemove", auth, onImageRemove);
 
 module.exports = profileRouter;
