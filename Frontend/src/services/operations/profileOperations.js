@@ -3,8 +3,12 @@ import { apiConnector } from "../apiConnector";
 import { Profile_Endpoints } from "../apis";
 import { setUser } from "../../Slices/profileSlice";
 
-const { CHANGE_PROFILE_IMAGE_API, DELETE_ACCOUNT_API, UPDATE_PROFILE_API } =
-  Profile_Endpoints;
+const {
+  CHANGE_PROFILE_IMAGE_API,
+  DELETE_ACCOUNT_API,
+  UPDATE_PROFILE_API,
+  REMOVE_IMAGE_API,
+} = Profile_Endpoints;
 
 export const changeProfileImage = (formData, setLoading) => {
   return async (dispatch) => {
@@ -34,6 +38,33 @@ export const changeProfileImage = (formData, setLoading) => {
       toast.success("Image Uploaded");
     } catch (error) {
       console.log("ERROR IN SERVICES PROFILE CHANGING PROFILE IMAGE", error);
+      toast.error(error.response.data.message);
+    } finally {
+      toast.dismiss(toastId);
+      setLoading(false);
+    }
+  };
+};
+
+export const removeProfileImage = (setLoading) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Removing Profile Image...");
+    setLoading(true);
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const response = await apiConnector("DELETE", REMOVE_IMAGE_API, null, {
+        Authorization: `Bearer ${token}`,
+      });
+      console.log("DELETE PROFILE IMAGE RESPONSE....", response);
+      if (!response.data.success) {
+        throw new Error();
+      }
+      const newDataOfUser = response.data.data;
+      dispatch(setUser(newDataOfUser));
+      localStorage.setItem("user", JSON.stringify(newDataOfUser));
+      toast.success("Image Removed Successfully");
+    } catch (error) {
+      console.log("ERROR IN SERVICES, REMOVING PROFILE IMAGE", error);
       toast.error(error.response.data.message);
     } finally {
       toast.dismiss(toastId);

@@ -26,4 +26,5 @@ export const Profile_Endpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PROFILE_IMAGE_API: BASE_URL + "/profile/changeProfileImage",
   DELETE_ACCOUNT_API: BASE_URL + "/profile/deleteAccount",
+  REMOVE_IMAGE_API: BASE_URL + "/profile/ImageRemove",
 };

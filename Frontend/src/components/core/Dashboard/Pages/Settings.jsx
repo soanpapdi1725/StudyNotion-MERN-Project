@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { HashLoader } from "react-spinners";
-import { changeProfileImage } from "../../../../services/operations/profileOperations";
+import {
+  changeProfileImage,
+  removeProfileImage,
+} from "../../../../services/operations/profileOperations";
 import { MdDelete } from "react-icons/md";
 
 const Settings = () => {
@@ -40,6 +43,9 @@ const Settings = () => {
     dispatch(changeProfileImage(uploadData, setLoading));
     setImagePreview(null);
   };
+  const RemoveProfile = () => {
+    dispatch(removeProfileImage(setLoading));
+  };
   if (loading) {
     return (
       <div className="h-[calc(100vh-3.5rem)] flex justify-center items-center w-full">
@@ -61,20 +67,28 @@ const Settings = () => {
                 />
               </div>
               <div className="flex flex-col gap-4 justify-center">
-                <h1 className="sm:text-2xl text-xl text-center">
-                  Change Profile Picture
-                </h1>
+                <h1 className="sm:text-2xl text-xl">Change Profile Picture</h1>
                 {/* buttons such as file or upload one */}
                 <form
                   className="flex flex-row gap-4 justify-center items-center"
                   onSubmit={handleSubmit(submitProfilePicture)}
                 >
-                  <label
-                    className="px-4 py-2 cursor-pointer text-lg font-semibold bg-richblack-700 border-[1px] border-richblack-100/10 text-white rounded-lg hover:bg-richblack-600 active:bg-richblack-500 duration-100 transition-all ease-in-out"
-                    htmlFor="file"
-                  >
-                    Select
-                  </label>
+                  {imagePreview ? (
+                    <button
+                      onClick={()=> {setImagePreview(null)}}
+                      className="px-4 py-2 cursor-pointer text-lg font-semibold bg-richblack-700 border-[1px] border-richblack-100/10 text-white rounded-lg hover:bg-richblack-600 active:bg-richblack-500 duration-100 transition-all ease-in-out"
+                    >
+                      Remove
+                    </button>
+                  ) : (
+                    <label
+                      className="px-4 py-2 cursor-pointer text-lg font-semibold bg-richblack-700 border-[1px] border-richblack-100/10 text-white rounded-lg hover:bg-richblack-600 active:bg-richblack-500 duration-100 transition-all ease-in-out"
+                      htmlFor="file"
+                    >
+                      Select
+                    </label>
+                  )}
+
                   <input
                     id="file"
                     type="file"
@@ -114,8 +128,11 @@ const Settings = () => {
                     </div>
                   )}
                   {!user.image.includes("dicebear") && (
-                    <div className="bg-richblack-700 font-bold text-3xl p-2 rounded-lg active:bg-richblack-800">
-                      <MdDelete className="text-pink-300 active:text-pink-500 hover:text-pink-400 duration-150 transition-all ease-in-out"/>
+                    <div
+                      onClick={RemoveProfile}
+                      className=" bg-richblack-700 font-bold text-3xl p-2 rounded-lg active:bg-richblack-800"
+                    >
+                      <MdDelete className="text-pink-300 active:text-pink-500 hover:text-pink-400 duration-150 transition-all ease-in-out" />
                     </div>
                   )}
                 </form>
@@ -127,6 +144,9 @@ const Settings = () => {
                 {errors.newUserImage.message || "Please Upload image"}
               </span>
             )}
+          </div>
+          <div className="flex flex-col gap-4 bg-richblack-800 w-full py-10 px-8 rounded-lg">
+            <h1 className="sm:text-2xl text-xl">Profile Information</h1>
           </div>
         </div>
         {viewImagePreview && (
