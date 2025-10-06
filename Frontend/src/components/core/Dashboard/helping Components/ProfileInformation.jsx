@@ -1,17 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import selectionCode from "../../../../data/countrycode.json";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 const ProfileInformation = ({ setLoading }) => {
   const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
-  const { firstName, lastName, additionalDetails } = user;
+  const {
+    firstName,
+    lastName,
+    additionalDetails: { dateOfBirth, gender, contactNumber, about },
+  } = user;
   const {
     register,
     formState: { isSubmitSuccessful, errors },
     reset,
     handleSubmit,
-  } = useForm();
+    watch,
+  } = useForm({
+    defaultValues: {
+      firstName,
+      lastName,
+      dateOfBirth: dateOfBirth ? dateOfBirth : "",
+      gender: gender ? gender : "",
+      contactNumber: contactNumber ? contactNumber : "",
+      about: about ? about : "",
+    },
+  });
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        firstName,
+        lastName,
+        dateOfBirth: dateOfBirth ? dateOfBirth : "",
+        gender: gender ? gender : "",
+        contactNumber: contactNumber ? contactNumber : "",
+        about: about ? about : "",
+      });
+    }
+  }, [reset, isSubmitSuccessful]);
   const [countryCode, setCountryCode] = useState("+91");
   const GENDER_TYPE = [
     "Male",
@@ -20,10 +46,15 @@ const ProfileInformation = ({ setLoading }) => {
     "Prefer not to say",
     "Other",
   ];
-
-  const handleSubmitUserDetails = (formData) => {};
+  const aboutValue = watch("about", "");
+  const handleSubmitUserDetails = (formData) => {
+    
+  };
   return (
-    <form className="w-full" onSubmit={handleSubmit(handleSubmitUserDetails)}>
+    <form
+      className="w-full flex flex-col items-end gap-5"
+      onSubmit={handleSubmit(handleSubmitUserDetails)}
+    >
       <div className="grid grid-cols-1 w-full gap-7">
         {/* first name LastName*/}
         <div className="flex flex-col sm:flex-row w-full gap-7">
@@ -36,8 +67,7 @@ const ProfileInformation = ({ setLoading }) => {
               name="firstName"
               id="firstName"
               type="text"
-              value={firstName}
-              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-md md:text-xl rounded-lg"
               {...register("firstName", {
                 required: "Please Enter FirstName",
                 validate: {
@@ -70,8 +100,7 @@ const ProfileInformation = ({ setLoading }) => {
               id="lastName"
               name="lastName"
               type="text"
-              value={lastName}
-              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-md md:text-xl rounded-lg"
               {...register("lastName")}
             />
           </div>
@@ -85,10 +114,10 @@ const ProfileInformation = ({ setLoading }) => {
             </label>
             <input
               name="dateOfBirth"
-              value={additionalDetails.dateOfBirth}
               id="dob"
               type="date"
-              className=" shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+              className=" shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-md md:text-xl rounded-lg"
+              {...register("dateOfBirth")}
             />
           </div>
           <div className="flex flex-col w-full gap-3">
@@ -96,10 +125,11 @@ const ProfileInformation = ({ setLoading }) => {
               Gender
             </label>
             <select
-              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-md md:text-xl rounded-lg"
               name="gender"
               id="gender"
-              {...register("gender", {})}
+              placeholder="select gender"
+              {...register("gender")}
             >
               {GENDER_TYPE.map((gender, index) => {
                 return <option key={index}>{gender}</option>;
@@ -118,7 +148,7 @@ const ProfileInformation = ({ setLoading }) => {
             <div className="flex flex-row gap-5">
               <div className="w-24">
                 <select
-                  className="bg-richblack-700  scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
+                  className="bg-richblack-700 text-md md:text-xl scrollbar-track-richblack-800 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)]  text-center text-semibold rounded-lg outline-none text-pure-greys-200 h-12 w-full"
                   id="countryCode"
                   {...register("countryCode", {
                     value: countryCode,
@@ -134,7 +164,7 @@ const ProfileInformation = ({ setLoading }) => {
                         value={country.code}
                         className="rounded-full bg-richblack-900"
                       >
-                        {country.code} - {country.country}
+                        {country.code}
                       </option>
                     );
                   })}
@@ -142,8 +172,8 @@ const ProfileInformation = ({ setLoading }) => {
               </div>
               <input
                 type="text"
-                className="bg-richblack-700  h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full text-lg px-2 py-2.5 rounded-lg "
-                placeholder="Enter Contact Number"
+                className="bg-richblack-700  h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full text-md md:text-xl px-2 py-2.5 rounded-lg "
+                placeholder="0123456789"
                 name="contactNumber"
                 id="contactNumber"
                 {...register("contactNumber", {
@@ -175,14 +205,34 @@ const ProfileInformation = ({ setLoading }) => {
               name="about"
               rows={1}
               type="text"
-              className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-2 px-3 text-xl rounded-lg"
+              placeholder="Write Something about yourself..."
+              className=" shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-2 px-3 text-md md:text-xl rounded-lg"
               {...register("about", {
-                
+                maxLength: {
+                  value: 100,
+                  message: "Maximum 100 Characters are allowed",
+                },
               })}
             />
+            <span
+              className={`${
+                aboutValue?.length > 100
+                  ? "text-pink-200"
+                  : "text-richblack-500"
+              } text-xs text-right`}
+            >
+              {aboutValue?.length}
+              <span>/100</span>
+            </span>
           </div>
         </div>
       </div>
+      <button
+        className="text-md md:text-xl bg-yellow-50 px-4 py-2 hover:bg-yellow-100 active:bg-yellow-100 rounded-lg text-richblack-900 h-12  font-semibold duration-100 transition-all ease-in-out"
+        type="Submit"
+      >
+        Save
+      </button>
     </form>
   );
 };
