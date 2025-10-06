@@ -58,6 +58,12 @@ const ContactUsForm = () => {
                             "First Name should be atleast of 2 characters"
                           );
                         },
+                        onlyAlphabets: (value) => {
+                          return (
+                            /^[A-Za-z]+$/.test(value) ||
+                            "First Name Should be in Alphabets"
+                          );
+                        },
                       },
                     })}
                   />

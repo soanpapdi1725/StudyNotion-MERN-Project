@@ -9,10 +9,11 @@ import {
   removeProfileImage,
 } from "../../../../services/operations/profileOperations";
 import { MdDelete } from "react-icons/md";
+import ProfileInformation from "../helping Components/profileInformation";
+
 
 const Settings = () => {
   const { user } = useSelector((state) => state.userDetail);
-  const { firstName, lastName, additionalDetails } = user;
   const dispatch = useDispatch();
   const [imagePreview, setImagePreview] = useState(null);
   const [viewImagePreview, setViewImagePreview] = useState(false);
@@ -68,7 +69,7 @@ const Settings = () => {
                 />
               </div>
               <div className="flex flex-col gap-4 justify-center">
-                <h1 className="sm:text-2xl text-xl font-bold">
+                <h1 className="sm:text-2xl text-xl text-center md:text-left font-bold">
                   Change Profile Picture
                 </h1>
                 {/* buttons such as file or upload one */}
@@ -151,59 +152,10 @@ const Settings = () => {
             )}
           </div>
           <div className="flex flex-col gap-4 bg-richblack-800 w-full py-10 px-8 rounded-lg">
-            <h1 className="sm:text-2xl text-xl font-bold">
+            <h1 className="sm:text-2xl text-xl text-left md:text-left font-bold">
               Profile Information
             </h1>
-            <form action="">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-                {/* first name DOB Contact number */}
-                <div className="flex flex-col gap-8">
-                  {/* firstName */}
-                  <div className="flex flex-col gap-3">
-                    <label
-                      className="text-xl text-pure-greys-50"
-                      htmlFor="firstName"
-                    >
-                      First Name
-                    </label>
-                    <input
-                      id="firstName"
-                      type="text"
-                      value={firstName}
-                      className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <label className="text-xl text-pure-greys-50" htmlFor="dob">
-                      Date of Birth
-                    </label>
-                    <input
-                      value={additionalDetails.dateOfBirth}
-                      id="dob"
-                      type="date"
-                      className=" shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
-                    />
-                  </div>
-                </div>
-                {/* Lastname Gender About */}
-                <div>
-                  <div className="flex flex-col gap-3">
-                    <label
-                      className="text-xl text-pure-greys-50"
-                      htmlFor="lastName"
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      id="lastName"
-                      type="text"
-                      value={lastName}
-                      className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
+            <ProfileInformation setLoading={setLoading} />
           </div>
         </div>
         {viewImagePreview && (
@@ -214,7 +166,6 @@ const Settings = () => {
               alt="profile_preview"
               height={200}
             />
-
             <div
               className="absolute cursor-pointer flex flex-row justify-center items-center rounded-full h-8 w-8 top-4 bg-yellow-100 right-5 lg:-translate-x-70"
               onClick={(event) => {

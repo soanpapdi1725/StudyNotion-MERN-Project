@@ -12,11 +12,11 @@ exports.updateProfile = async (req, res) => {
 
     const {
       firstName,
-      lastName,
+      lastName = "",
       dateOfBirth = "",
       about = "",
       gender,
-      contactNumber,
+      contactNumber = "",
     } = req.body;
     // get user Id from JWT decode wali jagah se
     const userId = req.user.id;
