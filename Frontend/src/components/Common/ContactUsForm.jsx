@@ -44,7 +44,7 @@ const ContactUsForm = () => {
                   {/* FirstName */}
                   <label htmlFor="firstName">First Name</label>
                   <input
-                    className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                    className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none   border-none text-lg px-2 py-2.5 rounded-lg "
                     type="text"
                     id="firstName"
                     name="firstName"
@@ -72,7 +72,7 @@ const ContactUsForm = () => {
                   {/* LastName */}
                   <label htmlFor="lastName">Last Name</label>
                   <input
-                    className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg"
+                    className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none  border-none text-lg px-2 py-2.5 rounded-lg"
                     type="text"
                     id="lastName"
                     name="lastName"
@@ -92,7 +92,7 @@ const ContactUsForm = () => {
               {/* Email */}
               <label htmlFor="email">Email</label>
               <input
-                className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                className="bg-richblack-700 h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none   border-none text-lg px-2 py-2.5 rounded-lg "
                 type="text"
                 id="email"
                 name="email"
@@ -143,7 +143,7 @@ const ContactUsForm = () => {
                 </div>
                 <input
                   type="text"
-                  className="bg-richblack-700  h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                  className="bg-richblack-700  h-12 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full text-lg px-2 py-2.5 rounded-lg "
                   placeholder="1234567890"
                   name="contactNumber"
                   id="contactNumber"
@@ -178,7 +178,7 @@ const ContactUsForm = () => {
               <textarea
                 name="message"
                 id="message"
-                className="bg-richblack-700 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full focus:border-none focus:outline-none border-none text-lg px-2 py-2.5 rounded-lg "
+                className="bg-richblack-700 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 w-full focus:border-none   border-none text-lg px-2 py-2.5 rounded-lg "
                 placeholder="Enter Your Message"
                 cols={30}
                 rows={5}

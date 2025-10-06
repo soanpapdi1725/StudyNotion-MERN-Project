@@ -12,6 +12,7 @@ import { MdDelete } from "react-icons/md";
 
 const Settings = () => {
   const { user } = useSelector((state) => state.userDetail);
+  const { firstName, lastName, additionalDetails } = user;
   const dispatch = useDispatch();
   const [imagePreview, setImagePreview] = useState(null);
   const [viewImagePreview, setViewImagePreview] = useState(false);
@@ -67,15 +68,19 @@ const Settings = () => {
                 />
               </div>
               <div className="flex flex-col gap-4 justify-center">
-                <h1 className="sm:text-2xl text-xl">Change Profile Picture</h1>
+                <h1 className="sm:text-2xl text-xl font-bold">
+                  Change Profile Picture
+                </h1>
                 {/* buttons such as file or upload one */}
                 <form
-                  className="flex flex-row gap-4 justify-center items-center"
+                  className="flex flex-row gap-4 flex-wrap justify-center items-center"
                   onSubmit={handleSubmit(submitProfilePicture)}
                 >
                   {imagePreview ? (
                     <button
-                      onClick={()=> {setImagePreview(null)}}
+                      onClick={() => {
+                        setImagePreview(null);
+                      }}
                       className="px-4 py-2 cursor-pointer text-lg font-semibold bg-richblack-700 border-[1px] border-richblack-100/10 text-white rounded-lg hover:bg-richblack-600 active:bg-richblack-500 duration-100 transition-all ease-in-out"
                     >
                       Remove
@@ -146,19 +151,72 @@ const Settings = () => {
             )}
           </div>
           <div className="flex flex-col gap-4 bg-richblack-800 w-full py-10 px-8 rounded-lg">
-            <h1 className="sm:text-2xl text-xl">Profile Information</h1>
+            <h1 className="sm:text-2xl text-xl font-bold">
+              Profile Information
+            </h1>
+            <form action="">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                {/* first name DOB Contact number */}
+                <div className="flex flex-col gap-8">
+                  {/* firstName */}
+                  <div className="flex flex-col gap-3">
+                    <label
+                      className="text-xl text-pure-greys-50"
+                      htmlFor="firstName"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      value={firstName}
+                      className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <label className="text-xl text-pure-greys-50" htmlFor="dob">
+                      Date of Birth
+                    </label>
+                    <input
+                      value={additionalDetails.dateOfBirth}
+                      id="dob"
+                      type="date"
+                      className=" shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+                    />
+                  </div>
+                </div>
+                {/* Lastname Gender About */}
+                <div>
+                  <div className="flex flex-col gap-3">
+                    <label
+                      className="text-xl text-pure-greys-50"
+                      htmlFor="lastName"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      value={lastName}
+                      className="shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.5)] bg-richblack-700 py-3 px-3 text-xl rounded-lg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         {viewImagePreview && (
-          <div className="absolute z-999 top-0 h-full w-full flex backdrop-blur-lg flex-row justify-center items-center">
+          <div className="absolute z-999 top-0 h-full w-full flex backdrop-blur-lg flex-row   justify-center items-center">
             <img
-              className="h-80 aspect-square -translate-x-1/2"
+              className="lg:-translate-x-20"
               src={imagePreview}
               alt="profile_preview"
+              height={200}
             />
 
             <div
-              className="absolute cursor-pointer flex flex-row justify-center items-center rounded-full h-8 w-8 top-4 bg-yellow-100 right-75"
+              className="absolute cursor-pointer flex flex-row justify-center items-center rounded-full h-8 w-8 top-4 bg-yellow-100 right-5 lg:-translate-x-70"
               onClick={(event) => {
                 event.stopPropagation();
                 setViewImagePreview(false);
