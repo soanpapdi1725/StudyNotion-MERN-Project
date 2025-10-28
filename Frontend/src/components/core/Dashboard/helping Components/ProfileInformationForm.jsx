@@ -12,7 +12,6 @@ const ProfileInformationForm = () => {
     additionalDetails: { dateOfBirth, gender, contactNumber, about },
   } = user;
   const separateCountryCodeAndNumber = contactNumber?.split(" ") ?  contactNumber?.split(" ") : contactNumber ;
-  console.log(separateCountryCodeAndNumber);
   const {
     register,
     formState: { isSubmitSuccessful, errors },

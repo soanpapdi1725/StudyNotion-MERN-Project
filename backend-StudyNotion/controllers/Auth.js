@@ -238,9 +238,9 @@ exports.postChangePass = async (req, res) => {
   // get data from user
   const userId = req.user.id;
   // fetch old pass, new pass, and confirm pass
-  const { oldPassword, newPassword, confirmPassword } = req.body;
+  const { currentPassword, newPassword, confirmPassword } = req.body;
   // check all are not empty
-  if (!oldPassword || !newPassword || !confirmPassword) {
+  if (!currentPassword || !newPassword || !confirmPassword) {
     return res.status(400).json({
       success: false,
       message: "All Fields are required",
@@ -254,7 +254,7 @@ exports.postChangePass = async (req, res) => {
   }
   const user = await User.findById(userId);
   // check old password are correct or not using compare of bcryptjs
-  if (!(await bcrypt.compare(oldPassword, user.password))) {
+  if (!(await bcrypt.compare(currentPassword, user.password))) {
     return res.status(403).json({
       success: false,
       message: "Old password is not matching to change it to new password",

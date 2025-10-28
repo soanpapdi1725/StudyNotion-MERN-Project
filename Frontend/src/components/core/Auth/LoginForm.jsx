@@ -81,14 +81,15 @@ const LoginForm = () => {
               value={password}
               onChange={handleOnChange}
             />
-            <div
+            <button
+              type="button"
               onClick={() => {
                 setEyeButton(!eyeButton);
               }}
               className="text-xl absolute right-3 top-1/2 -translate-y-1/2 mt-3.5  text-pure-greys-200"
             >
               {eyeButton ? <IoEye /> : <IoMdEyeOff />}
-            </div>
+            </button>
           </div>
         </div>
         <a
