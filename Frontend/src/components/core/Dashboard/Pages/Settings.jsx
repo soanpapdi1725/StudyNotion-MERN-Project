@@ -55,6 +55,9 @@ const Settings = () => {
           </div>
         </div>
       )}
+      <div className="w-full">
+        <Footer />
+      </div>
     </>
   );
 };

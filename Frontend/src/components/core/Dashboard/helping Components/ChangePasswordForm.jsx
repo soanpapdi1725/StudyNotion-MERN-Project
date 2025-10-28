@@ -57,6 +57,7 @@ const ChangePasswordForm = () => {
         >
           {seePass_C ? <IoEye /> : <IoMdEyeOff />}
         </button>
+
         {errors?.currentPassword && (
           <span className="text-pink-200 text-xs text-start ml-2">
             {errors?.currentPassword?.message}
@@ -81,16 +82,18 @@ const ChangePasswordForm = () => {
             setSeePass_N(!seePass_N);
           }}
           className={`text-xl absolute right-3 z-8 top-1/2 -translate-y-1/2 ${
-            errors?.newPassword ? "mt-1" : "mt-3.5"
+            errors?.newPassword ? "mt-1" : "mt-1"
           }  text-pure-greys-200`}
         >
           {seePass_N ? <IoEye /> : <IoMdEyeOff />}
         </button>
-        {errors?.newPassword && (
-          <span className="text-pink-200 text-xs text-start ml-2">
-            {errors?.newPassword?.message}
-          </span>
-        )}
+        <div className="flex flex-row justify-between">
+          {errors?.newPassword && (
+            <span className="text-pink-200 text-xs text-start ml-2">
+              {errors?.newPassword?.message}
+            </span>
+          )}
+        </div>
       </div>
       <div className="flex flex-col gap-1 relative">
         <label htmlFor="CNPassword">
