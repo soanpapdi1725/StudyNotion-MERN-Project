@@ -11,7 +11,7 @@ const ProfileInformation = () => {
     lastName,
     additionalDetails: { dateOfBirth, gender, contactNumber, about },
   } = user;
-  const separateCountryCodeAndNumber = contactNumber?.split(" ");
+  const separateCountryCodeAndNumber = contactNumber?.split(" ") ?  contactNumber?.split(" ") : contactNumber ;
   console.log(separateCountryCodeAndNumber);
   const {
     register,
