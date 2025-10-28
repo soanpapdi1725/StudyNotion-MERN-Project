@@ -1,11 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Footer from "../../../Common/Footer";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
-import ProfileInformationForm from "../helping Components/ProfileInformationForm";
-import ChangeImageForm from "../helping Components/ChangeImageForm";
+import ProfileInformationForm from "../SettingComponents/ProfileInformationForm";
+import ChangeImageForm from "../SettingComponents/ChangeImageForm";
 import SettingOutlet from "../SettingOutlet/SettingOutlet";
-import ChangePasswordForm from "../helping Components/ChangePasswordForm";
+import ChangePasswordForm from "../SettingComponents/ChangePasswordForm";
+import DeleteAccountComponent from "../SettingComponents/DeleteAccountForm";
 
 const Settings = () => {
   const { user } = useSelector((state) => state.userDetail);
@@ -33,6 +34,7 @@ const Settings = () => {
             children={<ChangePasswordForm />}
           />
         )}
+        <DeleteAccountComponent />
       </div>
       {viewImagePreview && (
         <div className="absolute z-999 top-0 w-full  h-full  flex  backdrop-blur-lg flex-row   justify-center items-center">
@@ -55,7 +57,7 @@ const Settings = () => {
           </div>
         </div>
       )}
-      <div className="w-full">
+      <div className="w-full mt-28">
         <Footer />
       </div>
     </>

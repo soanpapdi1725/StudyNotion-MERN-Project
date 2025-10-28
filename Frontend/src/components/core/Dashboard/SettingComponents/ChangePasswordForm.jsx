@@ -82,7 +82,7 @@ const ChangePasswordForm = () => {
             setSeePass_N(!seePass_N);
           }}
           className={`text-xl absolute right-3 z-8 top-1/2 -translate-y-1/2 ${
-            errors?.newPassword ? "mt-1" : "mt-1"
+            errors?.newPassword ? "mt-1" : "mt-3.5"
           }  text-pure-greys-200`}
         >
           {seePass_N ? <IoEye /> : <IoMdEyeOff />}
