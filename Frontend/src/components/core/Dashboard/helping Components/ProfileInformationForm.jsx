@@ -3,7 +3,7 @@ import selectionCode from "../../../../data/countrycode.json";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../../../../services/operations/profileOperations";
-const ProfileInformation = () => {
+const ProfileInformationForm = () => {
   const { user } = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const {
@@ -246,4 +246,4 @@ const ProfileInformation = () => {
   );
 };
 
-export default ProfileInformation;
+export default ProfileInformationForm;

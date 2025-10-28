@@ -6,11 +6,12 @@ import { useNavigate } from "react-router";
 import { VscSignOut } from "react-icons/vsc";
 import { useState } from "react";
 import ConfirmationModal from "../../Common/ConfirmationModal";
+import { HashLoader } from "react-spinners";
 const Sidebar = () => {
-  const { user, loading: profileLoading } = useSelector(
+  const { user } = useSelector(
     (state) => state.userDetail
   );
-  const { loading: authLoading } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [confirmationModal, setConfirmationModal] = useState(null);
@@ -24,6 +25,7 @@ const Sidebar = () => {
       btn2Handler: () => setConfirmationModal(null),
     });
   };
+
 
   return (
     <div className="">
