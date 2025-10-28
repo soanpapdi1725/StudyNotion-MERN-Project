@@ -1,7 +1,6 @@
 import { sidebarLinks } from "../../../data/dashboard-links";
 import { logout } from "../../../services/operations/authOperations";
 import { useDispatch, useSelector } from "react-redux";
-import { HashLoader } from "react-spinners";
 import SidebarLinks from "./SidebarLinks";
 import { useNavigate } from "react-router";
 import { VscSignOut } from "react-icons/vsc";
@@ -25,17 +24,7 @@ const Sidebar = () => {
       btn2Handler: () => setConfirmationModal(null),
     });
   };
-  if (profileLoading || authLoading) {
-    return (
-      <div className="w-screen h-screen flex justify-center items-center">
-        <HashLoader
-          size={40}
-          loading={profileLoading || authLoading}
-          color="#ffffff"
-        />
-      </div>
-    );
-  }
+
   return (
     <div className="">
       <div className="lg:flex hidden flex-col min-w-[250px] gap-4 border-r-[1px] text-richblack-5 border-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10">

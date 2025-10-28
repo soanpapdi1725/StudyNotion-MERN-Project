@@ -4,7 +4,7 @@ const initialState = {
   user: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null,
-  loading: false,
+  loading: true,
 };
 
 const userTypeSlice = createSlice({

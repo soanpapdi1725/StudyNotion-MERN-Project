@@ -57,6 +57,7 @@ const ProfileInformation = () => {
   const handleSubmitUserDetails = async (formData) => {
     dispatch(updateUserInfo(formData));
   };
+  
   return (
     <form
       className="w-full flex flex-col items-end gap-5"
