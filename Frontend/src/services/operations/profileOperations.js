@@ -1,7 +1,8 @@
-import { toast } from "react-hot-toast";
+import { toast, ToastBar } from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { Profile_Endpoints } from "../apis";
 import { setLoading, setUser } from "../../Slices/profileSlice";
+import { setToken } from "../../Slices/authSlice";
 
 const {
   CHANGE_PROFILE_IMAGE_API,
@@ -126,6 +127,33 @@ export const changePassword = (changePassData) => {
       toast.success("Password is successfully changed");
     } catch (error) {
       console.log("ERROR WHILE CHANGING THE PASSWORD....", error);
+      toast.error(error?.response?.data?.message);
+    } finally {
+      toast.dismiss(toastId);
+      dispatch(setLoading(false));
+    }
+  };
+};
+
+export const deleteAccount = () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Deleting Your Account");
+    dispatch(setLoading(true));
+    const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      const response = await apiConnector("DELETE", DELETE_ACCOUNT_API, null, {
+        Authorization: `Bearer ${token}`,
+      });
+      if (!response?.data?.success) {
+        throw new Error("Failed to Delete the Account");
+      }
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      dispatch(setToken(null));
+      dispatch(setUser(null));
+      toast.success("Your Account Successfully Deleted");
+    } catch (error) {
+      console.log("ERROR WHILE DELETING THE ACCOUNT OF USER...", error);
       toast.error(error?.response?.data?.message);
     } finally {
       toast.dismiss(toastId);

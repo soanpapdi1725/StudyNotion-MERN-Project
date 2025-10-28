@@ -1,6 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteAccount } from "../../../../services/operations/profileOperations";
 
 const DeleteAccountComponent = () => {
+  const dispatch = useDispatch();
+  const handleOnClickDelete = () => {
+    const result = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+    if (result) {
+      dispatch(deleteAccount());
+    }
+  };
   return (
     <div className="flex flex-row gap-4  w-full py-10 px-8 rounded-lg bg-pink-800 border-[1px] border-pink-700">
       <div className="flex flex-col gap-4">
@@ -15,7 +26,11 @@ const DeleteAccountComponent = () => {
           </p>
         </div>
 
-        <button type="button" className="cursor-pointer py-2 px-4 border-[1px] border-richblack-100 text-richblack-50 self-center rounded-lg bg-pink-300">
+        <button
+          onClick={handleOnClickDelete}
+          type="button"
+          className="cursor-pointer py-2 px-4 border-[1px] border-richblack-100 text-richblack-50 self-center rounded-lg bg-pink-300"
+        >
           Yes, I want to delete my account.
         </button>
       </div>
