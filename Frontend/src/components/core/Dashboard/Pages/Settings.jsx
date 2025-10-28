@@ -9,7 +9,7 @@ import {
   removeProfileImage,
 } from "../../../../services/operations/profileOperations";
 import { MdDelete } from "react-icons/md";
-import ProfileInformation from "../helping Components/profileInformation";
+import ProfileInformation from "../helping Components/ProfileInformation";
 
 const Settings = () => {
   const { user, loading } = useSelector((state) => state.userDetail);
