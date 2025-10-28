@@ -11,7 +11,9 @@ const ProfileInformationForm = () => {
     lastName,
     additionalDetails: { dateOfBirth, gender, contactNumber, about },
   } = user;
-  const separateCountryCodeAndNumber = contactNumber?.split(" ") ?  contactNumber?.split(" ") : contactNumber ;
+  const separateCountryCodeAndNumber = contactNumber?.split(" ")
+    ? contactNumber?.split(" ")
+    : contactNumber;
   const {
     register,
     formState: { isSubmitSuccessful, errors },
@@ -56,7 +58,7 @@ const ProfileInformationForm = () => {
   const handleSubmitUserDetails = async (formData) => {
     dispatch(updateUserInfo(formData));
   };
-  
+
   return (
     <form
       className="w-full flex flex-col items-end gap-5"

@@ -8,6 +8,7 @@ const {
   DELETE_ACCOUNT_API,
   UPDATE_PROFILE_API,
   REMOVE_IMAGE_API,
+  CHANGE_PASSWORD_API,
 } = Profile_Endpoints;
 
 export const changeProfileImage = (formData) => {
@@ -74,7 +75,7 @@ export const removeProfileImage = () => {
 };
 
 export const updateUserInfo = (formData) => {
-  const fullContactNumber = formData.countryCode +" "+ formData.contactNumber;
+  const fullContactNumber = formData.countryCode + " " + formData.contactNumber;
   formData.contactNumber = fullContactNumber;
   delete formData.countryCode;
   console.log("formData.....", formData);
@@ -97,6 +98,35 @@ export const updateUserInfo = (formData) => {
     } catch (error) {
       console.log("ERROR IN SERVICES, UPDATING YOUR INFO", error);
       toast.error(error.response.data.message);
+    } finally {
+      toast.dismiss(toastId);
+      dispatch(setLoading(false));
+    }
+  };
+};
+
+export const changePassword = (changePassData) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Changing Your Password...");
+    dispatch(setLoading(true));
+    console.log(changePassData);
+    const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      const response = await apiConnector(
+        "PUT",
+        CHANGE_PASSWORD_API,
+        changePassData,
+        { Authorization: `Bearer ${token}` }
+      );
+
+      console.log("CHANGE PASSWORD RESPONSE.....", response);
+      if (!response?.data?.success) {
+        throw new Error("Failed to Change the Password");
+      }
+      toast.success("Password is successfully changed");
+    } catch (error) {
+      console.log("ERROR WHILE CHANGING THE PASSWORD....", error);
+      toast.error(error?.response?.data?.message);
     } finally {
       toast.dismiss(toastId);
       dispatch(setLoading(false));

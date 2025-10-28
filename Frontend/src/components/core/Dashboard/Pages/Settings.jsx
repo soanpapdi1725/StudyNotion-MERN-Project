@@ -8,9 +8,9 @@ import SettingOutlet from "../SettingOutlet/SettingOutlet";
 import ChangePasswordForm from "../helping Components/ChangePasswordForm";
 
 const Settings = () => {
+  const { user } = useSelector((state) => state.userDetail);
   const [imagePreview, setImagePreview] = useState(null);
   const [viewImagePreview, setViewImagePreview] = useState(false);
-
   return (
     <>
       <div className="flex flex-col justify-center text-white my-20 gap-15 mx-auto w-11/12 max-w-[1000px]">
@@ -24,11 +24,15 @@ const Settings = () => {
           heading={"Profile Information"}
           children={<ProfileInformationForm />}
         />
-        <SettingOutlet
-          style={"bg-richblack-900"}
-          heading={"Change Password"}
-          children={<ChangePasswordForm />}
-        />
+        {/* Change password layout will be visible to only those users who manually wrote their signup form  */}
+        {/* will not be visible to google sign in users */}
+        {user?.authProvider === "local" && (
+          <SettingOutlet
+            style={"bg-richblack-900"}
+            heading={"Change Password"}
+            children={<ChangePasswordForm />}
+          />
+        )}
       </div>
       {viewImagePreview && (
         <div className="absolute z-999 top-0 w-full  h-full  flex  backdrop-blur-lg flex-row   justify-center items-center">

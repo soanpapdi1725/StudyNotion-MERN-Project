@@ -13,7 +13,11 @@ const {
   postChangePass,
 } = require("../controllers/Auth");
 
-const { postGoogleRegister, postGoogleLogin } = require("../controllers/GoogleAuth");
+const {
+  postGoogleRegister,
+  postGoogleLogin,
+} = require("../controllers/GoogleAuth");
+const { auth } = require("../middlewares/auth");
 
 // **********************************************************************************************************
 //                                          Authentication Routes
@@ -21,7 +25,7 @@ const { postGoogleRegister, postGoogleLogin } = require("../controllers/GoogleAu
 authAndResetRouter.post("/login", postLogin);
 authAndResetRouter.post("/signup", postSignUp);
 authAndResetRouter.post("/sendotp", sendOTP);
-authAndResetRouter.post("/change-password", postChangePass);
+authAndResetRouter.put("/change-password", auth, postChangePass);
 
 // **********************************************************************************************************
 //                                          Authentication Routes using Google

@@ -11,7 +11,7 @@ export const authEndpoints = {
   SEND_OTP_API: BASE_URL + "/auth/sendotp",
   SIGNUP_API: BASE_URL + "/auth/signup",
   LOGIN_API: BASE_URL + "/auth/login",
-  CHANGE_PASSWORD_API: BASE_URL + "/auth/change-password",
+
   RESET_PASSWORD_TOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESET_PASSWORD_API: BASE_URL + "/auth/reset-password",
   GOOGLE_SIGNUP_API: BASE_URL + "/auth/google/signup",
@@ -27,4 +27,5 @@ export const Profile_Endpoints = {
   CHANGE_PROFILE_IMAGE_API: BASE_URL + "/profile/changeProfileImage",
   DELETE_ACCOUNT_API: BASE_URL + "/profile/deleteAccount",
   REMOVE_IMAGE_API: BASE_URL + "/profile/ImageRemove",
+  CHANGE_PASSWORD_API: BASE_URL + "/auth/change-password",
 };
