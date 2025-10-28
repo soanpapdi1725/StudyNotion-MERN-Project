@@ -9,7 +9,7 @@ const mailSender = require("../utils/mailSender");
 exports.updateProfile = async (req, res) => {
   try {
     // get data from request ki body
-
+    console.log(req.body);
     const {
       firstName,
       lastName = "",

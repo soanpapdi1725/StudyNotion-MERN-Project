@@ -74,18 +74,29 @@ export const removeProfileImage = () => {
 };
 
 export const updateUserInfo = (formData) => {
-  const fullContactNumber = formData.countryCode + " " + formData.contactNumber;
+  const fullContactNumber = formData.countryCode +" "+ formData.contactNumber;
   formData.contactNumber = fullContactNumber;
   delete formData.countryCode;
   console.log("formData.....", formData);
   return async (dispatch) => {
     const toastId = toast.loading("Updating your info...");
     dispatch(setLoading(true));
+    const token = JSON.parse(localStorage.getItem("token"));
     try {
-      const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData);
+      const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
+        Authorization: `Bearer ${token}`,
+      });
       console.log("PROFILE UPDATION RESPONSE.......", response);
-      
+      if (!response.data.success) {
+        throw new error();
+      }
+      const newUserData = response.data.data;
+      dispatch(setUser(newUserData));
+      localStorage.setItem("user", JSON.stringify(newUserData));
+      toast.success("Updated Your Info successfully");
     } catch (error) {
+      console.log("ERROR IN SERVICES, UPDATING YOUR INFO", error);
+      toast.error(error.response.data.message);
     } finally {
       toast.dismiss(toastId);
       dispatch(setLoading(false));

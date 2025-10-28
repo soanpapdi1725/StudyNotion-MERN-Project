@@ -11,6 +11,8 @@ const ProfileInformation = () => {
     lastName,
     additionalDetails: { dateOfBirth, gender, contactNumber, about },
   } = user;
+  const separateCountryCodeAndNumber = contactNumber?.split(" ");
+  console.log(separateCountryCodeAndNumber);
   const {
     register,
     formState: { isSubmitSuccessful, errors },
@@ -23,7 +25,9 @@ const ProfileInformation = () => {
       lastName,
       dateOfBirth: dateOfBirth ? dateOfBirth : "",
       gender: gender ? gender : "",
-      contactNumber: contactNumber ? contactNumber : "",
+      contactNumber: separateCountryCodeAndNumber[1]
+        ? separateCountryCodeAndNumber[1]
+        : null,
       about: about ? about : "",
     },
   });
@@ -34,12 +38,14 @@ const ProfileInformation = () => {
         lastName,
         dateOfBirth: dateOfBirth ? dateOfBirth : "",
         gender: gender ? gender : "",
-        contactNumber: contactNumber ? contactNumber : "",
+        contactNumber: contactNumber ? separateCountryCodeAndNumber[1] : null,
         about: about ? about : "",
       });
     }
   }, [reset, isSubmitSuccessful]);
-  const [countryCode, setCountryCode] = useState("+91");
+  const [countryCode, setCountryCode] = useState(
+    separateCountryCodeAndNumber[0] ? separateCountryCodeAndNumber[0] : null
+  );
   const GENDER_TYPE = [
     "Male",
     "Female",
