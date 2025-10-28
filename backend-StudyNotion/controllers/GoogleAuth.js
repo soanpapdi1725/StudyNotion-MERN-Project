@@ -88,7 +88,9 @@ exports.postGoogleLogin = async (req, res) => {
     // email, uid check krunga agar nahi exist karti toh bolunga jao signup kro
     const checkUserExist = await User.findOne({
       $or: [{ googleId: googleId }, { email: email }],
-    });
+    })
+      .populate("additionalDetails")
+      .exec();
     if (!checkUserExist) {
       return res.status(401).json({
         success: false,
