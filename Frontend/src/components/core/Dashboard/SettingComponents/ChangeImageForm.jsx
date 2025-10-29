@@ -1,7 +1,10 @@
 import { useForm } from "react-hook-form";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfileImage } from "../../../../services/operations/profileOperations";
+import {
+  changeProfileImage,
+  removeProfileImage,
+} from "../../../../services/operations/profileOperations";
 
 const ChangeImageForm = ({
   setViewImagePreview,
@@ -39,7 +42,12 @@ const ChangeImageForm = ({
     setImagePreview(null);
   };
   const RemoveProfile = () => {
-    dispatch(removeProfileImage());
+    const result = window.confirm(
+      "Are You Sure you want to Remove your Profile picture"
+    );
+    if (result) {
+      dispatch(removeProfileImage());
+    }
   };
   return (
     <div className="flex flex-col gap-4 bg-richblack-800 w-full py-10 px-8 rounded-lg">

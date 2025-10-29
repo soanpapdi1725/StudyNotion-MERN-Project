@@ -161,3 +161,14 @@ export const deleteAccount = () => {
     }
   };
 };
+
+export const getEnrolledCourses = ()=> {
+  return async (dispatch)=> {
+    dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("GET", )
+    } catch (error) {
+      
+    }
+  }
+}
