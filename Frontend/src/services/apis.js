@@ -28,4 +28,5 @@ export const Profile_Endpoints = {
   DELETE_ACCOUNT_API: BASE_URL + "/profile/deleteAccount",
   REMOVE_IMAGE_API: BASE_URL + "/profile/ImageRemove",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/change-password",
+  GET_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
 };

@@ -10,6 +10,7 @@ const {
   UPDATE_PROFILE_API,
   REMOVE_IMAGE_API,
   CHANGE_PASSWORD_API,
+  GET_ENROLLED_COURSES_API,
 } = Profile_Endpoints;
 
 export const changeProfileImage = (formData) => {
@@ -162,13 +163,26 @@ export const deleteAccount = () => {
   };
 };
 
-export const getEnrolledCourses = ()=> {
-  return async (dispatch)=> {
-    dispatch(setLoading(true))
-    try {
-      const response = await apiConnector("GET", )
-    } catch (error) {
-      
+export const getEnrolledCourses = async (signal) => {
+  try {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const response = await apiConnector(
+      "GET",
+      GET_ENROLLED_COURSES_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      },
+      null,
+      signal
+    );
+    if (!response?.data?.success) {
+      throw new Error("Failed to get User's Enrolled courses");
     }
+    return response?.data?.data;
+  } catch (error) {
+    console.log("ERROR WHILE GETTING ENROLLED COURSES....", error);
+    toast.error(error?.response?.data?.message);
+    return [];
   }
-}
+};
