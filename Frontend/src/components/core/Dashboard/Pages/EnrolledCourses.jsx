@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getEnrolledCourses } from "../../../../services/operations/profileOperations";
 import { HashLoader } from "react-spinners";
 import { BiSolidDownArrow , BiSolidUpArrow } from "react-icons/bi";
-
+import ProgressBar from "@ramonak/react-progress-bar"
 const EnrolledCourses = () => {
   const [enrolledCourses, setEnrolledCourses] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -36,60 +36,22 @@ const EnrolledCourses = () => {
         )
       ) : !enrolledCourses?.length ? (
         <p>You Have Not Enrolled in Any Course yet</p>
-      ) : (
-        <div>
-          <div className="flex flex-col border-[1px] rounded-lg overflow-hidden">
-            <div className="grid grid-cols-7 bg-richblack-700 place-items-center place-content-center py-4 px-2 ">
-              <p className="col-span-3">Courses</p>
-              <p className="col-start-4">Duration</p>
-              <p className="col-start-5 col-span-2">Progress</p>
-            </div>
-
-            {enrolledCourses?.map((course, index) => (
-              <div className="my-4 flex flex-row" key={index}>
-                <div className="grid grid-cols-7 place-items-center place-content-center py-4 px-2 gap-2">
-                  <img
-                    src={course.thumbnail}
-                    height={70}
-                    width={70}
-                    className="rounded-md col-start-1 col-span-1"
-                    alt={course.courseName}
-                  />
-                  <div className="col-start-2 col-span-2">
-                    <h1>{course.courseName}</h1>
-                    {descIndex === index ? (
-                      <button
-                        className="text-richblack-400 text-start flex items-center gap-1"
-                        onClick={() => {
-                          setDescIndex(null);
-                        }}
-                      >
-                        Description <BiSolidUpArrow />
-                      </button>
-                    ) : (
-                      <button
-                        className="text-richblack-400 flex items-center gap-1"
-                        onClick={() => {
-                          setDescIndex(index);
-                        }}
-                      >
-                        Description <BiSolidDownArrow />
-                      </button>
-                    )}
-
-                    {descIndex === index && (
-                      <p className="text-richblack-600">
-                        {course.courseDescription}
-                      </p>
-                    )}
-                  </div>
-
-                </div>
-              </div>
-            ))}
+      ) : (<div className="">
+        <div className="flex flex-row justify-evenly gap-5 w-[100%]">
+          <div className="w-12  text-center">
+            S. No
+          </div>
+          <div className="w-[40%]  text-center">
+            Courses
+          </div>
+          <div className="w-[10%]  text-center">
+            Duration
+          </div>
+          <div className="w-[20%]  text-center" >
+            Progress
           </div>
         </div>
-      )}
+      </div>)}
     </div>
   );
 };
