@@ -9,7 +9,7 @@ const InstructorSection = () => {
     <div className="flex flex-col lg:flex-row justify-center items-center gap-20 mt-8 mb-[100px] ">
       {/* image */}
       <div className="lg:w-[50%] shadow-[-30px_-30px_0px_-10px_rgba(255,255,255,1)]">
-        <img src={instructorImage} alt="" />
+        <img src={instructorImage} alt="" loading="lazy"/>
       </div>
       {/* Instructor heading subheading button*/}
       <div className="flex flex-col items-start gap-5 lg:w-[40%]">

@@ -36,7 +36,11 @@ const TimeLineSection = () => {
                 <div key={index} className="flex flex-row gap-6">
                   {/* image */}
                   <div className="w-[50px] h-[50px] bg-white flex items-center justify-center rounded-full shadow-[9px_12px_15px_3px_rgba(40,_39,_40,_0.25)]">
-                    <img src={element.logo} alt={`${element.heading} logo`} />
+                    <img
+                      src={element.logo}
+                      alt={`${element.heading} logo`}
+                      loading="lazy"
+                    />
                   </div>
                   {/* Data heading and subheading */}
                   <div className="flex flex-col items-start">
@@ -46,7 +50,9 @@ const TimeLineSection = () => {
                 </div>
                 <div
                   className={`${
-                    index === 3 ? "" : "ml-6 border-l border-richblack-100 h-8 border-dashed"
+                    index === 3
+                      ? ""
+                      : "ml-6 border-l border-richblack-100 h-8 border-dashed"
                   }`}
                 ></div>
               </div>
@@ -61,6 +67,7 @@ const TimeLineSection = () => {
             className="shadow-white h-fit object-fit relative z-20"
             src={timelineImage}
             alt=""
+            loading="lazy"
           />
           <div className="absolute z-30 translate-x-[15%] translate-y-[-15%] lg:translate-x-[6%] lg:translate-y-[-50%] bg-suar-700  lg:w-[29.5%] h-fit flex flex-col lg:flex-row gap-8 items-center uppercase justify-center text-pure-greys-5 py-4 lg:py-7">
             <div className="flex flex-row items-center gap-5 md:border-r border-suar-300 px-7">

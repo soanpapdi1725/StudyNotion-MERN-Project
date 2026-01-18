@@ -48,6 +48,7 @@ const MyProfile = () => {
               className="rounded-full aspect-square w-[78px]"
               src={user?.image}
               alt={`${user?.firstName}'s Image`}
+              loading="lazy"
             />
             <div className="flex flex-col w-full">
               {/* Name */}

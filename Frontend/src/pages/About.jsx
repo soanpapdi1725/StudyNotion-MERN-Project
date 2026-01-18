@@ -33,9 +33,24 @@ const AboutPage = () => {
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 mt-8">
-            <img className="min-w-[50px] min-h-[50px]" src={aboutus1} alt="" />
-            <img className="min-w-[50px] min-h-[50px]" src={aboutus2} alt="" />
-            <img className="min-w-[50px] min-h-[50px]" src={aboutus3} alt="" />
+            <img
+              className="min-w-[50px] min-h-[50px]"
+              src={aboutus1}
+              alt=""
+              loading="lazy"
+            />
+            <img
+              className="min-w-[50px] min-h-[50px]"
+              src={aboutus2}
+              alt=""
+              loading="lazy"
+            />
+            <img
+              className="min-w-[50px] min-h-[50px]"
+              src={aboutus3}
+              alt=""
+              loading="lazy"
+            />
           </div>
         </div>
       </section>

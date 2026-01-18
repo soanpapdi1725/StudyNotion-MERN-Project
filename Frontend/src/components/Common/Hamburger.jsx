@@ -81,6 +81,7 @@ const Hamburger = () => {
                     className="h-20 w-20 rounded-full"
                     src={user?.image}
                     alt={`${user.firstName}'s image`}
+                    loading="lazy"
                   />
                   <h1 className="font-bold text-whiet">
                     Welcome {user?.firstName}

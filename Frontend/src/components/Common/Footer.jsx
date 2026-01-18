@@ -25,7 +25,7 @@ const Footer = () => {
             <div className="pb-10">
               <div className="flex flex-wrap flex-row items-start gap-15 lg:mr-10">
                 <div className="flex flex-col gap-8">
-                  <img src={studyNotionLogo} alt="" />
+                  <img src={studyNotionLogo} alt="" loading="lazy"/>
                   <div className="flex flex-col">
                     {companyLinks.map((elements, index) => {
                       return (

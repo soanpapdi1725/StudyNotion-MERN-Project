@@ -44,6 +44,7 @@ const Settings = () => {
               src={imagePreview}
               alt="profile_preview"
               height={150}
+              loading="lazy"
             />
           </div>
           <div

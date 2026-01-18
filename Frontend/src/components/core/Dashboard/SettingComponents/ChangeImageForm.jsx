@@ -57,6 +57,7 @@ const ChangeImageForm = ({
             className="rounded-full aspect-square w-[78px]"
             src={user?.image}
             alt={`${user?.firstName}'s image`}
+            loading="lazy"
           />
         </div>
         <div className="flex flex-col gap-4 justify-center">

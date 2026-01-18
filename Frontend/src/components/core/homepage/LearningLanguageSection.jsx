@@ -26,16 +26,19 @@ const LearningLanguageSection = () => {
             className="object-cover  md:-mr-32"
             src={Know_your_progress}
             alt="Know_your_progress Image"
+            loading="lazy"
           />
           <img
             className="object-cover -mt-14 md:m-0"
             src={Compare_with_others}
             alt="Compare_with_others Image"
+            loading="lazy"
           />
           <img
             className="object-cover -mt-20 md:-ml-36"
             src={Plan_your_lessons}
             alt="Plan_your_lessons Image"
+            loading="lazy"
           />
         </div>
         {/* Button */}
