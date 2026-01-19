@@ -24,6 +24,8 @@ export const useOnClickOutside = (ref, handlerFunction) => {
     // active rahege or memory leak krenge jis se website slow hogi
     return () => {
       document.removeEventListener("mousedown", listenerFunction);
+            document.removeEventListener("mouseup", listenerFunction);
+
       document.removeEventListener("touchstart", listenerFunction);
       document.removeEventListener("scroll", listenerFunction);
     };
