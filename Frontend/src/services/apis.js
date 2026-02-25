@@ -1,6 +1,5 @@
 const BASE_URL =
-  import.meta.env.VITE_BASE_URL ||
-  import.meta.env.VITE_BACKEND_BASE_URL_ONRENDER;
+  import.meta.env.VITE_BACKEND_BASE_URL_VERCEL || import.meta.env.VITE_BASE_URL;
 
 export const courseEndpoints = {
   GET_ALL_CATEGORIES_API: BASE_URL + "/course/getAllCategories",
