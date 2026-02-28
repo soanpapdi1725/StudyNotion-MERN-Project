@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
-import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation } from "react-router";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import PassChangeSuccess from "../components/core/Auth/PassChangeSuccess";

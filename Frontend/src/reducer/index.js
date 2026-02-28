@@ -3,7 +3,7 @@ import authSlice from "../Slices/authSlice";
 import profileSlice from "../Slices/profileSlice";
 import cartSlice from "../Slices/cartSlice";
 const rootReducer = combineReducers({
-  auth: authSlice.reducer,
+  auth: authSlice,
   userDetail: profileSlice,
   cart: cartSlice,
 });
