@@ -9,11 +9,11 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "studynotion-react-frontend.vercel.app",
-  projectId: "studynotion-2517-ef48b",
-  storageBucket: "studynotion-2517-ef48b.firebasestorage.app",
-  messagingSenderId: "51049045559",
-  appId: "1:51049045559:web:6c3e51f1faae28eda3e9b2",
+  authDomain: "studynotion-2517.firebaseapp.com",
+  projectId: "studynotion-2517",
+  storageBucket: "studynotion-2517.firebasestorage.app",
+  messagingSenderId: "804610072487",
+  appId: "1:804610072487:web:cbc379c754cbae277c6082",
 };
 
 // Initialize Firebase
