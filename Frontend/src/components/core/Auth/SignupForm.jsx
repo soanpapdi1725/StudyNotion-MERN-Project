@@ -114,6 +114,7 @@ const SignupForm = ({ selectionTab }) => {
       );
     } catch (error) {
       console.log("Error while getting response from Google signUp", error);
+      console.log(window.location.hostname);
     }
   };
   return (
