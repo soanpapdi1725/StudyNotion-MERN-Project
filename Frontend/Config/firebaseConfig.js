@@ -6,7 +6,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDytCCgM4J77ggyzfcKw_6zywTp9825Ugk",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "studynotion-2517-2517.firebaseapp.com",
   projectId: "studynotion-2517-2517",
   storageBucket: "studynotion-2517-2517.firebasestorage.app",
