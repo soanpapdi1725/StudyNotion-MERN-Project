@@ -9,7 +9,7 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "studynotion-2517-ef48b.firebaseapp.com",
+  authDomain: "studynotion-react-frontend.vercel.app",
   projectId: "studynotion-2517-ef48b",
   storageBucket: "studynotion-2517-ef48b.firebasestorage.app",
   messagingSenderId: "51049045559",
