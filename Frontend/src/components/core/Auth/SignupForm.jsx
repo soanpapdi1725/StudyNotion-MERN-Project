@@ -12,7 +12,7 @@ import {
   googleSignUp,
   sendotp,
 } from "../../../services/operations/authOperations";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { auth, provider } from "../../../../Config/firebaseConfig";
 
 const SignupForm = ({ selectionTab }) => {
@@ -86,7 +86,7 @@ const SignupForm = ({ selectionTab }) => {
   const handleOnGoogleAuth = async () => {
     // signInWithPopup is the function which helps in opening the pop up after click
     try {
-      const response = await signInWithPopup(auth, provider);
+      const response = await signInWithRedirect(auth, provider);
       const user = response.user;
       console.log(user);
       const [firstName, ...rest] = user.displayName.split(" ");
