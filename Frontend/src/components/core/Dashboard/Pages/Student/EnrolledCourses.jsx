@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { getEnrolledCourses } from "../../../../services/operations/profileOperations";
+import { getEnrolledCourses } from "../../../../../services/operations/profileOperations";
 import { HashLoader } from "react-spinners";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import useOnClickOutside from "../../../../hooks/useOnClickOutside";
+import useOnClickOutside from "../../../../../hooks/useOnClickOutside";
 import { LuFileCheck } from "react-icons/lu";
 import { HiMiniTrash } from "react-icons/hi2";
 
