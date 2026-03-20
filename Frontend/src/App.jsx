@@ -16,6 +16,7 @@ import EnrolledCourses from "./components/core/Dashboard/Pages/EnrolledCourses";
 import Settings from "./components/core/Dashboard/Pages/Settings";
 import PurchaseHistory from "./components/core/Dashboard/Pages/PurchaseHistory";
 import PrivateRoute from "./components/Common/PrivateRoute";
+import AddCourses from "./components/core/Dashboard/Pages/AddCourses";
 
 const App = () => {
   return (
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="purchase-history" element={<PurchaseHistory />} />
           {/* Dashboard page - Settings */}
           <Route path="settings" element={<Settings />} />
+          <Route path="add-course" element={<AddCourses/>}/>
         </Route>
 
         {/* ERROR PAGE */}

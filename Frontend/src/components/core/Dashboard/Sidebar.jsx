@@ -6,11 +6,12 @@ import { useNavigate } from "react-router";
 import { VscSignOut } from "react-icons/vsc";
 import { useState } from "react";
 import ConfirmationModal from "../../Common/ConfirmationModal";
-import { HashLoader } from "react-spinners";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundForward } from "react-icons/io";
+
 const Sidebar = () => {
-  const { user } = useSelector(
-    (state) => state.userDetail
-  );
+  const [visible, setVisible] = useState(true);
+  const { user } = useSelector((state) => state.userDetail);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,11 +27,32 @@ const Sidebar = () => {
     });
   };
 
-
   return (
-    <div className="">
-      <div className="lg:flex hidden flex-col min-w-[250px] gap-4 border-r-[1px] text-richblack-5 border-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10">
-        <div className="flex flex-col">
+    <div
+      className={`relative transition-all duration-500 ease-in-out ${
+        visible ? "min-w-[250px] w-[250px]" : "min-w-0 w-0"
+      }`}
+    >
+      <button
+        onClick={() => setVisible(!visible)}
+        className={`z-[999] hidden lg:flex absolute top-0 ${
+          visible ? "right-0" : "-right-14"
+        } m-2 bg-richblack-700 rounded-lg hover:text-yellow-25 hover:bg-richblack-600 transition-all duration-500 text-white`}
+      >
+        {visible ? (
+          <IoIosArrowRoundBack className="text-4xl" />
+        ) : (
+          <IoIosArrowRoundForward className="text-4xl" />
+        )}
+      </button>
+      <div
+        className={`lg:flex ${
+          visible
+            ? "translate-x-0 ease-in-out duration-500 opacity-100"
+            : "-translate-x-full ease-in-out transform-3d duration-500 overflow-y-hidden pointer-events-none opacity-0 border-r-0"
+        } transition-all duration-500 ease-in-out hidden flex-col w-[250px] gap-4 border-r-[1px] text-richblack-5 border-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 overflow-y-auto no-scrollbar`}
+      >
+        <div className="flex flex-col mt-4">
           {sidebarLinks.map((links) => {
             if (links.type && user?.accountType !== links.type) return null;
             return (
@@ -60,6 +82,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
       <div
         className={`${
           !confirmationModal
