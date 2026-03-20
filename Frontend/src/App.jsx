@@ -12,11 +12,11 @@ import AboutPage from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import MyProfile from "./components/core/Dashboard/Pages/MyProfile";
 import Dashboard from "./pages/Dashboard";
-import EnrolledCourses from "./components/core/Dashboard/Pages/EnrolledCourses";
+import EnrolledCourses from "./components/core/Dashboard/Pages/Student/EnrolledCourses";
 import Settings from "./components/core/Dashboard/Pages/Settings";
-import PurchaseHistory from "./components/core/Dashboard/Pages/PurchaseHistory";
+import PurchaseHistory from "./components/core/Dashboard/Pages/Student/PurchaseHistory";
 import PrivateRoute from "./components/Common/PrivateRoute";
-import AddCourses from "./components/core/Dashboard/Pages/AddCourses";
+import AddCourses from "./components/core/Dashboard/Pages/Instructor/AddCourses";
 
 const App = () => {
   return (
