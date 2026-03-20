@@ -28,72 +28,77 @@ const Sidebar = () => {
   };
 
   return (
-    <div
-      className={`relative transition-all duration-500 ease-in-out ${
-        visible ? "min-w-[250px] w-[250px]" : "min-w-0 w-0"
-      }`}
-    >
-      <button
-        onClick={() => setVisible(!visible)}
-        className={`z-[999] hidden lg:flex absolute top-0 ${
-          visible ? "right-0" : "-right-14"
-        } m-2 bg-richblack-700 rounded-lg hover:text-yellow-25 hover:bg-richblack-600 transition-all duration-500 text-white`}
-      >
-        {visible ? (
-          <IoIosArrowRoundBack className="text-4xl" />
-        ) : (
-          <IoIosArrowRoundForward className="text-4xl" />
-        )}
-      </button>
+    <div>
       <div
-        className={`lg:flex ${
-          visible
-            ? "translate-x-0 ease-in-out duration-500 opacity-100"
-            : "-translate-x-full ease-in-out transform-3d duration-500 overflow-y-hidden pointer-events-none opacity-0 border-r-0"
-        } transition-all duration-500 ease-in-out hidden flex-col w-[250px] gap-4 border-r-[1px] text-richblack-5 border-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 overflow-y-auto no-scrollbar`}
+        className={`lg:relative transition-all duration-500 ease-in-out ${
+          visible ? "lg:min-w-[250px] w-[250px]" : "min-w-0 w-0"
+        }`}
       >
-        <div className="flex flex-col mt-4">
-          {sidebarLinks.map((links) => {
-            if (links.type && user?.accountType !== links.type) return null;
-            return (
-              <SidebarLinks
-                key={links.id}
-                name={links.name}
-                iconName={links.icon}
-                path={links.path}
-              />
-            );
-          })}
-        </div>
-        <div className="mx-auto mt-6 mb-6 h-[1px] w-11/12 bg-richblack-600">
-          {" "}
-        </div>
-        <div className="flex flex-col">
-          <SidebarLinks
-            name={"Settings"}
-            iconName={"VscSettingsGear"}
-            path={"/dashboard/settings"}
-          />
-          <div className="w-full cursor-pointer" onClick={handleOnClickLogout}>
-            <div className="grid grid-cols-4 w-full items-center justify-center py-3  hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md">
-              <VscSignOut className="text-xl w-full" />
-              <span className="col-span-3 ">Logout</span>
+        <button
+          onClick={() => setVisible(!visible)}
+          className={`z-[999] hidden lg:flex absolute top-0 ${
+            visible ? "right-0" : "-right-14"
+          } m-2 bg-richblack-700 rounded-lg hover:text-yellow-25 hover:bg-richblack-600 transition-all duration-500 text-white`}
+        >
+          {visible ? (
+            <IoIosArrowRoundBack className="text-4xl" />
+          ) : (
+            <IoIosArrowRoundForward className="text-4xl" />
+          )}
+        </button>
+        <div
+          className={`lg:flex hidden ${
+            visible
+              ? "translate-x-0 ease-in-out duration-500"
+              : "-translate-x-full ease-in-out transform-3d duration-500 overflow-y-hidden pointer-events-none border-r-0 "
+          } transition-all duration-500 ease-in-out flex-col w-[250px] gap-4 border-r-[1px] text-richblack-5 border-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 overflow-y-auto no-scrollbar`}
+        >
+          <div className="flex flex-col mt-4">
+            {sidebarLinks.map((links) => {
+              if (links.type && user?.accountType !== links.type) return null;
+              return (
+                <SidebarLinks
+                  key={links.id}
+                  name={links.name}
+                  iconName={links.icon}
+                  path={links.path}
+                />
+              );
+            })}
+          </div>
+          <div className="mx-auto mt-6 mb-6 h-[1px] w-11/12 bg-richblack-600">
+            {" "}
+          </div>
+          <div className="flex flex-col">
+            <SidebarLinks
+              name={"Settings"}
+              iconName={"VscSettingsGear"}
+              path={"/dashboard/settings"}
+            />
+            <div
+              className="w-full cursor-pointer"
+              onClick={handleOnClickLogout}
+            >
+              <div className="grid grid-cols-4 w-full items-center justify-center py-3  hover:text-yellow-25 hover:bg-richblack-700 px-2 text-md">
+                <VscSignOut className="text-xl w-full" />
+                <span className="col-span-3 ">Logout</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div
-        className={`${
-          !confirmationModal
-            ? "hidden"
-            : "backdrop-blur-xs text-white flex justify-center items-center absolute z-9999 top-0 w-full h-full"
-        } `}
-      >
-        <div>
-          {confirmationModal && (
-            <ConfirmationModal modalData={confirmationModal} />
-          )}
+        <div
+          className={`${
+            !confirmationModal
+              ? "hidden"
+              : "backdrop-blur-xs text-white flex justify-center items-center absolute z-9999 top-0 w-full h-full"
+          } `}
+        >
+          <div>
+            {confirmationModal && (
+              <ConfirmationModal modalData={confirmationModal} />
+            )}
+          </div>
         </div>
       </div>
       {/* fixed mobile navigation */}
