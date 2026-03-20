@@ -28,9 +28,9 @@ const Sidebar = () => {
   };
 
   return (
-    <div>
+    <>
       <div
-        className={`lg:relative transition-all duration-500 ease-in-out ${
+        className={`lg:relative min-h-[90vh] transition-all duration-500 ease-in-out ${
           visible ? "lg:min-w-[250px] w-[250px]" : "min-w-0 w-0"
         }`}
       >
@@ -122,7 +122,7 @@ const Sidebar = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

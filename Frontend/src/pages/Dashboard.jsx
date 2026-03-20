@@ -7,9 +7,9 @@ const Dashboard = () => {
   const { loading: authloading } = useSelector((state) => state.auth);
   const { loading: profileLoading } = useSelector((state) => state.userDetail);
   return (
-    <div className="flex relative min-h-[calc(100vh-3.5rem)] w-full overflow-hidden">
+    <div className="flex relative h-[calc(100vh-3.8rem)] w-full overflow-hidden no-scrollbar">
       <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] overflow-auto  w-full">
+      <div className="h-[calc(100vh-3.5rem)] overflow-auto w-full no-scrollbar">
         <div className="w-full">
           {profileLoading || authloading ? (
             <div className="flex justify-center items-center h-[80vh] overflow-hidden">
