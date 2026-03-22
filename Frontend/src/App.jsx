@@ -19,6 +19,7 @@ import PrivateRoute from "./components/Common/PrivateRoute";
 import AddCourses from "./components/core/Dashboard/Pages/Instructor/AddCourse/AddCourses";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
+import Cart from "./components/core/Dashboard/Pages/Student/Cart/Cart";
 
 const App = () => {
   const { user } = useSelector((state) => state.userDetail);
@@ -62,16 +63,18 @@ const App = () => {
           }
         >
           {/* Common pages */}
+          {/* Dashboard page - Settings & My Profile page */}
           <Route path="my-profile" element={<MyProfile />} />
           <Route path="settings" element={<Settings />} />
-          
+
           {/* Dashboard page - EnrolledCourses */}
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
               {/* Dashboard page - PurchaseHistory */}
               <Route path="purchase-history" element={<PurchaseHistory />} />
-              {/* Dashboard page - Settings */}
+              <Route path="cart" element={<Cart />} />
+              
             </>
           )}
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (

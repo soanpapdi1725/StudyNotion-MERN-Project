@@ -104,7 +104,7 @@ const Navbar = () => {
           {/* Login/Signup/Dashboard */}
           <div className="flex gap-x-4 items-center text-richblack-100">
             {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
-              <Link className="relative" to={"/cart"}>
+              <Link className="relative" to={"/dashboard/cart"}>
                 <FiShoppingCart />
                 {totalItems > 0 && <span>{totalItems}</span>}
               </Link>
