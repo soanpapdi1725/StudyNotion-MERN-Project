@@ -19,6 +19,20 @@ export default defineConfig({
         background_color: "#000814",
         theme_color: "#161d29",
         orientation: "portrait",
+        screenshots: [
+          {
+            src: "/Screenshot-Desktop.png",
+            sizes: "1898x864",
+            type:"image/png",
+            form_factor: "wide"
+          },
+          {
+            src: "/Screenshot-Mobile.png",
+            sizes: "413x749",
+            type:"image/png",
+            form_factor: "narrow"
+          }
+        ],
         icons: [
           {
             src: "/StudyNotion192.png",
