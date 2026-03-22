@@ -22,8 +22,5 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^9.2.0"
-  },
-  "dependencies": {
-    "vite-plugin-pwa": "^1.2.0"
   }
 }

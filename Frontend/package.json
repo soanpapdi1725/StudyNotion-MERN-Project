@@ -30,7 +30,8 @@
     "react-spinners": "^0.17.0",
     "react-type-animation": "^3.2.0",
     "tailwind-scrollbar": "^4.0.2",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "vite-plugin-pwa": "^1.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
