@@ -87,7 +87,9 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div
+        
+      </div>
+      <div
           className={`${
             !confirmationModal
               ? "hidden"
@@ -100,7 +102,6 @@ const Sidebar = () => {
             )}
           </div>
         </div>
-      </div>
       {/* fixed mobile navigation */}
       <div className="lg:hidden fixed bottom-0 w-full bg-richblack-800 rounded-t-lg">
         <div className="flex flex-row justify-between">

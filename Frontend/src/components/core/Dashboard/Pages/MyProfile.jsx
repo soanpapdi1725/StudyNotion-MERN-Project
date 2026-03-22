@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import { Link,  } from "react-router";
 import { FiEdit } from "react-icons/fi";
 import Footer from "../../../Common/Footer";
 

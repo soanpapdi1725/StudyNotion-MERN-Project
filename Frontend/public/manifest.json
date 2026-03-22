@@ -1,0 +1,22 @@
+ {
+       " name": "StudyNotion: An Edtech Platform",
+        "short_name": "StudyNotion",
+        "start_url": "/",
+        "description" : "An Edtech platform",
+        "display": "standalone",
+        "background_color": "#000814",
+        "theme_color": "#161d29",
+        "orientation": "portrait",
+       " icons":[
+          {
+            "src": "/StudyNotion192.png",
+            "sizes": "192x192",
+           " type": "image/png"
+          },
+          {
+            "src": "/StudyNotion512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          }
+        ]
+      }

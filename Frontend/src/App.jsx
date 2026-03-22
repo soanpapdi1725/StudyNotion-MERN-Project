@@ -16,9 +16,12 @@ import EnrolledCourses from "./components/core/Dashboard/Pages/Student/EnrolledC
 import Settings from "./components/core/Dashboard/Pages/Settings";
 import PurchaseHistory from "./components/core/Dashboard/Pages/Student/PurchaseHistory";
 import PrivateRoute from "./components/Common/PrivateRoute";
-import AddCourses from "./components/core/Dashboard/Pages/Instructor/AddCourses";
+import AddCourses from "./components/core/Dashboard/Pages/Instructor/AddCourse/AddCourses";
+import { useSelector } from "react-redux";
+import { ACCOUNT_TYPE } from "./utils/constants";
 
 const App = () => {
+  const { user } = useSelector((state) => state.userDetail);
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
@@ -58,14 +61,24 @@ const App = () => {
             </PrivateRoute>
           }
         >
+          {/* Common pages */}
           <Route path="my-profile" element={<MyProfile />} />
-          {/* Dashboard page - EnrolledCourses */}
-          <Route path="enrolled-courses" element={<EnrolledCourses />} />
-          {/* Dashboard page - PurchaseHistory */}
-          <Route path="purchase-history" element={<PurchaseHistory />} />
-          {/* Dashboard page - Settings */}
           <Route path="settings" element={<Settings />} />
-          <Route path="add-course" element={<AddCourses/>}/>
+          
+          {/* Dashboard page - EnrolledCourses */}
+
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              {/* Dashboard page - PurchaseHistory */}
+              <Route path="purchase-history" element={<PurchaseHistory />} />
+              {/* Dashboard page - Settings */}
+            </>
+          )}
+          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+              <Route path="add-course" element={<AddCourses />} />
+            </>
+          )}
         </Route>
 
         {/* ERROR PAGE */}
