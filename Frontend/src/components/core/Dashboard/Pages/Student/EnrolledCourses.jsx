@@ -125,7 +125,7 @@ const EnrolledCourses = () => {
                   </div>
                   <div className="relative sm:ml-4 flex items-center">
                     <button
-                      className="p-1 hover:bg-richblack-800 rounded-full transition-colors duration-300"
+                      className="p-1 hover:bg-richblack-800 active:bg-richblack-800 rounded-full transition-colors duration-300"
                       onClick={(event) => {
                         console.log(index)
                         setDotsActive(dotsActive === index ? null : index);
@@ -139,11 +139,11 @@ const EnrolledCourses = () => {
                         ref={ref}
                         className="absolute z-100 right-0 max-w-max-content flex flex-col top-full font-bold divide-y-1 border border-richblack-600 shadow-2xl w-[200px] divide-black text-xs bg-richblack-500  rounded"
                       >
-                        <button className="flex hover:bg-richblack-800 py-3  flex-row w-full pb-2 gap-2 items-center px-4 justify-start">
+                        <button className="flex hover:bg-richblack-800 active:bg-richblack-800 py-3  flex-row w-full pb-2 gap-2 items-center px-4 justify-start">
                           <LuFileCheck className="text-lg text-start" />
                           <p className="text-center">Mark as Complete</p>
                         </button>
-                        <button className="flex flex-row hover:bg-richblack-800 py-3 gap-2 items-center w-full px-4 gap-1 justify-start  pt-2">
+                        <button className="flex flex-row hover:bg-richblack-800 active:bg-richblack-800 py-3 items-center w-full px-4 gap-1 justify-start  pt-2">
                           <HiMiniTrash className="text-pink-200 text-lg text-start" />
                           <p className="">Remove</p>
                         </button>
