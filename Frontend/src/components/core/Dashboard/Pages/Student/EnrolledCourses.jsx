@@ -48,7 +48,7 @@ const EnrolledCourses = () => {
       ) : !enrolledCourses?.length ? (
         <p>You Have Not Enrolled in Any Course yet</p>
       ) : (
-        <div className="border-1 gap-y-5 border-richblack-600 rounded-md overflow-hidden w-[100%]">
+        <div className="border-1 gap-y-5 border-richblack-600 rounded-md w-[100%]">
           <div className="flex flex-row justify-between px-4 gap-5 text-sm w-[100%] bg-richblack-700 py-2.5">
             <div className="w-[49%] text-richblack-50 text-start">
               Course Name
@@ -123,33 +123,33 @@ const EnrolledCourses = () => {
                       maxCompleted={100}
                     />
                   </div>
-                  <button
-                    className="sm:ml-4 relative"
-                    onClick={(event) => {
-                      console.log(index);
-                      setDotsActive(index);
-                      event.stopPropagation();
-                    }}
-                  >
-                    <BsThreeDotsVertical className="text-richblack-400 text-2xl" />
-                  </button>
-                  {dotsActive === index && (
-                    <div
-                      ref={ref}
-                      className="absolute flex flex-col rounded-lg mx-12 my-14 z-999 h-[80px] bg-richblack-500 text-md   overflow-hidden "
+                  <div className="relative sm:ml-4 flex items-center">
+                    <button
+                      className="p-1 hover:bg-richblack-800 rounded-full transition-colors duration-300"
+                      onClick={(event) => {
+                        console.log(index)
+                        setDotsActive(dotsActive === index ? null : index);
+                        event.stopPropagation();
+                      }}
                     >
-                      {/* Mark as Completed */}
-                      <button className="flex flex-row justify-start items-center px-4  h-full w-full hover:bg-richblack-600 text-xs md:text-md gap-x-2">
-                        <LuFileCheck className="text-md" />
-                        <h1>Mark as Completed</h1>
-                      </button>
-                      {/* Remove */}
-                      <button className="flex flex-row justify-start items-center px-4 h-full w-full hover:bg-richblack-600 text-xs md:text-md  gap-x-2">
-                        <HiMiniTrash className="text-md" />
-                        <h1>Remove</h1>
-                      </button>
-                    </div>
-                  )}
+                      <BsThreeDotsVertical className="text-richblack-400 text-2xl" />
+                    </button>
+                    {dotsActive === index && (
+                      <div
+                        ref={ref}
+                        className="absolute z-100 right-0 max-w-max-content flex flex-col top-full font-bold divide-y-1 border border-richblack-600 shadow-2xl w-[200px] divide-black text-xs bg-richblack-500  rounded"
+                      >
+                        <button className="flex hover:bg-richblack-800 py-3  flex-row w-full pb-2 gap-2 items-center px-4 justify-start">
+                          <LuFileCheck className="text-lg text-start" />
+                          <p className="text-center">Mark as Complete</p>
+                        </button>
+                        <button className="flex flex-row hover:bg-richblack-800 py-3 gap-2 items-center w-full px-4 gap-1 justify-start  pt-2">
+                          <HiMiniTrash className="text-pink-200 text-lg text-start" />
+                          <p className="">Remove</p>
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

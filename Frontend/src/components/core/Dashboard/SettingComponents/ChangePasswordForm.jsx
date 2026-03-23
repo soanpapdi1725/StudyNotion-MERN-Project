@@ -70,7 +70,7 @@ const ChangePasswordForm = () => {
         </label>
         <input
           id="NewPassword"
-          className="bg-richblack-700 h-10 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none   border-none text-md md:text-xl px-2 py-2.5 rounded-lg "
+          className="bg-richblack-700  h-10 shadow-[0px_0.9px_0.5px_0.2px_rgba(255,255,255,0.3)] text-pure-greys-5 focus:border-none   border-none text-md md:text-xl px-2 py-2.5 rounded-lg "
           type={`${seePass_N ? "text" : "password"}`}
           placeholder="Enter Your New Password"
           name="newPassword"

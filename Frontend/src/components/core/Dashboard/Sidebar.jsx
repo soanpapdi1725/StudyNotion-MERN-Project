@@ -103,7 +103,7 @@ const Sidebar = () => {
           </div>
         </div>
       {/* fixed mobile navigation */}
-      <div className="lg:hidden fixed bottom-0 w-full bg-richblack-800 rounded-t-lg">
+      <div className="lg:hidden fixed z-[999] bottom-0 w-full bg-richblack-800 rounded-t-lg">
         <div className="flex flex-row justify-between">
           {sidebarLinks.map((links) => {
             if (links.type && user?.accountType !== links.type) return null;

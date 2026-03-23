@@ -14,7 +14,7 @@ const Settings = () => {
   const [viewImagePreview, setViewImagePreview] = useState(false);
   return (
     <>
-      <div className="flex flex-col justify-center text-white my-20 gap-15 mx-auto w-11/12 max-w-[1000px]">
+      <div className="flex flex-col justify-center text-white my-20 gap-15 mx-auto w-11/12 max-w-[1000px] overflow-hidden">
         <h1 className="text-4xl">Edit Profile</h1>
         <ChangeImageForm
           setViewImagePreview={setViewImagePreview}
