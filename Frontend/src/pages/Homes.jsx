@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className="">
       {/* Section 1 */}
-      <div className="mx-auto flex flex-col w-11/12 items-center max-w-max-content text-white justify-between">
+      <div className="w-11/12 flex flex-col items-center gap-8 mx-auto text-white">
         <Link to={"/signup"}>
           <div className="shadow-[0px_0.5px_0.5px_0.5px_rgba(255,255,255,0.5)] group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-semibold text-richblack-200 transition-all duration-200 hover:scale-95">
             <div className="group-hover:bg-richblack-900 px-10 flex flex-row gap-2 items-center rounded-full py-[5px]">
@@ -43,7 +43,7 @@ const Home = () => {
         </div>
         <div className="lg:shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
           <div className="w-[70%] lg:shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
-          <video muted loop autoPlay src={Banner}></video>
+          <video className="w-full overflow-x-hidden" muted loop autoPlay src={Banner}></video>
         </div>
         {/* section code block - 1*/}
         <div>

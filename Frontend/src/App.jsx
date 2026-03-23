@@ -24,7 +24,7 @@ import Cart from "./components/core/Dashboard/Pages/Student/Cart/Cart";
 const App = () => {
   const { user } = useSelector((state) => state.userDetail);
   return (
-    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+    <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter">
       <Navbar />
       <Routes>
         {/* HOME PAGE */}
