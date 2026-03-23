@@ -42,8 +42,8 @@ const Home = () => {
           </CTAButton>
         </div>
         <div className="lg:shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
-          <div className="w-[70%] lg:shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
-          <video className="w-full overflow-x-hidden" muted loop autoPlay src={Banner}></video>
+          <div className="w-[70%]"></div>
+          <video className="shadow-[20px_20px_rgba(255,255,255)]" muted loop autoPlay src={Banner}></video>
         </div>
         {/* section code block - 1*/}
         <div>
