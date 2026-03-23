@@ -13,9 +13,9 @@ const Home = () => {
   return (
     <div className="">
       {/* Section 1 */}
-      <div className="w-11/12 flex flex-col items-center gap-8 mx-auto text-white">
+      <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
         <Link to={"/signup"}>
-          <div className="shadow-[0px_0.5px_0.5px_0.5px_rgba(255,255,255,0.5)] group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-semibold text-richblack-200 transition-all duration-200 hover:scale-95">
+          <div className="group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-semibold text-richblack-200 transition-all duration-200 hover:scale-95">
             <div className="group-hover:bg-richblack-900 px-10 flex flex-row gap-2 items-center rounded-full py-[5px]">
               <p>Become An Instructor</p>
               <FaArrowRight />
@@ -41,7 +41,7 @@ const Home = () => {
             Book a Demo
           </CTAButton>
         </div>
-        <div className="lg:shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
+        <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
           <div className="w-[70%]"></div>
           <video className="shadow-[20px_20px_rgba(255,255,255)]" muted loop autoPlay src={Banner}></video>
         </div>
