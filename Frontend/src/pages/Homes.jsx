@@ -41,8 +41,8 @@ const Home = () => {
             Book a Demo
           </CTAButton>
         </div>
-        <div className="shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
-          <div className="w-[70%] shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
+        <div className="lg:shadow-[24px_24px_0px_-5px_rgba(255,255,255,1)] mx-4 my-10">
+          <div className="w-[70%] lg:shadow-[105px_100px_100px_150px_rgba(11,_231,_140,_0.1)] "></div>
           <video muted loop autoPlay src={Banner}></video>
         </div>
         {/* section code block - 1*/}
@@ -160,10 +160,10 @@ const Home = () => {
           <div></div>
         </div>
       </div>
-      <div className="w-screen">
+      <div className="w-full">
         <Footer />
       </div>
-    </div>
+      </div>
   );
 };
 

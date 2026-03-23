@@ -64,7 +64,7 @@ const TimeLineSection = () => {
             className={`lg:w-[700.26px] lg:h-[309.64px] opacity-80 rounded-[50%_40%_50%_40%] blur-3xl bg-gradient-to-br from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] absolute z-10 translate-x-[-5%] translate-y-[15%]`}
           ></div>
           <img
-            className="shadow-white h-fit object-fit relative z-20"
+            className="lg:shadow-white h-fit object-fit relative z-20"
             src={timelineImage}
             alt=""
             loading="lazy"

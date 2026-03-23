@@ -12,11 +12,13 @@ const EnrolledCourses = () => {
   const [enrolledCourses, setEnrolledCourses] = useState(null);
   const [loading, setLoading] = useState(false);
   const [descIndex, setDescIndex] = useState(null);
+
   const ref = useRef(null);
   useOnClickOutside(ref, () => {
     setDotsActive(null);
   });
   const [dotsActive, setDotsActive] = useState(null);
+
   const enrollCoursesFunction = async (signal) => {
     try {
       setLoading(true);
@@ -122,33 +124,33 @@ const EnrolledCourses = () => {
                     />
                   </div>
                   <button
-                    className="sm:ml-4"
-                    onClick={() => {
-                      if (dotsActive === index) {
-                        setDotsActive(null);
-                      } else {
-                        setDotsActive(index);
-                      }
+                    className="sm:ml-4 relative"
+                    onClick={(event) => {
+                      console.log(index);
+                      setDotsActive(index);
+                      event.stopPropagation();
                     }}
                   >
                     <BsThreeDotsVertical className="text-richblack-400 text-2xl" />
                   </button>
+                  {dotsActive === index && (
+                    <div
+                      ref={ref}
+                      className="absolute flex flex-col rounded-lg mx-12 my-14 z-999 h-[80px] bg-richblack-500 text-md   overflow-hidden "
+                    >
+                      {/* Mark as Completed */}
+                      <button className="flex flex-row justify-start items-center px-4  h-full w-full hover:bg-richblack-600 text-xs md:text-md gap-x-2">
+                        <LuFileCheck className="text-md" />
+                        <h1>Mark as Completed</h1>
+                      </button>
+                      {/* Remove */}
+                      <button className="flex flex-row justify-start items-center px-4 h-full w-full hover:bg-richblack-600 text-xs md:text-md  gap-x-2">
+                        <HiMiniTrash className="text-md" />
+                        <h1>Remove</h1>
+                      </button>
+                    </div>
+                  )}
                 </div>
-
-                {dotsActive === index && (
-                  <div ref={ref} className="flex flex-col rounded-lg mx-12  z-999 w-full h-[80px] bg-richblack-500 text-md   overflow-hidden ">
-                    {/* Mark as Completed */}
-                    <button className="flex flex-row justify-start items-center px-4  h-full w-full hover:bg-richblack-600  gap-x-2">
-                      <LuFileCheck />
-                      <h1>Mark as Completed</h1>
-                    </button>
-                    {/* Remove */}
-                    <button className="flex flex-row justify-start items-center px-4 h-full w-full hover:bg-richblack-600  gap-x-2">
-                      <HiMiniTrash />
-                      <h1>Remove</h1>
-                    </button>
-                  </div>
-                )}
               </div>
             </div>
           ))}

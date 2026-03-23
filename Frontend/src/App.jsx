@@ -74,7 +74,7 @@ const App = () => {
               {/* Dashboard page - PurchaseHistory */}
               <Route path="purchase-history" element={<PurchaseHistory />} />
               <Route path="cart" element={<Cart />} />
-              
+              <Route path="enrolled-courses" element={<EnrolledCourses />} />
             </>
           )}
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (

@@ -16,9 +16,30 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
   reducers: {
-    
+    addToCart: (state, action) => {
+      const course = action.payload;
+      const index = state.cart.findIndex((item) => item._id === course._id);
+      if (index > 0) {
+        toast.error("Already Added in Cart");
+        return;
+      }
+
+      state.cart.push(course);
+      state.totalItems++;
+      state.totalCost += course.price;
+      toast.success(`${course.courseName} is Added in cart`);
+    },
+
+    removeFromCart: (state, action) => {
+      const course = action.payload;
+      state.cart = state.cart.filter((item) => item._id !== course._id);
+      state.totalItems--;
+      state.totalCost -= course.price;
+
+      toast.success("Course is removed from cart");
+    },
   },
 });
 
-export const {} = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
