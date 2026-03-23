@@ -107,7 +107,7 @@ const Home = () => {
       {/* white wala part Section 2 */}
       <div className="bg-pure-greys-5 text-richblack-700">
         <div className="bg_homeImageOfLines h-[310px]">
-          <div className="w-11/12 max-w-max-content flex flex-col items-center gap-8 mx-auto">
+          <div className="w-11/12 flex flex-col items-center gap-8 mx-auto">
             <div className="h-[150px]"></div>
             <div className="flex flex-row gap-5">
               <CTAButton active={true} linkto={"/signup"}>
